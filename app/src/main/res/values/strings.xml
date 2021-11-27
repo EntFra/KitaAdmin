@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">KitaAdmin</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrasenia">Contraseña</string>
+    <string name="entrar">Entrar</string>
+    <string name="salir">Salir</string>
+
 </resources>

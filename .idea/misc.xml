@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/drawable/button_rounded.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/drawable/ic_kita_background.xml" value="0.215625" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/drawable/ic_launcher_background.xml" value="0.215625" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/login_activity.xml" value="0.18" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/menu_activity.xml" value="0.22" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/mipmap-anydpi-v26/ic_kita.xml" value="0.215625" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/mipmap-anydpi-v26/ic_kita_round.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.215625" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
