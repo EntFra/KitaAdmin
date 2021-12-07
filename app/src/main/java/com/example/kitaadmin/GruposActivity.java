@@ -1,2 +1,4 @@
-package com.example.kitaadmin;public class GruposActivity {
+package com.example.kitaadmin;
+
+public class GruposActivity {
 }

@@ -5,18 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/faqBtn"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calendario"
+        app:layout_constraintEnd_toEndOf="@id/calendarBtn"
+        app:layout_constraintStart_toStartOf="@id/calendarBtn"
+        app:layout_constraintTop_toBottomOf="@id/calendarBtn" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/usuarios"
+        app:layout_constraintEnd_toEndOf="@id/databaseBtn"
+        app:layout_constraintStart_toStartOf="@id/databaseBtn"
+        app:layout_constraintTop_toBottomOf="@id/databaseBtn" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ayuda"
+        app:layout_constraintEnd_toEndOf="@id/faqBtn"
+        app:layout_constraintStart_toStartOf="@id/faqBtn"
+        app:layout_constraintTop_toBottomOf="@id/faqBtn" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/informacion"
+        app:layout_constraintEnd_toEndOf="@id/infoBtn"
+        app:layout_constraintStart_toStartOf="@id/infoBtn"
+        app:layout_constraintTop_toBottomOf="@id/infoBtn" />
+
+    <ImageButton
+        android:id="@+id/databaseBtn"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="70dp"
-        android:background="@drawable/icon_faq"
+        android:background="@drawable/icon_database"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoBtn"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/infoBtn"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -27,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/foodBtn"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/foodBtn"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -38,7 +74,8 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+
+    <ImageButton
         android:id="@+id/groupBtn"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -46,21 +83,20 @@
         android:layout_marginTop="150dp"
         android:background="@drawable/icon_group"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/databaseBtn"
+
+    <ImageButton
+        android:id="@+id/faqBtn"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="50dp"
-        android:background="@drawable/icon_database"
+        android:background="@drawable/icon_faq"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarBtn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/calendarBtn"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/calendarBtn"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -68,8 +104,7 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/icon_calendar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupBtn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/groupBtn" />
 
     <Button
         android:id="@+id/exitBtn"
@@ -81,4 +116,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/databaseBtn" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/grupos"
+        app:layout_constraintTop_toBottomOf="@+id/groupBtn"
+        app:layout_constraintEnd_toEndOf="@+id/groupBtn"
+        app:layout_constraintStart_toStartOf="@+id/groupBtn" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/comedor"
+        app:layout_constraintTop_toBottomOf="@id/foodBtn"
+        app:layout_constraintEnd_toEndOf="@+id/foodBtn"
+        app:layout_constraintStart_toStartOf="@+id/foodBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

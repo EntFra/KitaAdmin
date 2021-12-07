@@ -4,5 +4,48 @@
     <string name="contrasenia">Contraseña</string>
     <string name="entrar">Entrar</string>
     <string name="salir">Salir</string>
+    <string name="grupos">Grupos</string>
+    <string name="comedor">Comedor</string>
+    <string name="calendario">Calendario</string>
+    <string name="informacion">Información actual</string>
+    <string name="ayuda">Ayuda</string>
+    <string name="usuarios">Usuarios</string>
+    <string name="fechaNac">Fecha de nacimiento</string>
+    <string name="telef">Teléfono</string>
+    <string name="email">Email</string>
+    <string name="dni">DNI</string>
+    <string name="direccion">Dirección</string>
+    <string name="fechaAlta">Fecha de alta</string>
+    <string name="grupo">Grupo</string>
+    <string name="desayuno">Desayuno</string>
+    <string name="snack">Snack</string>
+    <string name="paltoPrinc">Plato principal</string>
+    <string name="postre">Postre</string>
+    <string name="volver">Volver</string>
+    <string name="diaAnt">Día anterior</string>
+    <string name="diaProx">Próximo día</string>
+    <string name="alumnosGrupo">Alumnos grupo</string>
+    <string name="alergia">Alergia alimentaria</string>
+    <string name="datosMed">Datos médicos</string>
+    <string name="autoFotos">Autoriza fotos</string>
+    <string name="autoSalidas">Autoriza salidas</string>
+    <string name="observaciones">Observaciones</string>
+    <string name="padres">Padres</string>
+    <string name="informes">Informes</string>
+    <string name="nombreYApell">Nombre y apellidos</string>
+    <string name="suenio">Sueño</string>
+    <string name="deposicion">Deposición</string>
+    <string name="comida">Comida</string>
+    <string name="bebida">Bebida</string>
+    <string name="anadir">Añadir usuario</string>
+    <string name="eliminar">Eliminar usuario</string>
+    <string name="rol">Rol</string>
+
+
+
+
+
+
+
 
 </resources>
