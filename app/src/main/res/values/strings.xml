@@ -40,12 +40,7 @@
     <string name="anadir">Añadir usuario</string>
     <string name="eliminar">Eliminar usuario</string>
     <string name="rol">Rol</string>
-
-
-
-
-
-
+    <string name="profesor">Profesor</string>
 
 
 </resources>
