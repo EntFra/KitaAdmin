@@ -41,6 +41,12 @@
     <string name="eliminar">Eliminar usuario</string>
     <string name="rol">Rol</string>
     <string name="profesor">Profesor</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="profesores">Profesores</string>
+    <string name="alumnos">Alumnos</string>
+    <string name="alumno">Alumno</string>
+    <string name="ejemplo">Texto de ejemplo</string>
+
 
 
 </resources>

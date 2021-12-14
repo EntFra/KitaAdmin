@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KitaAdmin">
         <activity
+            android:name=".AlumnoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListaAlumnosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GrupoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListaProfesoresActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfesorEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
