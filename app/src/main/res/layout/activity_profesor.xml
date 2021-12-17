@@ -82,7 +82,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textViewFechaNac"
+                        android:id="@+id/editFechaNacim"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -152,7 +152,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textViewEmail"
+                        android:id="@+id/editDatosMedicos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
