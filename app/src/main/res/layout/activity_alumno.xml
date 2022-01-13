@@ -248,16 +248,18 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/observaciones" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="20dp"
                         tools:text="@string/ejemplo"
-                        android:gravity="center"/>
+                        android:gravity="center" />
 
                 </LinearLayout>
 
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -302,13 +304,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal"/>
+                    android:orientation="horizontal" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal"/>
+                    android:orientation="horizontal" />
             </TableRow>
         </TableLayout>
     </androidx.core.widget.NestedScrollView>
