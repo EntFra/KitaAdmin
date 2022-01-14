@@ -1,6 +1,7 @@
 package com.example.kitaadmin.Model;
 
 public class Alumno {
+
     private int alumno_id;
     private String nombre;
     private String alergias;
@@ -10,6 +11,18 @@ public class Alumno {
     private boolean comedor;
     private String nombre_grupo;
     private int fecha_nacimiento;
+
+    public Alumno(String nombre, String alergias, String observaciones, boolean auto_salidas, boolean auto_fotos, boolean comedor, String nombre_grupo, int fecha_nacimiento) {
+
+        this.nombre = nombre;
+        this.alergias = alergias;
+        this.observaciones = observaciones;
+        this.auto_salidas = auto_salidas;
+        this.auto_fotos = auto_fotos;
+        this.comedor = comedor;
+        this.nombre_grupo = nombre_grupo;
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
 
     public int getAlumno_id() {
         return alumno_id;

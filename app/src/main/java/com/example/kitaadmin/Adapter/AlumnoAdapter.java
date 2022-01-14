@@ -31,7 +31,7 @@ public class AlumnoAdapter extends ArrayAdapter<Alumno> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.activity_alumno)
+        View view = layoutInflater.inflate(R.layout.activity_alumno);
 
     }
 }
