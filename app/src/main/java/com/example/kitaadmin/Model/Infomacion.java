@@ -1,5 +1,8 @@
 package com.example.kitaadmin.Model;
 
+/**
+ * Clase Informacion que almacena informaciones destacables segun grupo
+ */
 public class Infomacion {
 
     private int informacion_id;

@@ -1,5 +1,8 @@
 package com.example.kitaadmin.Model;
 
+/**
+ * Clase Padres que representa un objeto padre, contiene los datos del id padre e id del niño con el que estan relacionados
+ */
 public class Padres {
 
     private int alumno_id;

@@ -1,5 +1,8 @@
 package com.example.kitaadmin.Model;
 
+/**
+ * Clase Usuarios que representa un usuario de la aplicacion, estableciendo la información necesaria para el correcto uso de la aplicacion
+ */
 public class Usuarios {
 
     private int usuarios_id;

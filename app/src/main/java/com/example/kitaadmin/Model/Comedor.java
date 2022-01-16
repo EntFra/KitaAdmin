@@ -1,5 +1,8 @@
 package com.example.kitaadmin.Model;
 
+/**
+ * Clase Comedor que representa el menu del dia
+ */
 public class Comedor {
 
     private int menu_id;

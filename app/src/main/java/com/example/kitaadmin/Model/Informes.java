@@ -4,6 +4,9 @@ package com.example.kitaadmin.Model;
 import java.time.Duration;
 import java.util.Date;
 
+/**
+ * Clase Informes, objeto que almacena la informacion diaria de cada alumno
+ */
 public class Informes {
 
     private int alumno_id;

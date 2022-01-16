@@ -1,5 +1,8 @@
 package com.example.kitaadmin.Model;
 
+/**
+ * Clase Calendario que representa los eventos diarios
+ */
 public class Calendario {
 
     private int dia_id;

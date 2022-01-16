@@ -2,6 +2,9 @@ package com.example.kitaadmin.Model;
 
 import java.util.Date;
 
+/**
+ * Clase Profesores que representa un objeto profesor, indicando sus distintos parametros y el grupo al que pertenecen
+ */
 public class Profesores {
 
     private String dni;
