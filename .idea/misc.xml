@@ -7,14 +7,18 @@
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/drawable/button_rounded.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/drawable/ic_kita_background.xml" value="0.215625" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/drawable/ic_launcher_background.xml" value="0.215625" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/acitivity_menu.xml" value="0.2" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_alumno.xml" value="0.33" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_alumno_edit.xml" value="0.25" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_calendario.xml" value="0.5" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_grupo.xml" value="0.33" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_grupos.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_informacion_actual.xml" value="0.203125" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_lista_alumnos.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_lista_profesores.xml" value="0.5" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_login.xml" value="0.2361111111111111" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_profesor.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/activity_profesor_edit.xml" value="0.33" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/grid_item.xml" value="0.1" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/layout/grid_item_grupos.xml" value="0.25555555555555554" />
@@ -26,6 +30,7 @@
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/mipmap-anydpi-v26/ic_kita.xml" value="0.215625" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/mipmap-anydpi-v26/ic_kita_round.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.215625" />
+        <entry key="..\:/Users/ivanp/Desktop/FPadistancia/Asignaturas/Proyecto/DAMProyecto/KitaAdmin/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.21979166666666666" />
       </map>
     </option>
   </component>

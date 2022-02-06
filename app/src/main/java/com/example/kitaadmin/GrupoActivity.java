@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.kitaadmin.Adapter.AlumnoAdapter;
-import com.example.kitaadmin.Adapter.RecylerAdapter;
+import com.example.kitaadmin.Adapter.RecyclerAdapter;
 import com.example.kitaadmin.Model.Alumno;
 import com.example.kitaadmin.Utils.AlumnoService;
 
@@ -24,7 +24,7 @@ public class GrupoActivity extends AppCompatActivity {
     AlumnoService alumnoService;
     List<Alumno> listaAlumnos = new ArrayList<>();
     RecyclerView recyclerView;
-    RecylerAdapter
+    RecyclerAdapter recyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,7 @@ public class GrupoActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.recyclerAlumnos);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getApplicationContext(), movieList);
-        recyclerView.setAdapter(recyclerAdapter);
+
         
 
     }
@@ -51,9 +50,10 @@ public class GrupoActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     listaAlumnos = response.body();
 
-                    recyclerView.setAdapter(new AlumnoAdapter(GrupoActivity.this),R.layout.activity_grupo, listaAlumnos);
+                    recyclerAdapter = new RecyclerAdapter(getApplicationContext(), listaAlumnos);
+                    recyclerView.setAdapter(recyclerAdapter);
 
-                }
+                                   }
 
 
             }

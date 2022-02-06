@@ -11,33 +11,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        tools:text="@string/alumno"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/alumno" />
 
 
     <ImageButton
         android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@null"
         android:layout_marginTop="100dp"
-        android:background=""
         android:src="@drawable/ic_baseline_edit_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textTituloAlumno"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/btnDelet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:background="@null"
         android:layout_marginTop="100dp"
-        android:background=""
+        android:layout_marginEnd="16dp"
         android:src="@drawable/ic_baseline_delete_24"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnEdit"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
     <androidx.core.widget.NestedScrollView
@@ -48,12 +53,7 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopButtomOf="layoutTitulo"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -188,9 +188,9 @@
 
                     <Switch
                         android:id="@+id/switchFotos"
-                        android:paddingEnd="65dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="65dp"
                         tools:ignore="UseSwitchCompatOrMaterialXml" />
                 </LinearLayout>
             </TableRow>
@@ -223,11 +223,11 @@
 
                     <Switch
                         android:id="@+id/switchSalidas"
-                        android:paddingEnd="65dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        tools:ignore="UseSwitchCompatOrMaterialXml" />
+                        android:paddingEnd="65dp"
+                        tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
                 </LinearLayout>
             </TableRow>
 
@@ -252,9 +252,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:paddingTop="20dp"
-                        tools:text="@string/ejemplo"
-                        android:gravity="center" />
+                        tools:text="@string/ejemplo" />
 
                 </LinearLayout>
 
@@ -268,27 +268,29 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <ImageButton
                         android:id="@+id/btnPadre"
-                        android:background=""
-                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
                         android:gravity="center"
                         android:src="@drawable/ic_baseline_padres_24"
-                        android:text="@string/observaciones" />
+                        android:text="@string/observaciones"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     <ImageButton
                         android:id="@+id/btnInformes"
-                        android:background=""
-                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
                         android:gravity="center"
                         android:src="@drawable/ic_baseline_informes_24"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
                         tools:text="@string/ejemplo" />
 
                 </LinearLayout>
