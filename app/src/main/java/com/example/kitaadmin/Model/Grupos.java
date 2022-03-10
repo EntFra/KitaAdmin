@@ -1,21 +1,48 @@
 package com.example.kitaadmin.Model;
 
-/**
- * Clase Grupos que representa cada grupo en los que se estructura la guarderia
- */
-public class Grupos {
+import android.os.Bundle;
 
-    private String nombre;
+import androidx.appcompat.app.AppCompatActivity;
 
-    public Grupos(String nombre) {
-        this.nombre = nombre;
+import com.example.kitaadmin.R;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+import javax.annotation.Generated;
+
+@Generated("com.robohorse.robopojogenerator")
+public class Grupos implements Serializable {
+    @SerializedName("nombre")
+    private String nombreGrupo;
+    private byte[] fotoGrupo;
+
+    public Grupos(String nombreGrupo, byte[] fotoGrupo) {
+        this.nombreGrupo = nombreGrupo;
+        this.fotoGrupo = fotoGrupo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreGrupo() {
+        return nombreGrupo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreGrupo(String nombreGrupo) {
+        this.nombreGrupo = nombreGrupo;
+    }
+
+    public byte[] getFotoGrupo() {
+        return fotoGrupo;
+    }
+
+    public void setFotoGrupo(byte[] fotoGrupo) {
+        this.fotoGrupo = fotoGrupo;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "ResponseClass{" +
+                        "nombre = '" + nombreGrupo + '\'' +
+                        "}";
     }
 }

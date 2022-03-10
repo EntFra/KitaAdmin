@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="20dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:elevation="10dp"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,20 +20,24 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:padding="5dp">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/grupoImagen"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:padding="23dp" />
 
             <TextView
+                android:id="@+id/nombreGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/imageView"
-                android:layout_centerHorizontal="true" />
+                android:layout_below="@id/grupoImagen"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                tools:text="Grupo" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

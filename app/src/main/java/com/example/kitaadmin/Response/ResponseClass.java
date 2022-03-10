@@ -12,11 +12,22 @@ public class ResponseClass implements Serializable {
     @SerializedName("id")
     private int id;
 
-    @SerializedName("username")
-    private String username;
+    @SerializedName("nombre_usuario")
+    private String nombre_usuario;
 
-    @SerializedName("password")
-    private String password;
+    @SerializedName("contrasenia")
+    private String contrasenia;
+
+    @SerializedName("rol")
+    private String rol;
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -26,20 +37,20 @@ public class ResponseClass implements Serializable {
         return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNombre_usuario(String nombre_usuario) {
+        this.nombre_usuario = nombre_usuario;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNombre_usuario() {
+        return nombre_usuario;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
     @Override
@@ -47,8 +58,9 @@ public class ResponseClass implements Serializable {
         return
                 "ResponseClass{" +
                         "id = '" + id + '\'' +
-                        ",username = '" + username + '\'' +
-                        ",password = '" + password + '\'' +
+                        ",nombre_usuario = '" + nombre_usuario + '\'' +
+                        ",contrasenia = '" + contrasenia + '\'' +
+                        ",rol = '" + rol + '\'' +
                         "}";
     }
 }

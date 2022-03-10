@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textViewListaAlumnos"
+        android:id="@+id/textViewMenuGrupo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -23,7 +23,7 @@
         android:text="@string/profesores"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewListaAlumnos" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewMenuGrupo" />
 
     <TextView
         android:id="@+id/textViewAlumnos"

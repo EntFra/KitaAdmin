@@ -28,38 +28,36 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         iniciaListeners();
+        onClickListeners();
     }
 
 
     private void onClickListeners() {
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            if (validaUsuario() && validaContrasenia()) {
-                                                ResponseRegisterClass responseRegisterClass = new ResponseRegisterClass(etUsername.getText().toString(), etPassword.getText().toString());
+        btnLogin.setOnClickListener(v -> {
+            if (validaUsuario() && validaContrasenia()) {
+                ResponseRegisterClass responseRegisterClass = new ResponseRegisterClass(etUsername.getText().toString(), etPassword.getText().toString());
 
-                                                ApiService apiService = Network.getInstance().create(ApiService.class);
-                                                apiService.getUsuario(responseRegisterClass).enqueue(new Callback<ResponseClass>() {
-                                                    @Override
-                                                    public void onResponse(Call<ResponseClass> call, Response<ResponseClass> response) {
-                                                        if (response.body() != null) {
-                                                            Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                                                            intent.putExtra("username", response.body().getUsername());
-                                                            startActivity(intent);
-                                                        }
-                                                    }
+                ApiService apiService = Network.getInstance().create(ApiService.class);
+                apiService.getUsuario(responseRegisterClass).enqueue(new Callback<ResponseClass>() {
+                    @Override
+                    public void onResponse(Call<ResponseClass> call, Response<ResponseClass> response) {
+                        if (response.body() != null) {
+                            Toast.makeText(LoginActivity.this, "¡Bienvenido/a!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                            intent.putExtra("rol", response.body().getRol());
+                            startActivity(intent);
+                        }
+                    }
 
-                                                    @Override
-                                                    public void onFailure(Call<ResponseClass> call, Throwable t) {
-                                                        Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
+                    @Override
+                    public void onFailure(Call<ResponseClass> call, Throwable t) {
+                        Toast.makeText(LoginActivity.this, "Usuario o contraseña no válidos", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                                            }
+            }
 
-                                        }
-                                    });
+        });
     }
 
 

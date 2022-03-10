@@ -9,39 +9,39 @@ import java.io.Serializable;
 @Generated("com.robohorse.robopojogenerator")
 public class ResponseRegisterClass implements Serializable {
 
-    @SerializedName("username")
-    private String username;
+    @SerializedName("nombre_usuario")
+    private String nombre_usuario;
 
-    @SerializedName("password")
-    private String password;
+    @SerializedName("contrasenia")
+    private String contrasenia;
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNombre_usuario(String nombre_usuario) {
+        this.nombre_usuario = nombre_usuario;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNombre_usuario() {
+        return nombre_usuario;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public ResponseRegisterClass(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public ResponseRegisterClass(String nombre_usuario, String contrasenia) {
+        this.nombre_usuario = nombre_usuario;
+        this.contrasenia = contrasenia;
     }
 
     @Override
     public String toString() {
         return
                 "ResponseRegisterClass{" +
-                        "username = '" + username + '\'' +
-                        ",password = '" + password + '\'' +
+                        "nombre_usuario = '" + nombre_usuario + '\'' +
+                        ",contrasenia = '" + contrasenia + '\'' +
                         "}";
     }
 }
