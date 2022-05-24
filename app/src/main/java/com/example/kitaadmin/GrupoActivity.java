@@ -1,66 +1,46 @@
 package com.example.kitaadmin;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.kitaadmin.Adapter.RecyclerAdapter;
-import com.example.kitaadmin.Model.Alumno;
-import com.example.kitaadmin.Remote.ApiService;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import android.view.View;
+import android.widget.TextView;
 
 public class GrupoActivity extends AppCompatActivity {
 
+    TextView nombreGrupo;
+    //Almacena el nombre del grupo seleccionado
+    String grupo;
 
-
-    ApiService apiService;
-    List<Alumno> listaAlumnos = new ArrayList<>();
-    RecyclerView recyclerView;
-    RecyclerAdapter recyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grupo);
 
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerAlumnos);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        //Recoge el nombre del grupo
+        Bundle extras = getIntent().getExtras();
+        grupo = extras.getString("grupoSeleccionado");
 
-        
+        nombreGrupo = findViewById(R.id.textViewMenuGrupo);
+
+        nombreGrupo.setText(String.format("Grupo %s", grupo));
 
     }
 
-    /**
-     * Metodo que obtiene la lista de alumnos
-     */
-    /*public void getAlumnos(){
-        //Call<List<Alumno>> call = apiService;
-        //call.enqueue(new Callback<List<Alumno>>() {
-            @Override
-            public void onResponse(Call<List<Alumno>> call, Response<List<Alumno>> response) {
-                if(response.isSuccessful()){
-                    listaAlumnos = response.body();
 
-                    recyclerAdapter = new RecyclerAdapter(getApplicationContext(), listaAlumnos);
-                    recyclerView.setAdapter(recyclerAdapter);
+    //Método para ir a la pantalla con el listado de  profesores
+    public void listaProfesores(View v) {
+        Intent intent = new Intent(this, ListaProfesoresActivity.class);
+        intent.putExtra("grupoSeleccionado",  grupo);
+        startActivity(intent);
+    }
 
-                                   }
+    //Método para ir a la pantalla con el listado de  alumnos
+    public void listaAlumnos(View v) {
+        Intent intent = new Intent(this, AlumnoActivity.class);
+        intent.putExtra("grupoSeleccionado",  grupo);
+        startActivity(intent);
+    }
 
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Alumno>> call, Throwable t) {
-
-            }
-        });
-    }*/
 }

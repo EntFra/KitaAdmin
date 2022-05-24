@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kitaadmin.Model.Grupos;
 import com.example.kitaadmin.R;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class GruposAdapter extends RecyclerView.Adapter<GruposAdapter.ViewHolderGrupos> {
@@ -28,10 +26,10 @@ public class GruposAdapter extends RecyclerView.Adapter<GruposAdapter.ViewHolder
 
     }
 
-    public GruposAdapter(Context context, List<Grupos> listaGrupos) {
+    public GruposAdapter(Context context, List<Grupos> listaGrupos, OnGruposListener onGruposListener) {
         this.listaGrupos = listaGrupos;
         this.inflater = LayoutInflater.from(context);
-
+        this.onGruposListener = onGruposListener;
     }
 
     @NonNull

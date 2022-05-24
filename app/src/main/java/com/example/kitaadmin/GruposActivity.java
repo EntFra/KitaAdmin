@@ -34,12 +34,13 @@ public class GruposActivity extends AppCompatActivity implements GruposAdapter.O
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grupos);
-
+        recyclerViewGrupos = findViewById(R.id.recyclerGrupos);
+        recyclerViewGrupos.setLayoutManager(new GridLayoutManager(GruposActivity.this,2));
         getListaGrupos();
-
+        gruposAdapter = new GruposAdapter(GruposActivity.this,listaGrupos, this::onGruposClick);
+        recyclerViewGrupos.setAdapter(gruposAdapter);
 
     }
-
     //Método que obtiene la lista de grupos
     public void getListaGrupos() {
         //Se crea una instancia de llamada a la API
@@ -50,9 +51,7 @@ public class GruposActivity extends AppCompatActivity implements GruposAdapter.O
             @Override
             public void onResponse(Call<List<Grupos>> call, Response<List<Grupos>> response) {
                 listaGrupos = response.body();
-                recyclerViewGrupos = findViewById(R.id.recyclerGrupos);
-                recyclerViewGrupos.setLayoutManager(new GridLayoutManager(GruposActivity.this,2));
-                gruposAdapter = new GruposAdapter(GruposActivity.this, listaGrupos);
+                gruposAdapter = new GruposAdapter(GruposActivity.this, listaGrupos, GruposActivity.this::onGruposClick);
                 recyclerViewGrupos.setAdapter(gruposAdapter);
             }
 
@@ -67,7 +66,7 @@ public class GruposActivity extends AppCompatActivity implements GruposAdapter.O
     @Override
     public void onGruposClick(int position) {
         Intent grupo = new Intent(this,GrupoActivity.class);
-        grupo.putExtra("grupoSeleccionado", (Serializable) listaGrupos.get(position));
+        grupo.putExtra("grupoSeleccionado",  listaGrupos.get(position).getNombreGrupo());
         startActivity(grupo);
     }
 }

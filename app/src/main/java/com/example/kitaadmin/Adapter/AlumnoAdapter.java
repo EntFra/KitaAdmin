@@ -10,18 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.kitaadmin.Model.Alumno;
+import com.example.kitaadmin.Model.Alumnos;
 import com.example.kitaadmin.R;
 
 import java.util.List;
 
-public class AlumnoAdapter extends ArrayAdapter<Alumno> {
+public class AlumnoAdapter extends ArrayAdapter<Alumnos> {
 
     private final Context context;
-    private final List<Alumno> alumnos;
+    private final List<Alumnos> alumnos;
 
     //Obtiene los obetos de tipo alumno
-    public AlumnoAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull List<Alumno> objects) {
+    public AlumnoAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull List<Alumnos> objects) {
         super(context, resource, textViewResourceId, objects);
         this.context = context;
         this.alumnos = objects;

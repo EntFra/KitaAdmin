@@ -1,26 +1,36 @@
 package com.example.kitaadmin.Model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.Date;
+
+import javax.annotation.Generated;
 
 /**
  * Clase Profesores que representa un objeto profesor, indicando sus distintos parametros y el grupo al que pertenecen
  */
-public class Profesores {
-
+@Generated("com.robohorse.robopojogenerator")
+public class Profesores implements Serializable {
+    @SerializedName("dni")
     private String dni;
+    @SerializedName("fecha_alta")
     private Date fecha_alta;
+    @SerializedName("direccion")
     private String direccion;
+    @SerializedName("fecha_nac")
     private Date fecha_nac;
+    @SerializedName("nombre_g1rupo")
     private String nombre_grupo;
-    private int usuarios_id_prof;
-
-    public Profesores(String dni, Date fecha_alta, String direccion, Date fecha_nac, String nombre_grupo, int usuarios_id_prof) {
+    @SerializedName("usuarios_id_prof")
+    private Usuarios usuario;
+    public Profesores(String dni, Date fecha_alta, String direccion, Date fecha_nac, String nombre_grupo, Usuarios usuario) {
         this.dni = dni;
         this.fecha_alta = fecha_alta;
         this.direccion = direccion;
         this.fecha_nac = fecha_nac;
         this.nombre_grupo = nombre_grupo;
-        this.usuarios_id_prof = usuarios_id_prof;
+        this.usuario = usuario;
     }
 
     public String getDni() {
@@ -63,12 +73,20 @@ public class Profesores {
         this.nombre_grupo = nombre_grupo;
     }
 
-    public int getUsuarios_id_prof() {
-        return usuarios_id_prof;
+    public Usuarios getUsuario() {
+        return usuario;
     }
 
-    public void setUsuarios_id_prof(int usuarios_id_prof) {
-        this.usuarios_id_prof = usuarios_id_prof;
+    @Override
+    public String toString() {
+        return "Profesores{" +
+                "dni='" + dni + '\'' +
+                ", fecha_alta=" + fecha_alta +
+                ", direccion='" + direccion + '\'' +
+                ", fecha_nac=" + fecha_nac +
+                ", nombre_grupo='" + nombre_grupo + '\'' +
+                ", usuario=" + usuario +
+                '}';
     }
 }
 
