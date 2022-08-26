@@ -14,15 +14,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/alumno" />
+        android:text="@string/alumno"/>
 
 
     <ImageButton
         android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@null"
         android:layout_marginTop="100dp"
+        android:background="@null"
+        android:onClick="editarAlumno"
         android:src="@drawable/ic_baseline_edit_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textTituloAlumno"
@@ -46,6 +47,7 @@
 
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -59,6 +61,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp">
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/nombre" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textNombreAlumno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        tools:text="TextView" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -82,7 +123,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/editFechaNacim"
+                        android:id="@+id/textFechaNac"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -117,7 +158,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textViewTelef"
+                        android:id="@+id/textAlergia"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -137,11 +178,11 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/textViewComedor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/datosMed" />
+                        android:text="@string/apuntadoComedor" />
 
                 </LinearLayout>
 
@@ -151,12 +192,12 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/editDatosMedicos"
+                    <Switch
+                        android:id="@+id/switchComedor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        tools:text="TextView" />
+                        android:paddingEnd="65dp"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
                 </LinearLayout>
             </TableRow>
 
@@ -250,6 +291,7 @@
                         android:text="@string/observaciones" />
 
                     <TextView
+                        android:id="@+id/textObservaciones"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -271,28 +313,56 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <ImageButton
-                        android:id="@+id/btnPadre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:gravity="center"
-                        android:src="@drawable/ic_baseline_padres_24"
-                        android:text="@string/observaciones"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-                    <ImageButton
-                        android:id="@+id/btnInformes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:gravity="center"
-                        android:src="@drawable/ic_baseline_informes_24"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                        tools:text="@string/ejemplo" />
+                        <ImageButton
+                            android:id="@+id/btnPadre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center"
+                            android:onClick="verPadres"
+                            android:src="@drawable/ic_baseline_padres_24"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:onClick="verPadres"
+                            android:text="@string/padres" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageButton
+                            android:id="@+id/btnInformes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center"
+                            android:onClick="informes"
+                            android:src="@drawable/ic_baseline_informes_24"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                            tools:text="@string/ejemplo" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:onClick="informes"
+                            android:text="@string/informes" />
+                    </LinearLayout>
                 </LinearLayout>
 
             </TableRow>
@@ -316,4 +386,13 @@
             </TableRow>
         </TableLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scrollView"
+        android:text="@string/volver"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

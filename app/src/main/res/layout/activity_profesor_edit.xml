@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:onClick="updateProfesor">
 
 
     <TextView
-        android:id="@+id/textTituloAlumno"
+        android:id="@+id/textTituloProfesor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -21,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/textTituloAlumno">
+        app:layout_constraintTop_toBottomOf="@id/textTituloProfesor">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -59,7 +60,11 @@
                         android:id="@+id/editFechaNac"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="false"
                         android:gravity="center"
+                        android:inputType="date"
+                        android:maxLines="1"
                         tools:text="TextView" />
                 </LinearLayout>
             </TableRow>
@@ -93,7 +98,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/editTelef"
+                        android:id="@+id/editTextTelf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -244,7 +249,11 @@
                         android:id="@+id/editFechaAlt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="false"
                         android:gravity="center"
+                        android:inputType="date"
+                        android:maxLines="1"
                         tools:text="TextView" />
                 </LinearLayout>
             </TableRow>
@@ -289,12 +298,15 @@
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonUpdateProfesor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/button_rounded"
+        android:onClick="updateProfesor"
         android:text="@string/actualizar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />

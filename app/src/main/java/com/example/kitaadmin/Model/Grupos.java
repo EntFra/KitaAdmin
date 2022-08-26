@@ -15,34 +15,26 @@ import javax.annotation.Generated;
 public class Grupos implements Serializable {
     @SerializedName("nombre")
     private String nombreGrupo;
-    private byte[] fotoGrupo;
 
-    public Grupos(String nombreGrupo, byte[] fotoGrupo) {
-        this.nombreGrupo = nombreGrupo;
-        this.fotoGrupo = fotoGrupo;
-    }
-
-    public String getNombreGrupo() {
-        return nombreGrupo;
-    }
-
-    public void setNombreGrupo(String nombreGrupo) {
+    public Grupos(String nombreGrupo) {
         this.nombreGrupo = nombreGrupo;
     }
 
-    public byte[] getFotoGrupo() {
-        return fotoGrupo;
-    }
+        public String getNombreGrupo () {
+            return nombreGrupo;
+        }
 
-    public void setFotoGrupo(byte[] fotoGrupo) {
-        this.fotoGrupo = fotoGrupo;
-    }
+        public void setNombreGrupo (String nombreGrupo){
+            this.nombreGrupo = nombreGrupo;
+        }
+
+
+
 
     @Override
     public String toString() {
-        return
-                "ResponseClass{" +
-                        "nombre = '" + nombreGrupo + '\'' +
-                        "}";
+        return "Grupos{" +
+                "nombreGrupo='" + nombreGrupo + '\'' +
+                '}';
     }
 }

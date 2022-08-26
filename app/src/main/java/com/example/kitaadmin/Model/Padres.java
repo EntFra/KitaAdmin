@@ -1,31 +1,50 @@
 package com.example.kitaadmin.Model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+import javax.annotation.Generated;
+
 /**
  * Clase Padres que representa un objeto padre, contiene los datos del id padre e id del niño con el que estan relacionados
  */
-public class Padres {
+@Generated("com.robohorse.robopojogenerator")
+public class Padres implements Serializable {
 
-    private int alumno_id;
-    private int usuarios_id_pad;
+    @SerializedName("alumnoId")
+    private int alumnoId;
+    @SerializedName("usuariosIdPad")
+    private int usuariosIdPad;
 
-    public Padres(int alumno_id, int usuarios_id_pad) {
-        this.alumno_id = alumno_id;
-        this.usuarios_id_pad = usuarios_id_pad;
+    public Padres(int alumnoId, int usuariosIdPad) {
+        this.alumnoId = alumnoId;
+        this.usuariosIdPad = usuariosIdPad;
     }
 
-    public int getAlumno_id() {
-        return alumno_id;
+    public int getAlumnoId() {
+        return alumnoId;
     }
 
-    public void setAlumno_id(int alumno_id) {
-        this.alumno_id = alumno_id;
+    public void setAlumnoId(int alumnoId) {
+        this.alumnoId = alumnoId;
     }
 
-    public int getUsuarios_id_pad() {
-        return usuarios_id_pad;
+    public int getUsuariosIdPad() {
+        return usuariosIdPad;
     }
 
-    public void setUsuarios_id_pad(int usuarios_id_pad) {
-        this.usuarios_id_pad = usuarios_id_pad;
+    public void setUsuariosIdPad(int usuariosIdPad) {
+        this.usuariosIdPad = usuariosIdPad;
+    }
+
+    @Override
+    public String toString() {
+        return "Padres{" +
+                "alumno_id=" + alumnoId +
+                ", usuariosIdPad=" + usuariosIdPad +
+                '}';
     }
 }
+
+

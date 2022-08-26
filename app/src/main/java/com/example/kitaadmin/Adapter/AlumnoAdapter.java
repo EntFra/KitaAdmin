@@ -9,35 +9,67 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kitaadmin.Model.Alumnos;
+import com.example.kitaadmin.Model.Profesores;
 import com.example.kitaadmin.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AlumnoAdapter extends ArrayAdapter<Alumnos> {
+public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolderAlumnos> {
 
-    private final Context context;
-    private final List<Alumnos> alumnos;
+    List<Alumnos> listaAlumnos;
+    private final OnAlumnoListener onAlumnoListener;
+    private final LayoutInflater inflater;
 
-    //Obtiene los obetos de tipo alumno
-    public AlumnoAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull List<Alumnos> objects) {
-        super(context, resource, textViewResourceId, objects);
-        this.context = context;
-        this.alumnos = objects;
+
+    public interface OnAlumnoListener {
+        void onAlumnoClick(int position);
     }
 
-    //Obtiene la vista y cargo los datos
+    public AlumnoAdapter(Context context, List<Alumnos> listaAlumnos, AlumnoAdapter.OnAlumnoListener onAlumnoListener) {
+        this.listaAlumnos = listaAlumnos;
+        this.inflater = LayoutInflater.from(context);
+        this.onAlumnoListener = onAlumnoListener;
+    }
+
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.activity_lista_alumnos, parent, false);
-
-        TextView txtNombreAlumno = (TextView) view.findViewById(R.id.item_list);
-
-        txtNombreAlumno.setText(alumnos.get(position).getNombre());
-
-        return view;
+    public ViewHolderAlumnos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, null, false);
+        return new ViewHolderAlumnos(view, onAlumnoListener);
     }
-}
+
+    @Override
+    public void onBindViewHolder(@NonNull AlumnoAdapter.ViewHolderAlumnos holder, int position) {
+        if(listaAlumnos.get(position).getNombre()!=null){
+            holder.nombreAlumno.setText(listaAlumnos.get(position).getNombre());
+        }
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return listaAlumnos.size();
+    }
+
+    protected class ViewHolderAlumnos extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        TextView nombreAlumno;
+        OnAlumnoListener onAlumnoListener;
+
+        public ViewHolderAlumnos(@NonNull View itemView, OnAlumnoListener onAlumnoListener) {
+            super(itemView);
+            nombreAlumno = itemView.findViewById(R.id.item_list);
+            this.onAlumnoListener = onAlumnoListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) { onAlumnoListener.onAlumnoClick(getAdapterPosition()); }
+
+        }
+    }
+

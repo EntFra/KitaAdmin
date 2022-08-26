@@ -1,22 +1,33 @@
 package com.example.kitaadmin.Model;
 
 
-import java.time.Duration;
-import java.util.Date;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+import javax.annotation.Generated;
 
 /**
  * Clase Informes, objeto que almacena la informacion diaria de cada alumno
  */
-public class Informes {
+@Generated("com.robohorse.robopojogenerator")
+public class Informes implements Serializable {
 
+    @SerializedName("alumnoId")
     private int alumno_id;
+    @SerializedName("deposicion")
     private boolean deposicion;
+    @SerializedName("suenio")
+    private String suenio;
+    @SerializedName("comida")
     private boolean comida;
+    @SerializedName("bebida")
     private boolean bebida;
-    private Date fecha;
-    private Duration suenio;
+    @SerializedName("fecha")
+    private String fecha;
 
-    public Informes(int alumno_id, boolean deposicion, boolean comida, boolean bebida, Date fecha, Duration suenio) {
+
+    public Informes(int alumno_id, boolean deposicion, boolean comida, boolean bebida, String fecha, String suenio) {
         this.alumno_id = alumno_id;
         this.deposicion = deposicion;
         this.comida = comida;
@@ -57,19 +68,31 @@ public class Informes {
         this.bebida = bebida;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public Duration getSuenio() {
+    public String getSuenio() {
         return suenio;
     }
 
-    public void setSuenio(Duration suenio) {
+    public void setSuenio(String suenio) {
         this.suenio = suenio;
+    }
+
+    @Override
+    public String toString() {
+        return "Informes{" +
+                "alumno_id=" + alumno_id +
+                ", deposicion=" + deposicion +
+                ", comida=" + comida +
+                ", bebida=" + bebida +
+                ", fecha=" + fecha +
+                ", suenio=" + suenio +
+                '}';
     }
 }

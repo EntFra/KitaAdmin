@@ -17,8 +17,8 @@ import java.util.List;
 public class GruposAdapter extends RecyclerView.Adapter<GruposAdapter.ViewHolderGrupos> {
 
     List<Grupos> listaGrupos ;
-    private OnGruposListener onGruposListener;
-    private LayoutInflater inflater;
+    private final OnGruposListener onGruposListener;
+    private final LayoutInflater inflater;
 
     //Maneja el click sobre un objeto
     public interface OnGruposListener {
@@ -54,13 +54,11 @@ public class GruposAdapter extends RecyclerView.Adapter<GruposAdapter.ViewHolder
     }
 
     public class ViewHolderGrupos extends RecyclerView.ViewHolder implements View.OnClickListener{
-        ImageView grupoImagen;
         TextView nombreGrupo;
         OnGruposListener onGruposListener;
 
         public ViewHolderGrupos(@NonNull View itemView, OnGruposListener onGruposListener) {
             super(itemView);
-            grupoImagen = itemView.findViewById(R.id.grupoImagen);
             nombreGrupo = itemView.findViewById(R.id.nombreGrupo);
             this.onGruposListener = onGruposListener;
 

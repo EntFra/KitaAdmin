@@ -3,7 +3,6 @@ package com.example.kitaadmin.Model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.annotation.Generated;
 
@@ -15,16 +14,16 @@ public class Profesores implements Serializable {
     @SerializedName("dni")
     private String dni;
     @SerializedName("fecha_alta")
-    private Date fecha_alta;
+    private String fecha_alta;
     @SerializedName("direccion")
     private String direccion;
     @SerializedName("fecha_nac")
-    private Date fecha_nac;
-    @SerializedName("nombre_g1rupo")
+    private String fecha_nac;
+    @SerializedName("grupo")
     private String nombre_grupo;
-    @SerializedName("usuarios_id_prof")
+    @SerializedName("usuario")
     private Usuarios usuario;
-    public Profesores(String dni, Date fecha_alta, String direccion, Date fecha_nac, String nombre_grupo, Usuarios usuario) {
+    public Profesores(String dni, String fecha_alta, String fecha_nac, String direccion, String nombre_grupo, Usuarios usuario) {
         this.dni = dni;
         this.fecha_alta = fecha_alta;
         this.direccion = direccion;
@@ -41,11 +40,11 @@ public class Profesores implements Serializable {
         this.dni = dni;
     }
 
-    public Date getFecha_alta() {
+    public String getFecha_alta() {
         return fecha_alta;
     }
 
-    public void setFecha_alta(Date fecha_alta) {
+    public void setFecha_alta(String fecha_alta) {
         this.fecha_alta = fecha_alta;
     }
 
@@ -57,11 +56,11 @@ public class Profesores implements Serializable {
         this.direccion = direccion;
     }
 
-    public Date getFecha_nac() {
+    public String getFecha_nac() {
         return fecha_nac;
     }
 
-    public void setFecha_nac(Date fecha_nac) {
+    public void setFecha_nac(String fecha_nac) {
         this.fecha_nac = fecha_nac;
     }
 
@@ -81,9 +80,9 @@ public class Profesores implements Serializable {
     public String toString() {
         return "Profesores{" +
                 "dni='" + dni + '\'' +
-                ", fecha_alta=" + fecha_alta +
+                ", fecha_alta='" + fecha_alta + '\'' +
                 ", direccion='" + direccion + '\'' +
-                ", fecha_nac=" + fecha_nac +
+                ", fecha_nac='" + fecha_nac + '\'' +
                 ", nombre_grupo='" + nombre_grupo + '\'' +
                 ", usuario=" + usuario +
                 '}';

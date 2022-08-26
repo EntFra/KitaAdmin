@@ -38,8 +38,14 @@ public class GrupoActivity extends AppCompatActivity {
 
     //Método para ir a la pantalla con el listado de  alumnos
     public void listaAlumnos(View v) {
-        Intent intent = new Intent(this, AlumnoActivity.class);
+        Intent intent = new Intent(this, ListaAlumnosActivity.class);
         intent.putExtra("grupoSeleccionado",  grupo);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, GruposActivity.class);
         startActivity(intent);
     }
 

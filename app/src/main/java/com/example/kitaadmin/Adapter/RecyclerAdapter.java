@@ -15,8 +15,8 @@ import com.example.kitaadmin.R;
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>{
-    private Context context;
-    private List<Alumnos> alumnosList;
+    private final Context context;
+    private final List<Alumnos> alumnosList;
 
     public RecyclerAdapter(Context context, List<Alumnos> alumnosList) {
         this.context = context;
@@ -48,7 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewNombreAlumno = (TextView) itemView.findViewById(R.id.item_list);
+            textViewNombreAlumno = itemView.findViewById(R.id.item_list);
         }
     }
 }

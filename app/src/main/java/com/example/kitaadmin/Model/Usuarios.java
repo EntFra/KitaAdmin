@@ -1,25 +1,47 @@
 package com.example.kitaadmin.Model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+import javax.annotation.Generated;
+
 /**
  * Clase Usuarios que representa un usuario de la aplicacion, estableciendo la información necesaria para el correcto uso de la aplicacion
  */
-public class Usuarios {
-
+@Generated("com.robohorse.robopojogenerator")
+public class Usuarios implements Serializable {
+    @SerializedName("id")
     private int usuarios_id;
+    @SerializedName("nombre")
     private String nombre;
+    @SerializedName("nombre_usuario")
     private String nombre_usuario;
+    @SerializedName("contrasenia")
     private String contrasenia;
-    private int rol;
+    @SerializedName("rol")
+    private String rol;
+    @SerializedName("telefono")
     private int telefono;
+    @SerializedName("email")
     private String email;
 
-    public Usuarios(String nombre, String nombre_usuario, String contrasenia, int rol, int telefono, String email) {
+    public Usuarios(String nombre, String nombre_usuario, String contrasenia, String rol, int telefono, String email) {
         this.nombre = nombre;
         this.nombre_usuario = nombre_usuario;
         this.contrasenia = contrasenia;
         this.rol = rol;
         this.telefono = telefono;
         this.email = email;
+    }
+
+    public Usuarios(){
+
+    }
+
+    public Usuarios(String nombre_usuario, String contrasenia) {
+        this.nombre_usuario = nombre_usuario;
+        this.contrasenia = contrasenia;
     }
 
     public int getUsuarios_id() {
@@ -54,11 +76,11 @@ public class Usuarios {
         this.contrasenia = contrasenia;
     }
 
-    public int getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(int rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
@@ -76,5 +98,18 @@ public class Usuarios {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuarios{" +
+                "usuarios_id=" + usuarios_id +
+                ", nombre='" + nombre + '\'' +
+                ", nombre_usuario='" + nombre_usuario + '\'' +
+                ", contrasenia='" + contrasenia + '\'' +
+                ", rol=" + rol +
+                ", telefono=" + telefono +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

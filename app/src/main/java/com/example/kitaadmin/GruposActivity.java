@@ -33,13 +33,17 @@ public class GruposActivity extends AppCompatActivity implements GruposAdapter.O
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        cargarActivity();
+
+    }
+
+    private void cargarActivity(){
         setContentView(R.layout.activity_grupos);
         recyclerViewGrupos = findViewById(R.id.recyclerGrupos);
         recyclerViewGrupos.setLayoutManager(new GridLayoutManager(GruposActivity.this,2));
         getListaGrupos();
         gruposAdapter = new GruposAdapter(GruposActivity.this,listaGrupos, this::onGruposClick);
         recyclerViewGrupos.setAdapter(gruposAdapter);
-
     }
     //Método que obtiene la lista de grupos
     public void getListaGrupos() {

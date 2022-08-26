@@ -24,8 +24,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerProfesores"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints" />
+            android:layout_height="wrap_content"            />
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

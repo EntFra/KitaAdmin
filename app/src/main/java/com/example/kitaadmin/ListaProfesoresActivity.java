@@ -13,6 +13,7 @@ import com.example.kitaadmin.Adapter.ProfesorAdapter;
 import com.example.kitaadmin.Model.Profesores;
 import com.example.kitaadmin.Remote.ApiService;
 import com.example.kitaadmin.Remote.Network;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ListaProfesoresActivity extends AppCompatActivity implements ProfesorAdapter.OnProfesorListener {
-
 
 
     List<Profesores> listaProfesores = new ArrayList<>();
@@ -48,7 +48,7 @@ public class ListaProfesoresActivity extends AppCompatActivity implements Profes
     //Método que obtiene la lista de profesores para el grupo seleccionado
     public void getListaProfesores() {
         //Se crea una instancia de llamada a la API
-        apiService =  Network.getInstance().create(ApiService.class);
+        apiService = Network.getInstance().create(ApiService.class);
         //Se llama al servicio que obtiene los profesores
         Call<List<Profesores>> call = apiService.getProfesores(grupo);
         call.enqueue(new Callback<List<Profesores>>() {
@@ -69,9 +69,21 @@ public class ListaProfesoresActivity extends AppCompatActivity implements Profes
     //Inicia la pantalla con la información del profesor seleccionado
 
     public void onProfesorClick(int position) {
-        Intent grupo = new Intent(this,ListaProfesoresActivity.class);
-        grupo.putExtra("profesorSeleccionado",  listaProfesores.get(position).getUsuario().getNombre());
-        startActivity(grupo);
+        String rol = LoginActivity.getRol();
+        if(rol.equals("admin") || rol.equals("director") || rol.equals("profesor_admin")){
+            Intent profesorSeleccionado = new Intent(this, ProfesorActivity.class);
+            profesorSeleccionado.putExtra("profesorSeleccionado", new Gson().toJson(listaProfesores.get(position)));
+            profesorSeleccionado.putExtra("grupo",grupo);
+            startActivity(profesorSeleccionado);
+        }
+
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, GrupoActivity.class);
+        intent.putExtra("grupoSeleccionado",  grupo);
+        startActivity(intent);
     }
 
 }

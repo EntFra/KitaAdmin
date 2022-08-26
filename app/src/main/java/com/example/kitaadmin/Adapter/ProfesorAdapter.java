@@ -1,6 +1,7 @@
 package com.example.kitaadmin.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kitaadmin.Model.Profesores;
+import com.example.kitaadmin.Model.Usuarios;
 import com.example.kitaadmin.R;
 
 import java.util.ArrayList;
@@ -17,9 +19,9 @@ import java.util.List;
 
 public class ProfesorAdapter extends RecyclerView.Adapter<ProfesorAdapter.ViewHolderProfesores> {
 
-    List<Profesores> listaProfesores = new ArrayList<>();
-    private OnProfesorListener onProfesorListener;
-    private LayoutInflater inflater;
+    List<Profesores> listaProfesores;
+    private final OnProfesorListener onProfesorListener;
+    private final LayoutInflater inflater;
 
 
     //Maneja el click sobre un objeto
@@ -42,7 +44,10 @@ public class ProfesorAdapter extends RecyclerView.Adapter<ProfesorAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ProfesorAdapter.ViewHolderProfesores holder, int position) {
-              holder.nombreProfesor.setText(listaProfesores.get(position).getUsuario().getNombre());
+        if(listaProfesores.get(position).getUsuario()!=null){
+            holder.nombreProfesor.setText(listaProfesores.get(position).getUsuario().getNombre());
+        }
+
     }
 
     @Override
@@ -59,7 +64,6 @@ public class ProfesorAdapter extends RecyclerView.Adapter<ProfesorAdapter.ViewHo
             super(itemView);
             nombreProfesor = itemView.findViewById(R.id.item_list);
             this.onProfesorListener = onProfesorListener;
-
             itemView.setOnClickListener(this);
         }
 
