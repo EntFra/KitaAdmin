@@ -23,13 +23,17 @@ public class Profesores implements Serializable {
     private String nombre_grupo;
     @SerializedName("usuario")
     private Usuarios usuario;
-    public Profesores(String dni, String fecha_alta, String fecha_nac, String direccion, String nombre_grupo, Usuarios usuario) {
+    @SerializedName("id")
+    private int id;
+
+    public Profesores(String dni, String fecha_alta, String direccion, String fecha_nac, String nombre_grupo, Usuarios usuario, int id) {
         this.dni = dni;
         this.fecha_alta = fecha_alta;
         this.direccion = direccion;
         this.fecha_nac = fecha_nac;
         this.nombre_grupo = nombre_grupo;
         this.usuario = usuario;
+        this.id = id;
     }
 
     public String getDni() {
@@ -76,6 +80,18 @@ public class Profesores implements Serializable {
         return usuario;
     }
 
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Profesores{" +
@@ -85,6 +101,7 @@ public class Profesores implements Serializable {
                 ", fecha_nac='" + fecha_nac + '\'' +
                 ", nombre_grupo='" + nombre_grupo + '\'' +
                 ", usuario=" + usuario +
+                ", id=" + id +
                 '}';
     }
 }

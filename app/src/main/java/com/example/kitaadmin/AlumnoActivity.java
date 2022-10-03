@@ -19,6 +19,8 @@ import com.example.kitaadmin.Utils.Utils;
 import com.example.kitaadmin.databinding.ActivityAlumnoBinding;
 import com.google.gson.Gson;
 
+import java.text.ParseException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,18 +28,19 @@ import retrofit2.Response;
 public class AlumnoActivity extends AppCompatActivity {
 
     private ActivityAlumnoBinding binding;
-    private ImageButton editButton;
-    private ImageButton deleteButton;
     ApiService apiService;
     String alumnoSeleccionado;
     Alumnos alumno;
     String grupo;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        cargarActivity();
+    }
+
+    private void cargarActivity() {
         binding = ActivityAlumnoBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
@@ -52,6 +55,7 @@ public class AlumnoActivity extends AppCompatActivity {
 
         recuperaInfoAlumno();
 
+
         binding.btnDelet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,23 +64,24 @@ public class AlumnoActivity extends AppCompatActivity {
             }
         });
     }
-       private void recuperaInfoAlumno(){
 
-           binding.textFechaNac.setText(alumno.getFecha_nac());
-           binding.textNombreAlumno.setText(alumno.getNombre());
-           binding.textAlergia.setText(alumno.getAlergias());
-           binding.textObservaciones.setText(alumno.getObservaciones());
-           binding.switchFotos.setChecked(alumno.isAuto_fotos());
-           binding.switchSalidas.setChecked(alumno.isAuto_salidas());
-           binding.switchComedor.setChecked(alumno.isComedor());
-           //Desactivamos la posibilidad de alterar los switches
-           binding.switchComedor.setClickable(false);
-           binding.switchFotos.setClickable(false);
-           binding.switchSalidas.setClickable(false);
-        }
+    private void recuperaInfoAlumno() {
 
-   //Método público para borrar el alumno actual de la base de datos
-    public void borrar (Alumnos alumno){
+        binding.textFechaNac.setText(alumno.getFecha_nac());
+        binding.textNombreAlumno.setText(alumno.getNombre());
+        binding.textAlergia.setText(alumno.getAlergias());
+        binding.textObservaciones.setText(alumno.getObservaciones());
+        binding.switchFotos.setChecked(alumno.isAuto_fotos());
+        binding.switchSalidas.setChecked(alumno.isAuto_salidas());
+        binding.switchComedor.setChecked(alumno.isComedor());
+        //Desactivamos la posibilidad de alterar los switches
+        binding.switchComedor.setClickable(false);
+        binding.switchFotos.setClickable(false);
+        binding.switchSalidas.setClickable(false);
+    }
+
+    //Método público para borrar el alumno actual de la base de datos
+    public void borrar(Alumnos alumno) {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("Borrar alumno")
                 .setMessage("¿Seguro que desea borrar el alumno?")
@@ -107,30 +112,42 @@ public class AlumnoActivity extends AppCompatActivity {
                 .show();
     }
 
-    public void editarAlumno (View view){
+    public void editarAlumno(View view) {
         Intent intent = new Intent(this, AlumnoEditActivity.class);
         intent.putExtra("alumnoSeleccionado", alumnoSeleccionado);
-        intent.putExtra("grupo",grupo);
+        intent.putExtra("grupo", grupo);
         startActivity(intent);
     }
 
-    public void verPadres (View view){
+    public void verPadres(View view) {
         Intent intent = new Intent(this, PadresAlumnoAcitvity.class);
-        intent.putExtra("alumnoSeleccionado",alumnoSeleccionado);
+        intent.putExtra("alumnoSeleccionado", alumnoSeleccionado);
         startActivity(intent);
     }
 
-    public void informes (View view){
+    public void informes(View view) {
         Intent intent = new Intent(this, InformeActivity.class);
-        intent.putExtra("alumnoSeleccionado",alumnoSeleccionado);
+        intent.putExtra("alumnoSeleccionado", alumnoSeleccionado);
         startActivity(intent);
     }
 
     //Método que regresa a la lista
-    private void vueltaListaAlumnos () {
+    private void vueltaListaAlumnos() {
         Intent intent = new Intent(this, ListaAlumnosActivity.class);
         intent.putExtra("grupoSeleccionado", grupo);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        vueltaListaAlumnos();
+    }
+
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        cargarActivity();
     }
 
 

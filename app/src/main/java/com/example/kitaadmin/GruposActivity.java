@@ -7,7 +7,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kitaadmin.Adapter.GruposAdapter;
@@ -15,7 +14,6 @@ import com.example.kitaadmin.Model.Grupos;
 import com.example.kitaadmin.Remote.ApiService;
 import com.example.kitaadmin.Remote.Network;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -25,7 +23,7 @@ import retrofit2.Response;
 public class GruposActivity extends AppCompatActivity implements GruposAdapter.OnGruposListener {
 
     ApiService apiService;
-    List<Grupos> listaGrupos = new ArrayList<>();
+    static List<Grupos> listaGrupos = new ArrayList<>();
     RecyclerView recyclerViewGrupos;
     GruposAdapter gruposAdapter;
 
@@ -64,6 +62,11 @@ public class GruposActivity extends AppCompatActivity implements GruposAdapter.O
                 Log.e("Error", t.getMessage());
             }
         });
+    }
+
+    public static List<Grupos> listaGrupos(){
+
+        return listaGrupos;
     }
 
     //Inicia la pantalla con la información del grupo seleccionado

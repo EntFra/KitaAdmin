@@ -9,13 +9,15 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.widget.CalendarView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.kitaadmin.Model.Grupos;
 import com.example.kitaadmin.Model.Profesores;
 import com.example.kitaadmin.Model.Usuarios;
 import com.example.kitaadmin.Remote.ApiService;
@@ -24,17 +26,21 @@ import com.example.kitaadmin.Utils.DatePickerFragment;
 import com.example.kitaadmin.databinding.ActivityProfesorEditBinding;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProfesorEditActivity extends AppCompatActivity {
 
-    private ActivityProfesorEditBinding binding;
+    ActivityProfesorEditBinding binding;
     Profesores profesor;
     String grupo;
     String profesorSeleccionado;
-    CalendarView calendarView;
     Usuarios usuarioProfesor;
 
     String dniOld;
@@ -52,6 +58,8 @@ public class ProfesorEditActivity extends AppCompatActivity {
     String fecha_nacNew;
     String emailNew;
     int telefonoNew;
+    //Variable que almacena si hubo cambios en los campos para realizar update
+    boolean noCambioCampos;
 
 
     @Override
@@ -62,7 +70,7 @@ public class ProfesorEditActivity extends AppCompatActivity {
 
     }
 
-    private void cargaActivity(){
+    private void cargaActivity() {
         setContentView(R.layout.activity_profesor_edit);
 
         binding = ActivityProfesorEditBinding.inflate(getLayoutInflater());
@@ -73,7 +81,7 @@ public class ProfesorEditActivity extends AppCompatActivity {
         if (extras != null) {
             profesorSeleccionado = extras.getString("profesorSeleccionado");
             profesor = new Gson().fromJson(profesorSeleccionado, Profesores.class);
-            grupo = extras.getString("grupo");
+            grupo = profesor.getNombre_grupo();
 
 
             usuarioProfesor = profesor.getUsuario();
@@ -99,8 +107,38 @@ public class ProfesorEditActivity extends AppCompatActivity {
                 showDatePickerDialog(binding.editFechaNac);
             }
         });
-
+        spinnerGrupos();
         recuperaInfoProfesor();
+        noCambioCampos = true;
+
+
+        TextWatcher tw = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                setCambioCampos(false);
+
+            }
+        };
+
+
+        binding.editFechaNac.addTextChangedListener(tw);
+        binding.editDNI.addTextChangedListener(tw);
+        binding.editFechaAlt.addTextChangedListener(tw);
+        binding.editDirecc.addTextChangedListener(tw);
+        binding.editEmail.addTextChangedListener(tw);
+        binding.editTextTelf.addTextChangedListener(tw);
     }
 
 
@@ -113,7 +151,14 @@ public class ProfesorEditActivity extends AppCompatActivity {
         binding.editDirecc.setText(direccionOld);
         binding.editDNI.setText(dniOld);
         binding.editFechaAlt.setText(fecha_altaOld);
-        binding.editGrupo.setText(grupoOld);
+        //Se compara el grupo obtenido del objeto profesor con la lista de grupos para marcar la selección en el spinner
+        for (Grupos g : GruposActivity.listaGrupos()
+        ) {
+            if (g.getNombreGrupo().equals(grupoOld)) {
+                binding.spinnerGrupo.setSelection(GruposActivity.listaGrupos().indexOf(g));
+            }
+        }
+
 
     }
 
@@ -122,7 +167,7 @@ public class ProfesorEditActivity extends AppCompatActivity {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                final String selectedDate = twoDigits(day) + "-" +   twoDigits(month + 1) + "-" + year ;
+                final String selectedDate = twoDigits(day) + "-" + twoDigits(month + 1) + "-" + year;
                 editText.setText(selectedDate);
             }
         });
@@ -130,11 +175,26 @@ public class ProfesorEditActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    private void getCamposActualizados(){
+    private boolean isValidDNI(String dni) {
+        Boolean isValid = false;
+        String dniString = "[0-9]{8}[A-Za-z]{1}";
+        if (dni.matches(dniString)) {
+            isValid = true;
+
+        } else if (!dni.matches(dniString)) {
+            Toast.makeText(getApplicationContext(), R.string.formatoDNI, Toast.LENGTH_SHORT).show();
+
+        }
+
+
+        return isValid;
+    }
+
+    private void getCamposActualizados() {
         dniNew = binding.editDNI.getText().toString();
         fecha_altaNew = (binding.editFechaAlt.getText().toString());
         direccionNew = binding.editDirecc.getText().toString();
-        grupoNew = binding.editGrupo.getText().toString();
+        grupoNew = binding.spinnerGrupo.getSelectedItem().toString();
         fecha_nacNew = (binding.editFechaNac.getText().toString());
         emailNew = binding.editEmail.getText().toString();
         telefonoNew = Integer.parseInt(binding.editTextTelf.getText().toString());
@@ -142,43 +202,50 @@ public class ProfesorEditActivity extends AppCompatActivity {
 
     public void updateProfesor(View view) {
 
-        getCamposActualizados();
+        if (isValidDNI(binding.editDNI.getText().toString().trim())) {
 
-        usuarioProfesor.setEmail(emailNew);
-        usuarioProfesor.setTelefono(telefonoNew);
+            getCamposActualizados();
 
-        profesor = new Profesores(dniNew, fecha_altaNew,fecha_nacNew, direccionNew, grupoNew, usuarioProfesor);
+            usuarioProfesor.setEmail(emailNew);
+            usuarioProfesor.setTelefono(telefonoNew);
 
-        if(compruebaCampos()){
-            ApiService apiService = Network.getInstance().create(ApiService.class);
-            Call<Profesores> call = apiService.updateProfesor(profesor);
-            call.enqueue(new Callback<Profesores>() {
-                @Override
-                public void onResponse(Call<Profesores> call, Response<Profesores> response) {
-                    if (response.isSuccessful()) {
-                        Toast.makeText(ProfesorEditActivity.this, R.string.profesorActualizado,Toast.LENGTH_SHORT).show();
-                        volverProfesor();
-                    } else {
-                        Toast.makeText(ProfesorEditActivity.this, R.string.errorActualizaProfesor,Toast.LENGTH_SHORT).show();
+            profesor.setDni(dniNew);
+            profesor.setFecha_alta(fecha_altaNew);
+            profesor.setFecha_nac(fecha_nacNew);
+            profesor.setDireccion(direccionNew);
+            profesor.setNombre_grupo(grupoNew);
+
+            if (compruebaCampos()) {
+                ApiService apiService = Network.getInstance().create(ApiService.class);
+                Call<Profesores> call = apiService.updateProfesor(profesor);
+                call.enqueue(new Callback<Profesores>() {
+                    @Override
+                    public void onResponse(Call<Profesores> call, Response<Profesores> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(ProfesorEditActivity.this, R.string.profesorActualizado, Toast.LENGTH_SHORT).show();
+                            grupo = grupoNew;
+                            volverProfesor();
+                        } else {
+                            Toast.makeText(ProfesorEditActivity.this, R.string.errorActualizaProfesor, Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<Profesores> call, Throwable t) {
+                    @Override
+                    public void onFailure(Call<Profesores> call, Throwable t) {
 
-                }
-            });
+                    }
+                });
+            }
         }
-
 
 
     }
 
-    private boolean compruebaCampos(){
+    private boolean compruebaCampos() {
 
         getCamposActualizados();
 
-        if(dniNew.isEmpty() || fecha_altaNew.isEmpty() || grupoNew.isEmpty()) {
+        if (dniNew.isEmpty() || fecha_altaNew.isEmpty() || grupoNew.isEmpty()) {
             AlertDialog alertDialog = new AlertDialog.Builder(this)
                     .setTitle(R.string.campoObligatorio)
                     .setMessage(R.string.camposNecesarios)
@@ -192,44 +259,75 @@ public class ProfesorEditActivity extends AppCompatActivity {
                     .show();
             alertDialog.setCancelable(false);
             return false;
-                    }else if (!dniOld.equals(dniNew) || !direccionOld.equals(direccionNew) || !fecha_altaOld.equals(fecha_altaNew)
-                    || fecha_nacOld.equals(fecha_nacNew) || !grupoOld.equals(grupoNew) || !emailOld.equals(emailNew)
-                    || telefonoOld != telefonoNew) {
-                AlertDialog alertDialog = new AlertDialog.Builder(this)
-                        .setTitle(R.string.cambiosSinGuardar)
-                        .setMessage(R.string.salirSinGuardarCambios)
-                        .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                volverProfesor();
-                            }
-                        })
-                        .setNegativeButton(R.string.cancelar, null)
-                        .show();
-                alertDialog.setCancelable(false);
-            return false;
-            }
+        }
 
         return true;
 
 
+    }
 
+    private boolean setCambioCampos(boolean isChanged) {
+
+        return noCambioCampos = isChanged;
+    }
+
+    private boolean getNoCambioCampos() {
+        return noCambioCampos;
+    }
+
+    private void spinnerGrupos() {
+        //Lista de datos a cargar
+        List<Grupos> listaGrupos = GruposActivity.listaGrupos();
+        ArrayList<String> listaLimpia = new ArrayList<>();
+        //S obtiene el nombre del grupo en String
+        for (Grupos g : listaGrupos
+        ) {
+            listaLimpia.add(g.getNombreGrupo());
         }
 
+        //Adapter
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaLimpia);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-    public void volverProfesor (){
+        binding.spinnerGrupo.setAdapter(arrayAdapter);
+
+
+    }
+
+    private void dialogoBack() {
+
+        AlertDialog alertDialog = new AlertDialog.Builder(ProfesorEditActivity.this)
+                .setTitle(R.string.cambiosSinGuardar)
+                .setMessage(R.string.salirSinGuardarCambios)
+                .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        volverProfesor();
+                    }
+                })
+                .setNegativeButton(R.string.cancelar, null)
+                .show();
+
+
+    }
+
+    public void volverProfesor() {
         Intent profesorSeleccionado = new Intent(this, ProfesorActivity.class);
         profesorSeleccionado.putExtra("profesorSeleccionado", new Gson().toJson(profesor));
-        profesorSeleccionado.putExtra("grupo",grupoNew);
+        profesorSeleccionado.putExtra("grupo", grupo);
         startActivity(profesorSeleccionado);
     }
 
     @Override
-    public void onBackPressed(){
-        if(compruebaCampos()){
+    public void onBackPressed() {
+        if (compruebaCampos() && getNoCambioCampos()) {
+
             volverProfesor();
+        } else if (compruebaCampos() && !getNoCambioCampos()) {
+            dialogoBack();
         }
+
 
     }
 
@@ -238,7 +336,5 @@ public class ProfesorEditActivity extends AppCompatActivity {
     public void onRestart() {
         super.onRestart();
         cargaActivity();
-        //When BACK BUTTON is pressed, the activity on the stack is restarted
-        //Do what you want on the refresh procedure here
     }
 }

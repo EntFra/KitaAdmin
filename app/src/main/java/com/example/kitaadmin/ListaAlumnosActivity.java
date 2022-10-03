@@ -81,4 +81,10 @@ public class ListaAlumnosActivity extends AppCompatActivity implements AlumnoAda
 
         }
     }
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, GrupoActivity.class);
+        intent.putExtra("grupoSeleccionado",  grupo);
+        startActivity(intent);
+    }
 }

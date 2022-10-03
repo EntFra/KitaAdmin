@@ -44,7 +44,15 @@
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
     <string name="profesorActualizado">Profesor actualizado</string>
+    <string name="alumnoActualizado">Alumno actualizado</string>
     <string name="errorActualizaProfesor">Error al actualizar profesor</string>
+    <string name="errorActualizaAlumno">Error al actualizar alumno</string>
     <string name="camposNecesarios">Hay campos obligatorios vacíos</string>
     <string name="campoObligatorio">Campos obligatorios</string>
+    <string name="borrarProfesor">Borrar profesor</string>
+    <string name="preguntaBorraProfesor">¿Seguro que desea borrar el profesor?</string>
+    <string name="borrar">Borrar</string>
+    <string name="profesorBorrado">Profesor borrado</string>
+    <string name="formatoDNI">Formato de DNI no válido</string>
+    <string name="sinInforme">No existen datos para la fecha seleccionada</string>
 </resources>

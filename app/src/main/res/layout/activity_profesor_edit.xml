@@ -176,6 +176,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:inputType=""
                         tools:text="TextView" />
                 </LinearLayout>
             </TableRow>
@@ -286,12 +287,16 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/editGrupo"
+                    <Spinner
+                        android:id="@+id/spinnerGrupo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        tools:text="TextView" />
+                        android:textAlignment="center"
+                        tools:text="TextView"/>
+
+
                 </LinearLayout>
             </TableRow>
         </TableLayout>

@@ -30,6 +30,9 @@ public interface ApiService {
     @GET("/getUsuario/id")
     Call<Usuarios> getUsuario(@Query(value="usuarios_id", encoded=true)int id);
 
+    @DELETE("/deleteUsuarios/{id}")
+    Call<Usuarios>deleteUsuarios(@Path(value="usuarios_id", encoded = true) int id);
+
     @GET("/getGrupos")
     Call<List<Grupos>> getGrupos();
 
@@ -45,14 +48,8 @@ public interface ApiService {
     @DELETE("/deleteAlumno")
     Call<Alumnos>deleteAlumno(@Body Alumnos alumno);
 
-    @DELETE("/deleteUsuarios/{id}")
-    Call<Usuarios>deleteUsuarios(@Path(value="id", encoded = true) int id);
-
     @PUT("/updateProfesor")
     Call<Profesores>updateProfesor(@Body Profesores profesor);
-
-    @DELETE("/deleteProfesor")
-    Call<Profesores>deleteProfesor(@Body Profesores profesor);
 
     @GET("/getPadres/alumnoId")
     Call<List<Padres>> getPadres(@Query(value="alumnoId", encoded=true)int alumno);

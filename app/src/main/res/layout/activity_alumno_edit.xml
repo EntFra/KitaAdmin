@@ -37,6 +37,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
@@ -52,14 +53,18 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/editTextFechaNac"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="false"
                         android:gravity="center"
+                        android:maxLines="1"
                         tools:text="TextView" />
                 </LinearLayout>
             </TableRow>
@@ -72,6 +77,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
@@ -87,11 +93,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/editTextAlergia"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -107,6 +115,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
@@ -142,6 +151,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
@@ -177,6 +187,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
@@ -202,6 +213,47 @@
                         android:layout_gravity="center"
                         android:paddingEnd="65dp"
                         tools:ignore="UseSwitchCompatOrMaterialXml" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/grupo" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinnerGrupoAlumno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        tools:text="TextView"/>
+
+
                 </LinearLayout>
             </TableRow>
 
@@ -253,7 +305,9 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/button_rounded"
         android:text="@string/actualizar"
+        android:onClick="updateAlumno"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nestedAlumEdit" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

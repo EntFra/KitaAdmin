@@ -36,8 +36,6 @@ import retrofit2.Response;
 public class ProfesorActivity extends AppCompatActivity {
 
     private ActivityProfesorBinding binding;
-    private ImageButton editButton;
-    private ImageButton deleteButton;
     ApiService apiService;
     String profesorSeleccionado;
     Profesores profesor;
@@ -49,103 +47,102 @@ public class ProfesorActivity extends AppCompatActivity {
         cargarActivity();
     }
 
-        private void cargarActivity(){
-            binding = ActivityProfesorBinding.inflate(getLayoutInflater());
-            View view = binding.getRoot();
-            setContentView(view);
+    private void cargarActivity() {
+        binding = ActivityProfesorBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-            //Recoge el profesor seleccionado
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                profesorSeleccionado = extras.getString("profesorSeleccionado");
-                grupo = extras.getString("grupo");
+        //Recoge el profesor seleccionado
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            profesorSeleccionado = extras.getString("profesorSeleccionado");
+            grupo = extras.getString("grupo");
+        }
+        profesor = new Gson().fromJson(profesorSeleccionado, Profesores.class);
+
+        try {
+            recuperaInfoProfesor();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        binding.btnDelet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                borrar(profesor);
+
             }
-            profesor = new Gson().fromJson(profesorSeleccionado, Profesores.class);
-
-            try {
-                recuperaInfoProfesor();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            binding.btnDelet.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    borrar(profesor);
-
-                }
-            });
-        }
+        });
+    }
 
 
-        private void recuperaInfoProfesor () throws ParseException {
+    private void recuperaInfoProfesor() throws ParseException {
 
-            binding.textNombreProf.setText(profesor.getUsuario().getNombre());
-            binding.textFechaNac.setText(profesor.getFecha_nac());
-            binding.textTelf.setText(Integer.toString(profesor.getUsuario().getTelefono()));
-            binding.textEmail.setText(profesor.getUsuario().getEmail());
-            binding.textDirecc.setText(profesor.getDireccion());
-            binding.textDNI.setText(profesor.getDni());
-            binding.textFechaAlta.setText(profesor.getFecha_alta());
-            binding.textGrupo.setText(grupo);
+        binding.textNombreProf.setText(profesor.getUsuario().getNombre());
+        binding.textFechaNac.setText(profesor.getFecha_nac());
+        binding.textTelf.setText(Integer.toString(profesor.getUsuario().getTelefono()));
+        binding.textEmail.setText(profesor.getUsuario().getEmail());
+        binding.textDirecc.setText(profesor.getDireccion());
+        binding.textDNI.setText(profesor.getDni());
+        binding.textFechaAlta.setText(profesor.getFecha_alta());
+        binding.textGrupo.setText(grupo);
 
-        }
+    }
 
-        //Método público para borrar el profesor actual de la base de datos
-        public void borrar (Profesores profesor){
-            AlertDialog alertDialog = new AlertDialog.Builder(this)
-                    .setTitle("Borrar profesor")
-                    .setMessage("¿Seguro que desea borrar el profesor?")
-                    .setPositiveButton("Borrar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //Se crea una instancia de llamada a la API
-                            apiService = Network.getInstance().create(ApiService.class);
-                            //Se llama al servicio que obtiene los profesores
-                            Call<Profesores> call = apiService.deleteProfesor(profesor);
-                            call.enqueue(new Callback<Profesores>() {
-                                @Override
-                                public void onResponse(Call<Profesores> call, Response<Profesores> response) {
-                                    if (response.isSuccessful()) {
-                                        Toast.makeText(ProfesorActivity.this, "Profesor borrado", Toast.LENGTH_SHORT).show();
-                                    }
+    //Método público para borrar el profesor actual de la base de datos
+    public void borrar(Profesores profesor) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.borrarProfesor)
+                .setMessage(R.string.preguntaBorraProfesor)
+                .setPositiveButton(R.string.borrar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Se crea una instancia de llamada a la API
+                        apiService = Network.getInstance().create(ApiService.class);
+                        //Se llama al servicio que obtiene los profesores
+                        Call<Usuarios> call = apiService.deleteUsuarios(profesor.getUsuario().getUsuarios_id());
+                        call.enqueue(new Callback<Usuarios>() {
+                            @Override
+                            public void onResponse(Call<Usuarios> call, Response<Usuarios> response) {
+                                if (response.isSuccessful()) {
+                                    Toast.makeText(ProfesorActivity.this, R.string.profesorBorrado, Toast.LENGTH_SHORT).show();
                                 }
+                            }
 
-                                @Override
-                                public void onFailure(Call<Profesores> call, Throwable t) {
-                                    Log.e("Error", t.getMessage());
-                                }
-                            });
-                            vueltaListaProfesores();
-                        }
-                    })
-                    .setNegativeButton("Cancelar", null)
-                    .show();
-        }
+                            @Override
+                            public void onFailure(Call<Usuarios> call, Throwable t) {
+                                Log.e("Error", t.getMessage());
+                            }
+                        });
+                        vueltaListaProfesores();
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
 
-        public void editarProfesor (View view){
-            Intent intent = new Intent(this, ProfesorEditActivity.class);
-            intent.putExtra("profesorSeleccionado", profesorSeleccionado);
-            intent.putExtra("grupo",grupo);
-            startActivity(intent);
-        }
+    public void editarProfesor(View view) {
+        Intent intent = new Intent(this, ProfesorEditActivity.class);
+        intent.putExtra("profesorSeleccionado", profesorSeleccionado);
+        startActivity(intent);
+    }
 
 
-        //Método que regresa a la lista
-        private void vueltaListaProfesores () {
-            Intent intent = new Intent(this, ListaProfesoresActivity.class);
-            intent.putExtra("grupoSeleccionado", profesor.getNombre_grupo());
-            startActivity(intent);
-        }
+    //Método que regresa a la lista
+    private void vueltaListaProfesores() {
+        Intent intent = new Intent(this, ListaProfesoresActivity.class);
+        intent.putExtra("grupoSeleccionado", profesor.getNombre_grupo());
+        startActivity(intent);
+    }
 
-        @Override
-        public void onRestart() {
+    @Override
+    public void onRestart() {
         super.onRestart();
         cargarActivity();
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         vueltaListaProfesores();
     }
-    }
+}

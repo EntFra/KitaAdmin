@@ -15,6 +15,7 @@ import com.example.kitaadmin.Remote.ApiService;
 import com.example.kitaadmin.Remote.Network;
 import com.google.gson.Gson;
 
+import java.lang.reflect.Executable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,19 +71,23 @@ public class ListaProfesoresActivity extends AppCompatActivity implements Profes
 
     public void onProfesorClick(int position) {
         String rol = LoginActivity.getRol();
-        if(rol.equals("admin") || rol.equals("director") || rol.equals("profesor_admin")){
-            Intent profesorSeleccionado = new Intent(this, ProfesorActivity.class);
-            profesorSeleccionado.putExtra("profesorSeleccionado", new Gson().toJson(listaProfesores.get(position)));
-            profesorSeleccionado.putExtra("grupo",grupo);
-            startActivity(profesorSeleccionado);
+        try {
+            if (rol.equals("admin") || rol.equals("director") || rol.equals("profesor_admin")) {
+                Intent profesorSeleccionado = new Intent(this, ProfesorActivity.class);
+                profesorSeleccionado.putExtra("profesorSeleccionado", new Gson().toJson(listaProfesores.get(position)));
+                profesorSeleccionado.putExtra("grupo", grupo);
+                startActivity(profesorSeleccionado);
+            }
+        } catch (Exception e) {
+
         }
 
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         Intent intent = new Intent(this, GrupoActivity.class);
-        intent.putExtra("grupoSeleccionado",  grupo);
+        intent.putExtra("grupoSeleccionado", grupo);
         startActivity(intent);
     }
 
