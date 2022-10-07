@@ -25,15 +25,22 @@ public class Informes implements Serializable {
     private boolean bebida;
     @SerializedName("fecha")
     private String fecha;
+    @SerializedName("observaciones")
+    private String observaciones;
 
 
-    public Informes(int alumno_id, boolean deposicion, boolean comida, boolean bebida, String fecha, String suenio) {
+    public Informes(int alumno_id, boolean deposicion, String suenio, boolean comida, boolean bebida, String fecha, String observaciones) {
         this.alumno_id = alumno_id;
         this.deposicion = deposicion;
+        this.suenio = suenio;
         this.comida = comida;
         this.bebida = bebida;
         this.fecha = fecha;
-        this.suenio = suenio;
+        this.observaciones = observaciones;
+    }
+
+    public Informes() {
+
     }
 
     public int getAlumno_id() {
@@ -50,6 +57,14 @@ public class Informes implements Serializable {
 
     public void setDeposicion(boolean deposicion) {
         this.deposicion = deposicion;
+    }
+
+    public String getSuenio() {
+        return suenio;
+    }
+
+    public void setSuenio(String suenio) {
+        this.suenio = suenio;
     }
 
     public boolean isComida() {
@@ -76,12 +91,12 @@ public class Informes implements Serializable {
         this.fecha = fecha;
     }
 
-    public String getSuenio() {
-        return suenio;
+    public String getObservaciones() {
+        return observaciones;
     }
 
-    public void setSuenio(String suenio) {
-        this.suenio = suenio;
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
     @Override
@@ -89,10 +104,11 @@ public class Informes implements Serializable {
         return "Informes{" +
                 "alumno_id=" + alumno_id +
                 ", deposicion=" + deposicion +
+                ", suenio='" + suenio + '\'' +
                 ", comida=" + comida +
                 ", bebida=" + bebida +
-                ", fecha=" + fecha +
-                ", suenio=" + suenio +
+                ", fecha='" + fecha + '\'' +
+                ", observaciones='" + observaciones + '\'' +
                 '}';
     }
 }

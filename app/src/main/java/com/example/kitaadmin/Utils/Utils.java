@@ -41,12 +41,32 @@ public class Utils {
         return outputFormat.format(date);
     }
 
+    //Formatea la duración de sueño dada quitando los segundos
+    public static String formatTimeDuration(String time){
+        String originalStringFormat = "HH:mm:ss";
+        String desiredStringFormat = "HH:mm";
 
+        SimpleDateFormat readingFormat = new SimpleDateFormat(originalStringFormat);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(desiredStringFormat);
+        Date dated = null;
+        try {
+            dated = readingFormat.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        ;
+        return outputFormat.format(dated);
+    }
 
     //Convierte de String a Date
     public static LocalDate giveDate(String fecha) throws Exception {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(fecha, formatter);
+    }
+
+    //Añade segundos para almacenar en la bd correctamente el tiempo
+    public static String stringToTime(String time){
+        return time.concat(":00");
     }
 
 

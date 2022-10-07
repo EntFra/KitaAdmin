@@ -3,28 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:onClick="updateProfesor">
-
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textTituloProfesor"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="@string/profesor"
+        android:text="@string/informe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/dateInforme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@null"
+        android:clickable="true"
+        android:focusable="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        tools:text="TextView" />
+
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
+        android:id="@+id/scrollViewInforme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/textTituloProfesor">
+        app:layout_constraintTop_toBottomOf="@id/dateInforme">
 
         <TableLayout
+            android:id="@+id/tableInforme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -32,6 +44,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/sueno" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/textSueno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:hint="00:00"
+                        android:focusable="false"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:onClick="showTimePicker" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -45,28 +100,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/fechaNac" />
+                        android:text="@string/deposicion" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/editFechaNac"
-                        android:background="@null"
-                        android:layout_width="match_parent"
+                    <Switch
+                        android:id="@+id/switchDeposicion"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="false"
-                        android:gravity="center"
-                        android:inputType="date"
-                        android:maxLines="1"
-                        tools:text="TextView" />
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
                 </LinearLayout>
             </TableRow>
 
@@ -87,7 +136,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/telef" />
+                        android:text="@string/comida" />
 
                 </LinearLayout>
 
@@ -98,13 +147,11 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/editTextTelf"
-
-                        android:layout_width="match_parent"
+                    <Switch
+                        android:id="@+id/switchComida"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        tools:text="TextView" />
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
                 </LinearLayout>
             </TableRow>
 
@@ -121,11 +168,11 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/textViewComedor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/email" />
+                        android:text="@string/bebida" />
 
                 </LinearLayout>
 
@@ -136,50 +183,11 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/editEmail"
-                        android:layout_width="match_parent"
+                    <Switch
+                        android:id="@+id/switchBebida"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        tools:text="TextView" />
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView13"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/dni" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/editDNI"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:inputType=""
-                        tools:text="TextView" />
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
                 </LinearLayout>
             </TableRow>
 
@@ -193,129 +201,40 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView14"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/direccion" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/editDirecc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        tools:text="TextView" />
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/btnPadres"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/fechaAlta" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                        android:text="@string/observaciones" />
 
                     <EditText
-                        android:id="@+id/editFechaAlt"
-                        android:background="@null"
-                        android:layout_width="match_parent"
+                        android:id="@+id/textObservacionesInforme"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="false"
                         android:gravity="center"
-                        android:inputType="date"
-                        android:maxLines="1"
-                        tools:text="TextView" />
+                        android:paddingTop="20dp"
+                        tools:text="@string/ejemplo" />
+
                 </LinearLayout>
+
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView16"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/grupo" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <Spinner
-                        android:id="@+id/spinnerGrupo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        tools:text="TextView"/>
-
-
-                </LinearLayout>
-            </TableRow>
         </TableLayout>
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/buttonUpdateProfesor"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/button_rounded"
-        android:onClick="updateProfesor"
-        android:text="@string/actualizar"
+        android:onClick="updateInformeAlumno"
+        android:text="@string/guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewInforme" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

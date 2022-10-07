@@ -53,7 +53,7 @@ public class MenuActivity extends AppCompatActivity {
 
     //Método para ir a la pantalla comedor
     public void comedor(View v) {
-        Intent intent = new Intent(this, Comedor.class);
+        Intent intent = new Intent(this, ComedorActivity.class);
         startActivity(intent);
     }
 

@@ -19,6 +19,9 @@
             android:name=".CalendarioActivity"
             android:exported="false" />
         <activity
+            android:name=".InformeEditAcitvity"
+            android:exported="false" />
+        <activity
             android:name=".InformeActivity"
             android:exported="false" />
         <activity

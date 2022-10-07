@@ -55,4 +55,12 @@
     <string name="profesorBorrado">Profesor borrado</string>
     <string name="formatoDNI">Formato de DNI no válido</string>
     <string name="sinInforme">No existen datos para la fecha seleccionada</string>
+    <string name="guardar">Guardar</string>
+    <string name="tiempoDormido">Tiempo dormido</string>
+    <string name="informeActualizado">Informe actualizado</string>
+    <string name="errorActualizaInforme">Error al actualizar informe</string>
+    <string name="desayuno">Desayuno</string>
+    <string name="snack">Snack</string>
+    <string name="platoPrincipal">Plato principal</string>
+    <string name="postre">Postre</string>
 </resources>

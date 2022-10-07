@@ -11,15 +11,14 @@ public class Comedor {
     private String desayuno;
     private String plato_principal;
     private String postre;
-    private String nombre_grupo;
 
-    public Comedor(int dia_id, String snack, String desayuno, String plato_principal, String postre, String nombre_grupo) {
+    public Comedor(int menu_id, int dia_id, String snack, String desayuno, String plato_principal, String postre) {
+        this.menu_id = menu_id;
         this.dia_id = dia_id;
         this.snack = snack;
         this.desayuno = desayuno;
         this.plato_principal = plato_principal;
         this.postre = postre;
-        this.nombre_grupo = nombre_grupo;
     }
 
     public int getMenu_id() {
@@ -70,11 +69,15 @@ public class Comedor {
         this.postre = postre;
     }
 
-    public String getNombre_grupo() {
-        return nombre_grupo;
-    }
-
-    public void setNombre_grupo(String nombre_grupo) {
-        this.nombre_grupo = nombre_grupo;
+    @Override
+    public String toString() {
+        return "Comedor{" +
+                "menu_id=" + menu_id +
+                ", dia_id=" + dia_id +
+                ", snack='" + snack + '\'' +
+                ", desayuno='" + desayuno + '\'' +
+                ", plato_principal='" + plato_principal + '\'' +
+                ", postre='" + postre + '\'' +
+                '}';
     }
 }

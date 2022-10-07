@@ -2,10 +2,13 @@ package com.example.kitaadmin;
 
 import static com.example.kitaadmin.Utils.DatePickerFragment.twoDigits;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,8 +29,13 @@ import com.example.kitaadmin.Utils.DatePickerFragment;
 import com.example.kitaadmin.databinding.ActivityProfesorEditBinding;
 import com.google.gson.Gson;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,6 +50,7 @@ public class ProfesorEditActivity extends AppCompatActivity {
     String grupo;
     String profesorSeleccionado;
     Usuarios usuarioProfesor;
+    static String fechaView;
 
     String dniOld;
     String fecha_altaOld;
@@ -88,23 +97,25 @@ public class ProfesorEditActivity extends AppCompatActivity {
 
             dniOld = profesor.getDni();
             fecha_nacOld = profesor.getFecha_nac();
-            fecha_altaOld = profesor.getFecha_nac();
+            fecha_altaOld = profesor.getFecha_alta();
             direccionOld = profesor.getDireccion();
             grupoOld = profesor.getNombre_grupo();
             emailOld = usuarioProfesor.getEmail();
             telefonoOld = usuarioProfesor.getTelefono();
         }
-
+        //Lanza el selector de calendario con la fecha guardada en la base de datos
         binding.editFechaAlt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog(binding.editFechaAlt);
+                setFechaView(profesor.getFecha_alta());
+                showDatePickerDialog(binding.editFechaAlt, getFechaView());
             }
         });
         binding.editFechaNac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog(binding.editFechaNac);
+                setFechaView(profesor.getFecha_nac());
+                showDatePickerDialog(binding.editFechaNac, getFechaView());
             }
         });
         spinnerGrupos();
@@ -141,6 +152,15 @@ public class ProfesorEditActivity extends AppCompatActivity {
         binding.editTextTelf.addTextChangedListener(tw);
     }
 
+    //Establece el valor de la variable para arrancar la view del calendario con la fecha guardada en la bd
+    private void setFechaView(String fecha){
+        fechaView = fecha;
+    }
+
+    private String getFechaView(){
+        return fechaView;
+    }
+
 
     private void recuperaInfoProfesor() {
 
@@ -163,7 +183,7 @@ public class ProfesorEditActivity extends AppCompatActivity {
     }
 
 
-    private void showDatePickerDialog(final EditText editText) {
+    private void showDatePickerDialog(final EditText editText, String fechaView) {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -173,6 +193,44 @@ public class ProfesorEditActivity extends AppCompatActivity {
         });
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+
+
+    public static class DatePickerFragment extends DialogFragment {
+
+        private DatePickerDialog.OnDateSetListener listener;
+
+        public static DatePickerFragment newInstance(DatePickerDialog.OnDateSetListener listener) {
+            DatePickerFragment fragment = new DatePickerFragment();
+            fragment.setListener(listener);
+            return fragment;
+        }
+
+        public void setListener(DatePickerDialog.OnDateSetListener listener) {
+            this.listener = listener;
+        }
+
+        //Se establece la fecha actual del objeto alumno para que sea mostrada al abrir el calendario
+        @Override
+        @NonNull
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+            try {
+                c.setTime(Objects.requireNonNull(sdf.parse(fechaView)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+
+            return new DatePickerDialog(getActivity(), listener, year, month, day);
+        }
+
+
     }
 
     private boolean isValidDNI(String dni) {

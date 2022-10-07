@@ -2,10 +2,14 @@ package com.example.kitaadmin;
 
 import static com.example.kitaadmin.Utils.DatePickerFragment.twoDigits;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,12 +28,16 @@ import com.example.kitaadmin.Model.Profesores;
 import com.example.kitaadmin.Remote.ApiService;
 import com.example.kitaadmin.Remote.Network;
 import com.example.kitaadmin.Utils.DatePickerFragment;
-import com.example.kitaadmin.databinding.ActivityAlumnoBinding;
 import com.example.kitaadmin.databinding.ActivityAlumnoEditBinding;
 import com.google.gson.Gson;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,7 +46,7 @@ import retrofit2.Response;
 public class AlumnoEditActivity extends AppCompatActivity {
 
     private ActivityAlumnoEditBinding binding;
-    Alumnos alumno;
+    static Alumnos alumno;
     String grupo;
     String alumnoSeleccionado;
     boolean noCambioCampos;
@@ -98,10 +106,12 @@ public class AlumnoEditActivity extends AppCompatActivity {
         binding.editObservaciones.addTextChangedListener(tw);
         binding.editTextAlergia.addTextChangedListener(tw);
         binding.editTextFechaNac.addTextChangedListener(tw);
+
     }
 
     private void showDatePickerDialog(final EditText editText) {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 final String selectedDate = twoDigits(day) + "-" + twoDigits(month + 1) + "-" + year;
@@ -110,6 +120,42 @@ public class AlumnoEditActivity extends AppCompatActivity {
         });
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public static class DatePickerFragment extends DialogFragment {
+
+        private DatePickerDialog.OnDateSetListener listener;
+
+        public static DatePickerFragment newInstance(DatePickerDialog.OnDateSetListener listener) {
+            DatePickerFragment fragment = new DatePickerFragment();
+            fragment.setListener(listener);
+            return fragment;
+        }
+
+        public void setListener(DatePickerDialog.OnDateSetListener listener) {
+            this.listener = listener;
+        }
+
+        //Se establece la fecha actual del objeto alumno para que sea mostrada al abrir el calendario
+        @Override
+        @NonNull
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+            try {
+                c.setTime(Objects.requireNonNull(sdf.parse(alumno.getFecha_nac())));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+
+            return new DatePickerDialog(getActivity(), listener, year, month, day);
+        }
+
+
     }
 
     private void recuperaInfoAlumno(){

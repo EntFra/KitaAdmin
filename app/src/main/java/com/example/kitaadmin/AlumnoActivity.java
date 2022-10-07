@@ -134,7 +134,7 @@ public class AlumnoActivity extends AppCompatActivity {
     //Método que regresa a la lista
     private void vueltaListaAlumnos() {
         Intent intent = new Intent(this, ListaAlumnosActivity.class);
-        intent.putExtra("grupoSeleccionado", grupo);
+        intent.putExtra("grupoSeleccionado", alumno.getNombre_grupo());
         startActivity(intent);
     }
 

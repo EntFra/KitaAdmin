@@ -1,6 +1,7 @@
 package com.example.kitaadmin.Remote;
 
 import com.example.kitaadmin.Model.Alumnos;
+import com.example.kitaadmin.Model.Comedor;
 import com.example.kitaadmin.Model.Grupos;
 import com.example.kitaadmin.Model.Informes;
 import com.example.kitaadmin.Model.Padres;
@@ -57,4 +58,9 @@ public interface ApiService {
     @POST("/getInformes/alumnoId")
     Call<Informes> getInformes(@Query(value="alumnoId", encoded=true)int alumno,@Query(value="fecha", encoded=true) String fecha);
 
+    @PUT("/updateInformes")
+    Call<Informes> updateInformes(@Body Informes informe);
+
+    @GET("/getComedor")
+    Call<Comedor>getComedor(@Query(value="fecha", encoded = true)String fecha);
 }

@@ -76,4 +76,15 @@ public class GruposActivity extends AppCompatActivity implements GruposAdapter.O
         grupo.putExtra("grupoSeleccionado",  listaGrupos.get(position).getNombreGrupo());
         startActivity(grupo);
     }
+
+    @Override
+    public void onBackPressed() {
+        vueltaMenu();
+    }
+
+    private void vueltaMenu() {
+        Intent intent = new Intent(this, MenuActivity.class);
+        intent.putExtra("rol", LoginActivity.getRol());
+        startActivity(intent);
+    }
 }
