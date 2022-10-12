@@ -1,24 +1,39 @@
 package com.example.kitaadmin.Model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+import javax.annotation.Generated;
+
 /**
  * Clase Comedor que representa el menu del dia
  */
-public class Comedor {
-
+@Generated("com.robohorse.robopojogenerator")
+public class Comedor implements Serializable {
+    @SerializedName("menu_id")
     private int menu_id;
-    private int dia_id;
+    @SerializedName("fecha")
+    private String fecha;
+    @SerializedName("snack")
     private String snack;
+    @SerializedName("desayuno")
     private String desayuno;
+    @SerializedName("plato_principal")
     private String plato_principal;
+    @SerializedName("postre")
     private String postre;
 
-    public Comedor(int menu_id, int dia_id, String snack, String desayuno, String plato_principal, String postre) {
+    public Comedor(int menu_id, String dia_id, String snack, String desayuno, String plato_principal, String postre) {
         this.menu_id = menu_id;
-        this.dia_id = dia_id;
+        this.fecha = dia_id;
         this.snack = snack;
         this.desayuno = desayuno;
         this.plato_principal = plato_principal;
         this.postre = postre;
+    }
+
+    public Comedor() {
     }
 
     public int getMenu_id() {
@@ -29,12 +44,12 @@ public class Comedor {
         this.menu_id = menu_id;
     }
 
-    public int getDia_id() {
-        return dia_id;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setDia_id(int dia_id) {
-        this.dia_id = dia_id;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public String getSnack() {
@@ -73,7 +88,7 @@ public class Comedor {
     public String toString() {
         return "Comedor{" +
                 "menu_id=" + menu_id +
-                ", dia_id=" + dia_id +
+                ", dia_id=" + fecha +
                 ", snack='" + snack + '\'' +
                 ", desayuno='" + desayuno + '\'' +
                 ", plato_principal='" + plato_principal + '\'' +

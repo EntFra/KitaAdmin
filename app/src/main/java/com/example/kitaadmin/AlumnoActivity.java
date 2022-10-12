@@ -91,12 +91,12 @@ public class AlumnoActivity extends AppCompatActivity {
                         //Se crea una instancia de llamada a la API
                         apiService = Network.getInstance().create(ApiService.class);
                         //Se llama al servicio que obtiene los profesores
-                        Call<Alumnos> call = apiService.deleteAlumno(alumno);
+                        Call<Alumnos> call = apiService.deleteAlumno(alumno.getAlumno_id());
                         call.enqueue(new Callback<Alumnos>() {
                             @Override
                             public void onResponse(Call<Alumnos> call, Response<Alumnos> response) {
                                 if (response.isSuccessful()) {
-                                    Toast.makeText(AlumnoActivity.this, "Alumno borrado", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AlumnoActivity.this, R.string.alumnoBorrado, Toast.LENGTH_SHORT).show();
                                 }
                             }
 

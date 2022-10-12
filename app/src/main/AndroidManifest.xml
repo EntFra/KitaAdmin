@@ -49,6 +49,12 @@
             android:name=".ProfesorActivity"
             android:exported="false"/>
         <activity
+            android:name=".ComedorActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ComedorEditActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ProfesorEditActivity"
             android:exported="false" />
         <activity

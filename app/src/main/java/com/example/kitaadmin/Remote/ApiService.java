@@ -1,6 +1,7 @@
 package com.example.kitaadmin.Remote;
 
 import com.example.kitaadmin.Model.Alumnos;
+import com.example.kitaadmin.Model.Calendario;
 import com.example.kitaadmin.Model.Comedor;
 import com.example.kitaadmin.Model.Grupos;
 import com.example.kitaadmin.Model.Informes;
@@ -29,10 +30,10 @@ public interface ApiService {
     Call<Usuarios> getUsuario(@Body Usuarios usuario);
 
     @GET("/getUsuario/id")
-    Call<Usuarios> getUsuario(@Query(value="usuarios_id", encoded=true)int id);
+    Call<Usuarios> getUsuario(@Query(value="id", encoded=true)int id);
 
-    @DELETE("/deleteUsuarios/{id}")
-    Call<Usuarios>deleteUsuarios(@Path(value="usuarios_id", encoded = true) int id);
+    @DELETE("/deleteUsuarios")
+    Call<Usuarios>deleteUsuarios(@Query(value="id", encoded = true) int id);
 
     @GET("/getGrupos")
     Call<List<Grupos>> getGrupos();
@@ -47,7 +48,7 @@ public interface ApiService {
     Call<Alumnos>updateAlumno(@Body Alumnos alumno);
 
     @DELETE("/deleteAlumno")
-    Call<Alumnos>deleteAlumno(@Body Alumnos alumno);
+    Call<Alumnos>deleteAlumno(@Query(value="alumnoId", encoded=true)int alumno);
 
     @PUT("/updateProfesor")
     Call<Profesores>updateProfesor(@Body Profesores profesor);
@@ -61,6 +62,12 @@ public interface ApiService {
     @PUT("/updateInformes")
     Call<Informes> updateInformes(@Body Informes informe);
 
-    @GET("/getComedor")
+    @POST("/getComedor")
     Call<Comedor>getComedor(@Query(value="fecha", encoded = true)String fecha);
+
+    @PUT("updateComedor")
+    Call<Comedor> updateComedor(@Body Comedor comedor);
+
+    @POST("/getCalendario")
+    Call<Calendario> getCalendario(@Query(value="fecha", encoded = true)String fecha);
 }

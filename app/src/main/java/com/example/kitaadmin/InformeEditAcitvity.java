@@ -50,7 +50,6 @@ public class InformeEditAcitvity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        //informeNew = new Informes();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

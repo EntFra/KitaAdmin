@@ -3,6 +3,7 @@ package com.example.kitaadmin;
 import static com.example.kitaadmin.Utils.DatePickerFragment.twoDigits;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -11,12 +12,11 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kitaadmin.Model.Comedor;
-import com.example.kitaadmin.Model.Informes;
 import com.example.kitaadmin.Remote.ApiService;
 import com.example.kitaadmin.Remote.Network;
 import com.example.kitaadmin.Utils.DatePickerFragment;
-import com.example.kitaadmin.Utils.Utils;
 import com.example.kitaadmin.databinding.ActivityComedorBinding;
+import com.google.gson.Gson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -54,6 +54,7 @@ public class ComedorActivity extends AppCompatActivity {
         binding = ActivityComedorBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        getComedorDia(date);
 
         binding.dateComedor.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -114,6 +115,9 @@ public class ComedorActivity extends AppCompatActivity {
             public void onResponse(Call<Comedor> call, Response<Comedor> response) {
                 if (response.body() != null) {
                     menuDia = response.body();
+
+                    binding.textViewSinInforme.setVisibility(View.GONE);
+                    binding.tableComedor.setVisibility(View.VISIBLE);
                     //Formatea el tiempo dormido a horas y minutos
                     binding.textDesayuno.setText(menuDia.getDesayuno());
                     binding.textSnack.setText(menuDia.getSnack());
@@ -129,6 +133,27 @@ public class ComedorActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        vueltaMenu();
+    }
+
+    private void vueltaMenu() {
+        Intent intent = new Intent(this, MenuActivity.class);
+        intent.putExtra("rol", LoginActivity.getRol());
+        startActivity(intent);
+    }
+    //Abre el activity para introducir o modificar los datos de menú del día seleccionado
+    public void comedorEdit(View view){
+        Intent intent = new Intent(this, ComedorEditActivity.class);
+        if (menuDia != null && menuDia.getFecha().equals(binding.dateComedor.getText().toString())) {
+            intent.putExtra("menuDia", new Gson().toJson(menuDia));
+        }
+
+        intent.putExtra("fecha", binding.dateComedor.getText().toString());
+        startActivity(intent);
     }
 
 }

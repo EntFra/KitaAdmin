@@ -47,6 +47,7 @@
     <string name="alumnoActualizado">Alumno actualizado</string>
     <string name="errorActualizaProfesor">Error al actualizar profesor</string>
     <string name="errorActualizaAlumno">Error al actualizar alumno</string>
+    <string name="alumnoBorrado">Alumno borrado</string>
     <string name="camposNecesarios">Hay campos obligatorios vacíos</string>
     <string name="campoObligatorio">Campos obligatorios</string>
     <string name="borrarProfesor">Borrar profesor</string>
@@ -63,4 +64,7 @@
     <string name="snack">Snack</string>
     <string name="platoPrincipal">Plato principal</string>
     <string name="postre">Postre</string>
+    <string name="comedorActualizado">Menú del día actualizado</string>
+    <string name="errorActualizaComedor">Error al actualizar menú</string>
+    <string name="calendarioSinEvento">No existen eventos para el día seleccionado</string>
 </resources>
