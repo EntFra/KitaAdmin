@@ -4,6 +4,7 @@ import com.example.kitaadmin.Model.Alumnos;
 import com.example.kitaadmin.Model.Calendario;
 import com.example.kitaadmin.Model.Comedor;
 import com.example.kitaadmin.Model.Grupos;
+import com.example.kitaadmin.Model.Informacion;
 import com.example.kitaadmin.Model.Informes;
 import com.example.kitaadmin.Model.Padres;
 import com.example.kitaadmin.Model.Profesores;
@@ -29,7 +30,7 @@ public interface ApiService {
     @POST("/getUsuario")
     Call<Usuarios> getUsuario(@Body Usuarios usuario);
 
-    @GET("/getUsuario/id")
+    @POST("/getUsuario/id")
     Call<Usuarios> getUsuario(@Query(value="id", encoded=true)int id);
 
     @DELETE("/deleteUsuarios")
@@ -70,4 +71,7 @@ public interface ApiService {
 
     @POST("/getCalendario")
     Call<Calendario> getCalendario(@Query(value="fecha", encoded = true)String fecha);
+
+    @POST("/getInformacion")
+    Call<List<Informacion>> getInformacion();
 }

@@ -1,12 +1,18 @@
 package com.example.kitaadmin.Model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+import javax.annotation.Generated;
+
 /**
  * Clase Grupos que representa cada grupo en los que se estructura la guarderia
  */
-public class Grupo {
-
+@Generated("com.robohorse.robopojogenerator")
+public class Grupo implements Serializable {
+    @SerializedName("nombre")
     private String nombre;
-
     public Grupo(String nombre) {
         this.nombre = nombre;
     }
@@ -17,5 +23,12 @@ public class Grupo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Grupo{" +
+                "nombre='" + nombre + '\'' +
+                '}';
     }
 }
