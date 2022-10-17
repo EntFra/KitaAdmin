@@ -67,4 +67,5 @@
     <string name="comedorActualizado">Menú del día actualizado</string>
     <string name="errorActualizaComedor">Error al actualizar menú</string>
     <string name="calendarioSinEvento">No existen eventos para el día seleccionado</string>
+    <string name="gestionUsuarios">Gestión de usuarios</string>
 </resources>

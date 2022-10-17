@@ -30,6 +30,9 @@ public interface ApiService {
     @POST("/getUsuario")
     Call<Usuarios> getUsuario(@Body Usuarios usuario);
 
+    @POST("getUsuarios")
+    Call<List<Usuarios>> getUsuarios();
+
     @POST("/getUsuario/id")
     Call<Usuarios> getUsuario(@Query(value="id", encoded=true)int id);
 
