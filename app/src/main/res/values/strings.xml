@@ -68,4 +68,9 @@
     <string name="errorActualizaComedor">Error al actualizar menú</string>
     <string name="calendarioSinEvento">No existen eventos para el día seleccionado</string>
     <string name="gestionUsuarios">Gestión de usuarios</string>
+    <string name="nombreUsuario">Nombre de usuario</string>
+    <string name="rol">Rol</string>
+    <string name="crearUsuario">Añadir</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
