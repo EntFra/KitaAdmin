@@ -7,22 +7,25 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 
+import com.example.kitaadmin.Adapter.UsuariosAdapter;
 import com.example.kitaadmin.R;
 
 
 public class UsuarioAddFragment extends Fragment {
-
+    UsuariosAdapter adapter;
 
 
     public UsuarioAddFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
     }
 

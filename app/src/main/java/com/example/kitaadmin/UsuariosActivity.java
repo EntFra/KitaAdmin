@@ -1,11 +1,14 @@
 package com.example.kitaadmin;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,46 +40,74 @@ public class UsuariosActivity extends AppCompatActivity {
     Usuarios usuario;
     UsuariosAdapter adapter;
     RecyclerView recyclerUsuarios;
-    List<Usuarios> listaUsuarios = new ArrayList<>();
+    List<Usuarios> listaUsuarios;
     FragmentTransaction transaction;
     Fragment fragmentAdd, fragmentEdit;
-    ImageButton ib = (ImageButton)findViewById(R.id.editUsuario);
+    private RecyclerView.LayoutManager mLayoutManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuarios_menu);
+
         cargarActivity();
+
+
 
         fragmentAdd = new UsuarioAddFragment();
         fragmentEdit = new UsuarioEditFragment();
 
-}
+    }
 
-    public void cargaFragmentAddUsuario(View v){
+    public void cargaFragmentAddUsuario(View v) {
         transaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragmentUsuario, fragmentAdd);
         transaction.commit();
     }
 
-    public void cargaFragmentEditUsuario(View v){
+    public void cargaFragmentEditUsuario(View v) {
         transaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragmentUsuario, fragmentEdit);
         transaction.commit();
+    }
+
+    public void deleteUsuario(int position) {
+        new AlertDialog.Builder(UsuariosActivity.this)
+                .setTitle(R.string.borrarUsuario)
+                .setMessage(R.string.confirmaBorraUsuario)
+                .setPositiveButton(R.string.borrar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Se crea una instancia de llamada a la API
+                        apiService = Network.getInstance().create(ApiService.class);
+                        //Se llama al servicio que obtiene los profesores
+                        Call<Usuarios> call = apiService.deleteUsuarios(listaUsuarios.get(position).getUsuarios_id());
+                        call.enqueue(new Callback<Usuarios>() {
+                            @Override
+                            public void onResponse(Call<Usuarios> call, Response<Usuarios> response) {
+                                if (response.isSuccessful()) {
+                                    Toast.makeText(UsuariosActivity.this, R.string.usuarioBorrado, Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Usuarios> call, Throwable t) {
+                                Log.e("Error", t.getMessage());
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+        getUsuarios();
     }
 
     private void cargarActivity() {
         binding = ActivityUsuariosMenuBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        recyclerUsuarios = binding.recyclerViewUsuarios;
-        recyclerUsuarios.setLayoutManager(new LinearLayoutManager(this));
 
         getUsuarios();
-
-        adapter = new UsuariosAdapter(UsuariosActivity.this, listaUsuarios, UsuariosActivity.this::onUsuariosClick);
-        recyclerUsuarios.setAdapter(adapter);
-
-
 
 
     }
@@ -89,8 +120,9 @@ public class UsuariosActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Usuarios>> call, Response<List<Usuarios>> response) {
                 listaUsuarios = response.body();
-                adapter = new UsuariosAdapter(UsuariosActivity.this, listaUsuarios, UsuariosActivity.this::onUsuariosClick);
-                recyclerUsuarios.setAdapter(adapter);
+
+                buildRecyclerView();
+
             }
 
             @Override
@@ -100,10 +132,28 @@ public class UsuariosActivity extends AppCompatActivity {
         });
     }
 
+    public void buildRecyclerView() {
+        recyclerUsuarios = findViewById(R.id.recyclerViewUsuarios);
+        recyclerUsuarios.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        adapter = new UsuariosAdapter(listaUsuarios);
 
+        recyclerUsuarios.setLayoutManager(mLayoutManager);
+        recyclerUsuarios.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new UsuariosAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                deleteUsuario(position);
+            }
+        });
+    }
 
     private void onUsuariosClick(int position) {
-    listaUsuarios.get(position);
-
+        deleteUsuario(position);
     }
 }

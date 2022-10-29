@@ -83,14 +83,14 @@ public class AlumnoActivity extends AppCompatActivity {
     //Método público para borrar el alumno actual de la base de datos
     public void borrar(Alumnos alumno) {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle("Borrar alumno")
-                .setMessage("¿Seguro que desea borrar el alumno?")
-                .setPositiveButton("Borrar", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.borrarAlumno)
+                .setMessage(R.string.confirmaBorraAlumno)
+                .setPositiveButton(R.string.borrar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Se crea una instancia de llamada a la API
                         apiService = Network.getInstance().create(ApiService.class);
-                        //Se llama al servicio que obtiene los profesores
+                        //Se llama al servicio que obtiene los alumnos
                         Call<Alumnos> call = apiService.deleteAlumno(alumno.getAlumno_id());
                         call.enqueue(new Callback<Alumnos>() {
                             @Override

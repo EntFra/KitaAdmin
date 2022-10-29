@@ -1,100 +1,88 @@
 package com.example.kitaadmin.Adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.kitaadmin.Model.Alumnos;
 import com.example.kitaadmin.Model.Usuarios;
 import com.example.kitaadmin.R;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.ViewHolderUsuarios> {
+public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.UsuariosViewHolder> {
+    private List<Usuarios> list;
+    private OnItemClickListener listener;
 
-        List<Usuarios> listaUsuarios;
-        private final UsuariosAdapter.OnUsuariosListener onUsuariosListener;
-        private final LayoutInflater inflater;
+    public interface OnItemClickListener {
+        void onItemClick(int position);
 
+        void onDeleteClick(int position);
+    }
 
-        public interface OnUsuariosListener {
-            void onUsuariosClick(int position);
-        }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
-    public UsuariosAdapter(Context context, List<Usuarios> listaUsuarios, UsuariosAdapter.OnUsuariosListener onUsuariosListener) {
-            this.listaUsuarios = listaUsuarios;
-            this.inflater = LayoutInflater.from(context);
-            this.onUsuariosListener = onUsuariosListener;
-        }
+    public static class UsuariosViewHolder extends RecyclerView.ViewHolder {
+        public TextView textoUsuario;
+        public ImageButton deleteButton;
 
-        @NonNull
-        @Override
-        public UsuariosAdapter.ViewHolderUsuarios onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_usuarios, null, false);
-            return new ViewHolderUsuarios(view, onUsuariosListener);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull UsuariosAdapter.ViewHolderUsuarios holder, int position) {
-            if(listaUsuarios.get(position).getNombre()!=null){
-                holder.nombreUsuario.setText(listaUsuarios.get(position).getNombre());
-            }
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return listaUsuarios.size();
-        }
-
-        protected class ViewHolderUsuarios extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-            TextView nombreUsuario;
-            UsuariosAdapter.OnUsuariosListener onUsuariosListener;
-            ImageButton deleteButton;
-            ImageButton updateButton;
-            ImageButton addButton;
-
-            public ViewHolderUsuarios(@NonNull View itemView, UsuariosAdapter.OnUsuariosListener onUsuariosListener) {
-                super(itemView);
-                nombreUsuario = itemView.findViewById(R.id.titleUsuarios);
-                this.onUsuariosListener = onUsuariosListener ;
-                itemView.setOnClickListener(this);
-
-                updateButton = itemView.findViewById(R.id.editUsuario);
-                addButton = itemView.findViewById(R.id.addUsuario);
-                deleteButton = itemView.findViewById(R.id.deleteUsuario);
-            }
-
-            @Override
-            public void onClick(View view) { 
-                
-                if(view.equals(deleteButton)){
-                    deleteUsuario(getAdapterPosition());
-                }else if(view.equals(addButton)){
-                    addUsuario();
-                }else if(view.equals(updateButton)){
-                    editUsuario(getAdapterPosition());
+        public UsuariosViewHolder(View itemView, final OnItemClickListener listener) {
+            super(itemView);
+            textoUsuario = itemView.findViewById(R.id.titleUsuarios);
+            deleteButton = itemView.findViewById(R.id.deleteUsuario);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
                 }
-                onUsuariosListener .onUsuariosClick(getAdapterPosition()); }
+            });
 
-             }
-
-    private void editUsuario(int adapterPosition) {
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClick(position);
+                        }
+                    }
+                }
+            });
+        }
     }
 
-    private void addUsuario() {
+    public UsuariosAdapter(List<Usuarios> list) {
+        this.list = list;
     }
 
-    private void deleteUsuario(int adapterPosition) {
-                    
-            }
+    @Override
+    public UsuariosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_usuarios, parent, false);
+        UsuariosViewHolder vh = new UsuariosViewHolder(v, listener);
+        return vh;
+    }
 
+    @Override
+    public void onBindViewHolder(UsuariosViewHolder holder, int position) {
+        Usuarios usuario = list.get(position);
+        holder.textoUsuario.setText(usuario.getNombre());
+    }
 
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
 }

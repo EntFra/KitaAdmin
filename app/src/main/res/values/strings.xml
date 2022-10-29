@@ -47,6 +47,8 @@
     <string name="alumnoActualizado">Alumno actualizado</string>
     <string name="errorActualizaProfesor">Error al actualizar profesor</string>
     <string name="errorActualizaAlumno">Error al actualizar alumno</string>
+    <string name="borrarAlumno">Borrar alumno</string>
+    <string name="confirmaBorraAlumno">¿Seguro que desea borrar el alumno?</string>
     <string name="alumnoBorrado">Alumno borrado</string>
     <string name="camposNecesarios">Hay campos obligatorios vacíos</string>
     <string name="campoObligatorio">Campos obligatorios</string>
@@ -71,6 +73,7 @@
     <string name="nombreUsuario">Nombre de usuario</string>
     <string name="rol">Rol</string>
     <string name="crearUsuario">Añadir</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="borrarUsuario">Borrar usuario</string>
+    <string name="confirmaBorraUsuario">¿Seguro que desea borrar el usuario?</string>
+    <string name="usuarioBorrado">Usuario borrado</string>
 </resources>
