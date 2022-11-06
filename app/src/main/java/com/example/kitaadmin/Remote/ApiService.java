@@ -51,14 +51,23 @@ public interface ApiService {
     @PUT("/updateAlumno")
     Call<Alumnos>updateAlumno(@Body Alumnos alumno);
 
+    @POST("getAlumnos")
+    Call<List<Alumnos>>getAlumnosAll();
+
+    @POST("/getAlumno/alumnoId")
+    Call<Alumnos> getAlumnoByAlumnoId(@Query(value="alumnoId", encoded=true)int alumno);
+
     @DELETE("/deleteAlumno")
     Call<Alumnos>deleteAlumno(@Query(value="alumnoId", encoded=true)int alumno);
 
     @PUT("/updateProfesor")
     Call<Profesores>updateProfesor(@Body Profesores profesor);
 
-    @GET("/getPadres/alumnoId")
+    @POST("/getPadres/alumnoId")
     Call<List<Padres>> getPadres(@Query(value="alumnoId", encoded=true)int alumno);
+
+    @POST("/getPadres/usuarioId")
+    Call<Padres> getPadresByUsuariosId(@Query(value="usuariosIdPad", encoded=true)int usuario);
 
     @POST("/getInformes/alumnoId")
     Call<Informes> getInformes(@Query(value="alumnoId", encoded=true)int alumno,@Query(value="fecha", encoded=true) String fecha);

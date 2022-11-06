@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -54,7 +55,6 @@ public class Utils {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        ;
         return outputFormat.format(dated);
     }
 
@@ -69,7 +69,16 @@ public class Utils {
         return time.concat(":00");
     }
 
+    public static ArrayList getRoles(){
+         final ArrayList<String> ROLES = new ArrayList<>();
 
+        ROLES.add("padre");
+        ROLES.add("profesor");
+        ROLES.add("director");
+        ROLES.add("profesor_admin");
+
+        return ROLES;
+    }
 
 
 }

@@ -163,13 +163,10 @@ public class ComedorEditActivity extends AppCompatActivity {
     }
 
     private boolean isEmpty(){
-        boolean isEmpty = false;
-        if(binding.editPostre.getText().toString().isEmpty() &&
-        binding.editSnack.getText().toString().isEmpty() &&
-        binding.editDesayuno.getText().toString().isEmpty() &&
-        binding.editPlatoPrincipal.getText().toString().isEmpty()){
-            isEmpty = true;
-        }
+        boolean isEmpty = binding.editPostre.getText().toString().isEmpty() &&
+                binding.editSnack.getText().toString().isEmpty() &&
+                binding.editDesayuno.getText().toString().isEmpty() &&
+                binding.editPlatoPrincipal.getText().toString().isEmpty();
 
         return  isEmpty;
     }

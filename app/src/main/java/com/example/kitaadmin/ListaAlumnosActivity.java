@@ -49,7 +49,7 @@ public class ListaAlumnosActivity extends AppCompatActivity implements AlumnoAda
     public void getListaAlumnos() {
         //Se crea una instancia de llamada a la API
         apiService = Network.getInstance().create(ApiService.class);
-        //Se llama al servicio que obtiene los profesores
+        //Se llama al servicio que obtiene los alumnos
         Call<List<Alumnos>> call = apiService.getAlumnos(grupo);
         call.enqueue(new Callback<List<Alumnos>>() {
             @Override

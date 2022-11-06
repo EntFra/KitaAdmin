@@ -17,6 +17,9 @@ public class Padres implements Serializable {
     @SerializedName("usuariosIdPad")
     private int usuariosIdPad;
 
+    public Padres() {
+    }
+
     public Padres(int alumnoId, int usuariosIdPad) {
         this.alumnoId = alumnoId;
         this.usuariosIdPad = usuariosIdPad;

@@ -17,13 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.UsuariosViewHolder> {
-    private List<Usuarios> list;
+    private final List<Usuarios> list;
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
 
         void onDeleteClick(int position);
+
+        void onEditClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -33,11 +35,13 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.Usuari
     public static class UsuariosViewHolder extends RecyclerView.ViewHolder {
         public TextView textoUsuario;
         public ImageButton deleteButton;
+        public ImageButton editButton;
 
         public UsuariosViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             textoUsuario = itemView.findViewById(R.id.titleUsuarios);
             deleteButton = itemView.findViewById(R.id.deleteUsuario);
+            editButton = itemView.findViewById(R.id.editUsuario);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -57,6 +61,18 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.Usuari
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onDeleteClick(position);
+                        }
+                    }
+                }
+            });
+
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onEditClick(position);
                         }
                     }
                 }

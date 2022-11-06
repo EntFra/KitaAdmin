@@ -65,12 +65,8 @@ public class UsuariosActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public void cargaFragmentEditUsuario(View v) {
-        transaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragmentUsuario, fragmentEdit);
-        transaction.commit();
-    }
 
-    public void deleteUsuario(int position) {
+    private void deleteUsuario(int position) {
         new AlertDialog.Builder(UsuariosActivity.this)
                 .setTitle(R.string.borrarUsuario)
                 .setMessage(R.string.confirmaBorraUsuario)
@@ -150,10 +146,24 @@ public class UsuariosActivity extends AppCompatActivity {
             public void onDeleteClick(int position) {
                 deleteUsuario(position);
             }
+
+            @Override
+            public void onEditClick(int position){
+                editUsuario(position);
+            }
         });
     }
 
-    private void onUsuariosClick(int position) {
-        deleteUsuario(position);
+    private void editUsuario(int position) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("Usuario", new Gson().toJson(listaUsuarios.get(position)));
+
+        fragmentEdit.setArguments(bundle);
+
+        transaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragmentUsuario, fragmentEdit);
+        transaction.commit();
+
     }
+
 }

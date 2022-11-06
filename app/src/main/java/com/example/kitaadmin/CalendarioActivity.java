@@ -47,7 +47,7 @@ public class CalendarioActivity extends AppCompatActivity {
         setContentView(view);
 
 
-        CalendarView v = (CalendarView)findViewById(R.id.calendarView);
+        CalendarView v = findViewById(R.id.calendarView);
         v.setFirstDayOfWeek(Calendar.MONDAY);
         v.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
             @Override

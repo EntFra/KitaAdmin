@@ -50,7 +50,7 @@ public class InformacionActualActivity extends AppCompatActivity {
             public void onResponse(Call<List<Informacion>> call, Response<List<Informacion>> response) {
                 if (response.body() != null) {
                     informacion = response.body();
-                    binding.textViewActual.setText(informacion.get(0).getInformacion().toString());
+                    binding.textViewActual.setText(informacion.get(0).getInformacion());
                 }
             }
 
