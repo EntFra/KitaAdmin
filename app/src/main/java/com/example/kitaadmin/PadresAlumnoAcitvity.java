@@ -1,6 +1,5 @@
 package com.example.kitaadmin;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -105,7 +104,7 @@ public class PadresAlumnoAcitvity extends AppCompatActivity {
     private void getPadre1(int i){
         binding.sinDatosPadresText.setVisibility(View.GONE);
         padre1 = listaPadres.get(i);
-        Call<Usuarios> callUsuarios = apiService.getUsuario(padre1.getUsuariosIdPad());
+        Call<Usuarios> callUsuarios = apiService.getUsuario(padre1.getUsuariosId());
         callUsuarios.enqueue(new Callback<Usuarios>(){
             @Override
             public void onResponse(Call<Usuarios> call, Response<Usuarios> response) {
@@ -127,7 +126,7 @@ public class PadresAlumnoAcitvity extends AppCompatActivity {
 
     private void getPadre2(int i){
         padre2 = listaPadres.get(i + 1);
-        Call<Usuarios> callUsuarios2 = apiService.getUsuario(padre2.getUsuariosIdPad());
+        Call<Usuarios> callUsuarios2 = apiService.getUsuario(padre2.getUsuariosId());
         callUsuarios2.enqueue(new Callback<Usuarios>(){
             @Override
             public void onResponse(Call<Usuarios> call, Response<Usuarios> response) {

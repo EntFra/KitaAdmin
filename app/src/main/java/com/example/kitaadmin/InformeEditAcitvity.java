@@ -4,8 +4,6 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -18,7 +16,6 @@ import com.example.kitaadmin.Model.Informes;
 import com.example.kitaadmin.Remote.ApiService;
 import com.example.kitaadmin.Remote.Network;
 import com.example.kitaadmin.Utils.Utils;
-import com.example.kitaadmin.databinding.ActivityInformeBinding;
 import com.example.kitaadmin.databinding.ActivityInformeEditBinding;
 import com.google.gson.Gson;
 
@@ -100,7 +97,7 @@ public class InformeEditAcitvity extends AppCompatActivity {
         informeNew = new Informes(alumno.getAlumno_id(), false, null, false, false, null, null);
         informeNew.setObservaciones(binding.textObservacionesInforme.getText().toString());
         informeNew.setSuenio(Utils.stringToTime(binding.textSueno.getText().toString()));
-        informeNew.setAlumno_id(alumno.getAlumno_id());
+        informeNew.setAlumnoId(alumno.getAlumno_id());
         informeNew.setBebida(binding.switchBebida.isChecked());
         informeNew.setComida(binding.switchComida.isChecked());
         informeNew.setDeposicion(binding.switchDeposicion.isChecked());

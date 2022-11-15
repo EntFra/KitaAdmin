@@ -1,32 +1,25 @@
 package com.example.kitaadmin;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import android.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.kitaadmin.Adapter.AlumnoAdapter;
 import com.example.kitaadmin.Adapter.UsuariosAdapter;
-import com.example.kitaadmin.Fragments.UsuarioAddFragment;
-import com.example.kitaadmin.Fragments.UsuarioEditFragment;
-import com.example.kitaadmin.Model.Alumnos;
 import com.example.kitaadmin.Model.Usuarios;
 import com.example.kitaadmin.Remote.ApiService;
 import com.example.kitaadmin.Remote.Network;
 import com.example.kitaadmin.databinding.ActivityUsuariosMenuBinding;
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,8 +34,6 @@ public class UsuariosActivity extends AppCompatActivity {
     UsuariosAdapter adapter;
     RecyclerView recyclerUsuarios;
     List<Usuarios> listaUsuarios;
-    FragmentTransaction transaction;
-    Fragment fragmentAdd, fragmentEdit;
     private RecyclerView.LayoutManager mLayoutManager;
 
 
@@ -54,16 +45,9 @@ public class UsuariosActivity extends AppCompatActivity {
         cargarActivity();
 
 
-
-        fragmentAdd = new UsuarioAddFragment();
-        fragmentEdit = new UsuarioEditFragment();
-
     }
 
-    public void cargaFragmentAddUsuario(View v) {
-        transaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragmentUsuario, fragmentAdd);
-        transaction.commit();
-    }
+
 
 
     private void deleteUsuario(int position) {
@@ -102,6 +86,24 @@ public class UsuariosActivity extends AppCompatActivity {
         binding = ActivityUsuariosMenuBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        SearchView simpleSearchView = binding.searchView;
+        simpleSearchView.setQueryHint (getString(R.string.busqueda));
+
+        simpleSearchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+
 
         getUsuarios();
 
@@ -155,15 +157,12 @@ public class UsuariosActivity extends AppCompatActivity {
     }
 
     private void editUsuario(int position) {
-
+        Intent intent = new Intent(this, UsuarioEditAtivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("Usuario", new Gson().toJson(listaUsuarios.get(position)));
+        intent.putExtras(bundle);
 
-        fragmentEdit.setArguments(bundle);
-
-        transaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragmentUsuario, fragmentEdit);
-        transaction.commit();
-
+        startActivity(intent);
     }
 
 }

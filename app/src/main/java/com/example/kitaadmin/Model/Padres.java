@@ -14,15 +14,15 @@ public class Padres implements Serializable {
 
     @SerializedName("alumnoId")
     private int alumnoId;
-    @SerializedName("usuariosIdPad")
-    private int usuariosIdPad;
+    @SerializedName("usuariosId")
+    private int usuariosId;
 
     public Padres() {
     }
 
     public Padres(int alumnoId, int usuariosIdPad) {
         this.alumnoId = alumnoId;
-        this.usuariosIdPad = usuariosIdPad;
+        this.usuariosId = usuariosIdPad;
     }
 
     public int getAlumnoId() {
@@ -33,19 +33,19 @@ public class Padres implements Serializable {
         this.alumnoId = alumnoId;
     }
 
-    public int getUsuariosIdPad() {
-        return usuariosIdPad;
+    public int getUsuariosId() {
+        return usuariosId;
     }
 
-    public void setUsuariosIdPad(int usuariosIdPad) {
-        this.usuariosIdPad = usuariosIdPad;
+    public void setUsuariosId(int usuariosId) {
+        this.usuariosId = usuariosId;
     }
 
     @Override
     public String toString() {
         return "Padres{" +
-                "alumno_id=" + alumnoId +
-                ", usuariosIdPad=" + usuariosIdPad +
+                "alumnoId=" + alumnoId +
+                ", usuariosIdP=" + usuariosId +
                 '}';
     }
 }

@@ -30,7 +30,6 @@
             android:background="@null"
             android:paddingLeft="10dp"
             android:paddingEnd="10dp"
-            android:onClick="cargaFragmentEditUsuario"
             android:src="@drawable/ic_baseline_edit_24" />
 
         <ImageButton

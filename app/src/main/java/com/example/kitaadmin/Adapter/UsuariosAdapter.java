@@ -3,6 +3,7 @@ package com.example.kitaadmin.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -19,6 +20,40 @@ import java.util.List;
 public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.UsuariosViewHolder> {
     private final List<Usuarios> list;
     private OnItemClickListener listener;
+    private final List<Usuarios> listaSearch;
+
+    //Filtra la lista para mostrar el resultado de la entrada del usuario en la vista
+    private final Filter searchFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Usuarios> listaFiltrada = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                listaFiltrada.addAll(listaSearch);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Usuarios usuario : listaSearch) {
+                    if (usuario.getNombre().toLowerCase().contains(filterPattern)) {
+                        listaFiltrada.add(usuario);
+                    }
+                }
+            }
+
+            FilterResults resultado = new FilterResults();
+            resultado.values = listaFiltrada;
+
+            return resultado;
+
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            list.clear();
+            list.addAll((ArrayList) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -82,6 +117,7 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.Usuari
 
     public UsuariosAdapter(List<Usuarios> list) {
         this.list = list;
+        listaSearch = new ArrayList<>(list);
     }
 
     @Override
@@ -100,5 +136,11 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.Usuari
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+
+
+    public Filter getFilter() {
+        return searchFilter;
     }
 }

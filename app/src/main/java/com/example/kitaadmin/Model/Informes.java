@@ -14,7 +14,7 @@ import javax.annotation.Generated;
 public class Informes implements Serializable {
 
     @SerializedName("alumnoId")
-    private int alumno_id;
+    private int alumnoId;
     @SerializedName("deposicion")
     private boolean deposicion;
     @SerializedName("suenio")
@@ -30,7 +30,7 @@ public class Informes implements Serializable {
 
 
     public Informes(int alumno_id, boolean deposicion, String suenio, boolean comida, boolean bebida, String fecha, String observaciones) {
-        this.alumno_id = alumno_id;
+        this.alumnoId = alumno_id;
         this.deposicion = deposicion;
         this.suenio = suenio;
         this.comida = comida;
@@ -43,12 +43,12 @@ public class Informes implements Serializable {
 
     }
 
-    public int getAlumno_id() {
-        return alumno_id;
+    public int getAlumnoId() {
+        return alumnoId;
     }
 
-    public void setAlumno_id(int alumno_id) {
-        this.alumno_id = alumno_id;
+    public void setAlumnoId(int alumnoId) {
+        this.alumnoId = alumnoId;
     }
 
     public boolean isDeposicion() {
@@ -102,7 +102,7 @@ public class Informes implements Serializable {
     @Override
     public String toString() {
         return "Informes{" +
-                "alumno_id=" + alumno_id +
+                "alumnoId=" + alumnoId +
                 ", deposicion=" + deposicion +
                 ", suenio='" + suenio + '\'' +
                 ", comida=" + comida +

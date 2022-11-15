@@ -1,15 +1,14 @@
-package com.example.kitaadmin.Fragments;
+package com.example.kitaadmin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kitaadmin.Model.Alumnos;
 import com.example.kitaadmin.Model.Padres;
@@ -17,7 +16,7 @@ import com.example.kitaadmin.Model.Usuarios;
 import com.example.kitaadmin.Remote.ApiService;
 import com.example.kitaadmin.Remote.Network;
 import com.example.kitaadmin.Utils.Utils;
-import com.example.kitaadmin.databinding.FragmentUsuarioAddEditBinding;
+import com.example.kitaadmin.databinding.ActivityUsuarioAddEditBinding;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -30,9 +29,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class UsuarioEditFragment extends Fragment {
+public class UsuarioEditAtivity extends AppCompatActivity {
 
-    private FragmentUsuarioAddEditBinding binding;
+    private ActivityUsuarioAddEditBinding binding;
     private Usuarios usuario;
     private final ArrayList<String> LISTAROLES = Utils.getRoles();
     private List<Alumnos> listaAlumnos;
@@ -42,29 +41,18 @@ public class UsuarioEditFragment extends Fragment {
     ;
     private Padres padre;
     private Alumnos alumno;
-    int numero;
-
-    public UsuarioEditFragment() {
-        // Required empty public constructor
-    }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        usuario = new Gson().fromJson(getArguments().getString("Usuario"), Usuarios.class);
-
-
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+        Bundle extras = getIntent().getExtras();
+        usuario = new Gson().fromJson(extras.getString("Usuario"), Usuarios.class);
         getAlumnos();
 
-        binding = FragmentUsuarioAddEditBinding.inflate(getLayoutInflater(), container, false);
+        binding = ActivityUsuarioAddEditBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         binding.btnAdd.setVisibility(View.GONE);
         binding.editNombre.setText(usuario.getNombre());
         binding.editNombreUsuario.setText(usuario.getNombre_usuario());
@@ -72,7 +60,7 @@ public class UsuarioEditFragment extends Fragment {
         binding.editTelefono.setText(String.valueOf(usuario.getTelefono()));
         binding.editEmail.setText(usuario.getEmail());
         //Adapter para el spinner de roles
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, LISTAROLES);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, LISTAROLES);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerRol.setAdapter(arrayAdapter);
         //Se idenetifica el rol actual del usuario para mostrarlo en el spinner
@@ -100,11 +88,10 @@ public class UsuarioEditFragment extends Fragment {
 
             }
         });
-        //Obtiene la lista de alumnos completa
 
 
         //Adapter para mostrar la lista en el spinner
-        arrayAdapterAlumnos = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, listaNombreAlumnos);
+        arrayAdapterAlumnos = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaNombreAlumnos);
         arrayAdapterAlumnos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerAlumno.setAdapter(arrayAdapterAlumnos);
 
@@ -124,15 +111,23 @@ public class UsuarioEditFragment extends Fragment {
 
                 //Se busca en la lista de alumnos para mostrar el alumno relacionado con el usuario padre actual
                 Timer timer2 = new Timer();
-                timer1.schedule(new TimerTask() {
+                timer2.schedule(new TimerTask() {
                     public void run() {
-                        System.out.println(alumno.getNombre());
                         for (Alumnos a : listaAlumnos
                         ) {
+                            //Se busca en la lista el alumno relacionado con el padre para mostrarlo en el spinner
                             if (a.getNombre().equals(alumno.getNombre())) {
-                                System.out.println("GEFUNDEN");
-                                binding.spinnerAlumno.setSelection(listaAlumnos.indexOf(a));
-                                arrayAdapterAlumnos.notifyDataSetChanged();
+                                //Actualiza la UI, necesario ya que sólo el Thread principal puede actualizarla
+                                runOnUiThread(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        binding.spinnerAlumno.setSelection(listaAlumnos.indexOf(a));
+                                        arrayAdapterAlumnos.notifyDataSetChanged();
+
+                                    }
+                                });
+
                             }
                         }
                         timer2.cancel();
@@ -146,12 +141,11 @@ public class UsuarioEditFragment extends Fragment {
         }
 
 
-        return binding.getRoot();
+
     }
 
 
     private void getAlumnos() {
-        //Se crea una instancia de llamada a la API
 
         //Se llama al servicio que obtiene los alumnos
         Call<List<Alumnos>> call = apiService.getAlumnosAll();
@@ -212,6 +206,64 @@ public class UsuarioEditFragment extends Fragment {
             }
         });
 
+    }
+
+    public void updateUsuario(View view){
+        usuario.setNombre_usuario(binding.editNombreUsuario.getText().toString());
+        usuario.setNombre(binding.editNombre.getText().toString());
+        usuario.setContrasenia(binding.editContrasenia.getText().toString());
+        usuario.setEmail(binding.editEmail.getText().toString());
+        usuario.setTelefono(Integer.parseInt(binding.editTelefono.getText().toString()));
+        usuario.setRol(binding.spinnerRol.getSelectedItem().toString());
+        if(padre!=null && alumno!=null){
+            for (Alumnos a : listaAlumnos
+            ) {
+                //Se busca en la lista el alumno seleccionado para establecer la relación en la BD
+                if (a.getNombre().equals(binding.spinnerAlumno.getSelectedItem().toString())) {
+                padre.setAlumnoId(a.getAlumno_id());
+                }
+            }
+            padre.setUsuariosId(usuario.getUsuarios_id());
+            Call<Padres> call = apiService.updatePadres(padre);
+            call.enqueue(new Callback<Padres>() {
+                @Override
+                public void onResponse(Call<Padres> call, Response<Padres> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<Padres> call, Throwable t) {
+
+                }
+            });
+        }
+
+        Call<Usuarios> call = apiService.updateUsuarios(usuario);
+        call.enqueue(new Callback<Usuarios>() {
+            @Override
+            public void onResponse(Call<Usuarios> call, Response<Usuarios> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(UsuarioEditAtivity.this, R.string.usuarioActualizado, Toast.LENGTH_SHORT).show();
+                    volverUsuariosMenu();
+                } else {
+                    Toast.makeText(UsuarioEditAtivity.this, R.string.errorActualizaAlumno, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Usuarios> call, Throwable t) {
+
+            }
+        });
+
+
+
+
+    }
+
+    private void volverUsuariosMenu() {
+        Intent vueltaUsuarioMenu = new Intent(this, UsuariosActivity.class);
+        startActivity(vueltaUsuarioMenu);
     }
 
 }

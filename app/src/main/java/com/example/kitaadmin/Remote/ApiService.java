@@ -86,4 +86,10 @@ public interface ApiService {
 
     @POST("/getInformacion")
     Call<List<Informacion>> getInformacion();
+
+    @PUT("/updatePadres")
+    Call<Padres> updatePadres(@Body Padres padre);
+
+    @PUT("/updateUsuarios")
+    Call<Usuarios> updateUsuarios(@Body Usuarios usuario);
 }
