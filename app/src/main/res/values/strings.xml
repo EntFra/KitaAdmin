@@ -77,5 +77,8 @@
     <string name="confirmaBorraUsuario">¿Seguro que desea borrar el usuario?</string>
     <string name="usuarioBorrado">Usuario borrado</string>
     <string name="usuarioActualizado">Usuario actualizado</string>
+    <string name="errorActualizaUsuario">Error al actualizar usuario</string>
+    <string name="errorCreaUsuario">Error al crear el usuario</string>
+    <string name="usuarioCreado">Usuario creado correctamente</string>
     <string name="busqueda">Buscar usuario</string>
 </resources>

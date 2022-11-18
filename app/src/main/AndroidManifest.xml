@@ -61,7 +61,10 @@
             android:name=".ProfesorEditActivity"
             android:exported="false" />
         <activity
-            android:name=".UsuarioEditAtivity"
+            android:name=".UsuarioEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UsuarioAddActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

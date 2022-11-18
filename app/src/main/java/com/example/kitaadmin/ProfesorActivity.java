@@ -100,17 +100,17 @@ public class ProfesorActivity extends AppCompatActivity {
                         //Se crea una instancia de llamada a la API
                         apiService = Network.getInstance().create(ApiService.class);
                         //Se llama al servicio que obtiene los profesores
-                        Call<Usuarios> call = apiService.deleteUsuarios(profesor.getUsuario().getUsuarios_id());
-                        call.enqueue(new Callback<Usuarios>() {
+                        Call<Void> call = apiService.deleteUsuarios(profesor.getUsuario().getUsuarios_id());
+                        call.enqueue(new Callback<Void>() {
                             @Override
-                            public void onResponse(Call<Usuarios> call, Response<Usuarios> response) {
+                            public void onResponse(Call<Void> call, Response<Void> response) {
                                 if (response.isSuccessful()) {
                                     Toast.makeText(ProfesorActivity.this, R.string.profesorBorrado, Toast.LENGTH_SHORT).show();
                                 }
                             }
 
                             @Override
-                            public void onFailure(Call<Usuarios> call, Throwable t) {
+                            public void onFailure(Call<Void> call, Throwable t) {
                                 Log.e("Error", t.getMessage());
                             }
                         });

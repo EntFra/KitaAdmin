@@ -39,6 +39,9 @@ public class Alumnos implements Serializable {
         this.fecha_nac = fecha_nacimiento;
     }
 
+    public Alumnos() {
+    }
+
     public int getAlumno_id() {
         return alumno_id;
     }

@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.widget.SearchView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,7 @@ import com.example.kitaadmin.Remote.Network;
 import com.example.kitaadmin.databinding.ActivityUsuariosMenuBinding;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,62 +36,27 @@ public class UsuariosActivity extends AppCompatActivity {
     Usuarios usuario;
     UsuariosAdapter adapter;
     RecyclerView recyclerUsuarios;
-    List<Usuarios> listaUsuarios;
+    List<Usuarios> listaUsuarios = new ArrayList<>();
     private RecyclerView.LayoutManager mLayoutManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usuarios_menu);
-
-        cargarActivity();
-
-
-    }
-
-
-
-
-    private void deleteUsuario(int position) {
-        new AlertDialog.Builder(UsuariosActivity.this)
-                .setTitle(R.string.borrarUsuario)
-                .setMessage(R.string.confirmaBorraUsuario)
-                .setPositiveButton(R.string.borrar, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Se crea una instancia de llamada a la API
-                        apiService = Network.getInstance().create(ApiService.class);
-                        //Se llama al servicio que obtiene los profesores
-                        Call<Usuarios> call = apiService.deleteUsuarios(listaUsuarios.get(position).getUsuarios_id());
-                        call.enqueue(new Callback<Usuarios>() {
-                            @Override
-                            public void onResponse(Call<Usuarios> call, Response<Usuarios> response) {
-                                if (response.isSuccessful()) {
-                                    Toast.makeText(UsuariosActivity.this, R.string.usuarioBorrado, Toast.LENGTH_SHORT).show();
-
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<Usuarios> call, Throwable t) {
-                                Log.e("Error", t.getMessage());
-                            }
-                        });
-                    }
-                })
-                .setNegativeButton("Cancelar", null)
-                .show();
         getUsuarios();
-    }
-
-    private void cargarActivity() {
         binding = ActivityUsuariosMenuBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        recyclerUsuarios = findViewById(R.id.recyclerViewUsuarios);
+        recyclerUsuarios.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        recyclerUsuarios.setLayoutManager(mLayoutManager);
+        adapter = new UsuariosAdapter(listaUsuarios);
+        recyclerUsuarios.setAdapter(adapter);
+
 
         SearchView simpleSearchView = binding.searchView;
-        simpleSearchView.setQueryHint (getString(R.string.busqueda));
+        simpleSearchView.setQueryHint(getString(R.string.busqueda));
 
         simpleSearchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
             @Override
@@ -104,10 +72,41 @@ public class UsuariosActivity extends AppCompatActivity {
         });
 
 
+    }
 
-        getUsuarios();
 
+    private void deleteUsuario(int position) {
+        new AlertDialog.Builder(UsuariosActivity.this)
+                .setTitle(R.string.borrarUsuario)
+                .setMessage(R.string.confirmaBorraUsuario)
+                .setPositiveButton(R.string.borrar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Se crea una instancia de llamada a la API
+                        apiService = Network.getInstance().create(ApiService.class);
+                        //Se llama al servicio que obtiene los profesores
+                        Call<Void> call = apiService.deleteUsuarios(listaUsuarios.get(position).getUsuarios_id());
+                        call.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                if (response.isSuccessful()) {
+                                    Toast.makeText(UsuariosActivity.this, R.string.usuarioBorrado, Toast.LENGTH_SHORT).show();
+                                    //Se borra el usuario de la lista y posteriormente se notifica al adapter
+                                    listaUsuarios.remove(position);
+                                    adapter.notifyItemRemoved(position);
+                                    adapter.notifyItemRangeChanged(position,listaUsuarios.size());
+                                }
+                            }
 
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                                Log.e("Error", t.getMessage());
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
     }
 
     public void getUsuarios() {
@@ -118,8 +117,26 @@ public class UsuariosActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Usuarios>> call, Response<List<Usuarios>> response) {
                 listaUsuarios = response.body();
+                adapter = new UsuariosAdapter(listaUsuarios);
+                recyclerUsuarios.setAdapter(adapter);
 
-                buildRecyclerView();
+
+                adapter.setOnItemClickListener(new UsuariosAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                    }
+
+                    @Override
+                    public void onDeleteClick(int position) {
+                        deleteUsuario(position);
+                    }
+
+                    @Override
+                    public void onEditClick(int position) {
+                        editUsuario(position);
+                    }
+                });
+                adapter.notifyDataSetChanged();
 
             }
 
@@ -130,34 +147,9 @@ public class UsuariosActivity extends AppCompatActivity {
         });
     }
 
-    public void buildRecyclerView() {
-        recyclerUsuarios = findViewById(R.id.recyclerViewUsuarios);
-        recyclerUsuarios.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        adapter = new UsuariosAdapter(listaUsuarios);
-
-        recyclerUsuarios.setLayoutManager(mLayoutManager);
-        recyclerUsuarios.setAdapter(adapter);
-
-        adapter.setOnItemClickListener(new UsuariosAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-            }
-
-            @Override
-            public void onDeleteClick(int position) {
-                deleteUsuario(position);
-            }
-
-            @Override
-            public void onEditClick(int position){
-                editUsuario(position);
-            }
-        });
-    }
 
     private void editUsuario(int position) {
-        Intent intent = new Intent(this, UsuarioEditAtivity.class);
+        Intent intent = new Intent(this, UsuarioEditActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("Usuario", new Gson().toJson(listaUsuarios.get(position)));
         intent.putExtras(bundle);
