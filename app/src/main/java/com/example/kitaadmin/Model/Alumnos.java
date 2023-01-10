@@ -6,6 +6,9 @@ import java.io.Serializable;
 
 import javax.annotation.Generated;
 
+/**
+ * Clase que representa la tabla alumnos de la base de datos
+ */
 @Generated("com.robohorse.robopojogenerator")
 public class Alumnos implements Serializable {
     @SerializedName("alumno_id")

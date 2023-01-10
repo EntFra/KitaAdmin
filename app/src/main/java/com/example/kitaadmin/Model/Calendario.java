@@ -11,22 +11,28 @@ import javax.annotation.Generated;
  */
 @Generated("com.robohorse.robopojogenerator")
 public class Calendario implements Serializable {
-    @SerializedName("dia_id")
-    private int fecha;
+    @SerializedName("calendario_id")
+    private int id;
+    @SerializedName("dia")
+    private String dia;
     @SerializedName("evento")
     private String evento;
 
-    public Calendario(int dia_id, String evento) {
-        this.fecha = dia_id;
+    public Calendario() {
+
+    }
+
+    public Calendario(int id, String dia_id, String evento) {
+        this.dia = dia_id;
         this.evento = evento;
     }
 
-    public int getDia_id() {
-        return fecha;
+    public String getDia() {
+        return dia;
     }
 
-    public void setDia_id(int dia_id) {
-        this.fecha = dia_id;
+    public void setDia(String dia_id) {
+        this.dia = dia_id;
     }
 
     public String getEvento() {

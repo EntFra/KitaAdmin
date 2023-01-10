@@ -172,8 +172,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:inputType="textPassword"
-                        tools:ignore="UseSwitchCompatOrMaterialXml" />
+                        android:inputType="textPassword" />
                 </LinearLayout>
             </TableRow>
 
@@ -298,8 +297,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/actualizar"
         android:onClick="updateUsuario"
+        android:text="@string/actualizar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView" />
@@ -309,8 +308,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/crearUsuario"
         android:onClick="addUsuario"
+        android:text="@string/crearUsuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView" />

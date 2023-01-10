@@ -1,16 +1,13 @@
 package com.example.kitaadmin.Model;
 
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.kitaadmin.R;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
 import javax.annotation.Generated;
-
+/**
+ * Clase que representa la tabla grupos de la base de datos
+ */
 @Generated("com.robohorse.robopojogenerator")
 public class Grupos implements Serializable {
     @SerializedName("nombre")
@@ -20,15 +17,13 @@ public class Grupos implements Serializable {
         this.nombreGrupo = nombreGrupo;
     }
 
-        public String getNombreGrupo () {
-            return nombreGrupo;
-        }
+    public String getNombreGrupo() {
+        return nombreGrupo;
+    }
 
-        public void setNombreGrupo (String nombreGrupo){
-            this.nombreGrupo = nombreGrupo;
-        }
-
-
+    public void setNombreGrupo(String nombreGrupo) {
+        this.nombreGrupo = nombreGrupo;
+    }
 
 
     @Override

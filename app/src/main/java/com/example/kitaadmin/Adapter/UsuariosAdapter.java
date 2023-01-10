@@ -12,16 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.kitaadmin.Model.Usuarios;
 import com.example.kitaadmin.R;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Adapter del recyclerView de usuarios, carga la información disponible en la base de datos
+ */
 public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.UsuariosViewHolder> {
     private final List<Usuarios> list;
-    private OnItemClickListener listener;
     private final List<Usuarios> listaSearch;
-
     //Filtra la lista para mostrar el resultado de la entrada del usuario en la vista
     private final Filter searchFilter = new Filter() {
         @Override
@@ -54,6 +52,38 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.Usuari
             notifyDataSetChanged();
         }
     };
+    private OnItemClickListener listener;
+
+    public UsuariosAdapter(List<Usuarios> list) {
+        this.list = list;
+        listaSearch = new ArrayList<>(list);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public UsuariosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_usuarios, parent, false);
+        UsuariosViewHolder vh = new UsuariosViewHolder(v, listener);
+        return vh;
+    }
+
+    @Override
+    public void onBindViewHolder(UsuariosViewHolder holder, int position) {
+        Usuarios usuario = list.get(position);
+        holder.textoUsuario.setText(usuario.getNombre());
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+    public Filter getFilter() {
+        return searchFilter;
+    }
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -61,10 +91,6 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.Usuari
         void onDeleteClick(int position);
 
         void onEditClick(int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
     }
 
     public static class UsuariosViewHolder extends RecyclerView.ViewHolder {
@@ -113,34 +139,5 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.Usuari
                 }
             });
         }
-    }
-
-    public UsuariosAdapter(List<Usuarios> list) {
-        this.list = list;
-        listaSearch = new ArrayList<>(list);
-    }
-
-    @Override
-    public UsuariosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_usuarios, parent, false);
-        UsuariosViewHolder vh = new UsuariosViewHolder(v, listener);
-        return vh;
-    }
-
-    @Override
-    public void onBindViewHolder(UsuariosViewHolder holder, int position) {
-        Usuarios usuario = list.get(position);
-        holder.textoUsuario.setText(usuario.getNombre());
-    }
-
-    @Override
-    public int getItemCount() {
-        return list.size();
-    }
-
-
-
-    public Filter getFilter() {
-        return searchFilter;
     }
 }

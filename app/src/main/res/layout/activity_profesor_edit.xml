@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:onClick="updateProfesor">
+    android:layout_height="match_parent">
 
 
     <TextView
@@ -58,9 +57,9 @@
 
                     <EditText
                         android:id="@+id/editFechaNac"
-                        android:background="@null"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@null"
                         android:clickable="true"
                         android:focusable="false"
                         android:gravity="center"
@@ -250,9 +249,9 @@
 
                     <EditText
                         android:id="@+id/editFechaAlt"
-                        android:background="@null"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@null"
                         android:clickable="true"
                         android:focusable="false"
                         android:gravity="center"
@@ -297,7 +296,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textAlignment="center"
-                        tools:text="TextView"/>
+                        tools:text="TextView" />
 
 
                 </LinearLayout>

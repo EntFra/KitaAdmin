@@ -35,7 +35,7 @@ public class Usuarios implements Serializable {
         this.email = email;
     }
 
-    public Usuarios(){
+    public Usuarios() {
 
     }
 

@@ -53,7 +53,7 @@
     <string name="camposNecesarios">Hay campos obligatorios vacíos</string>
     <string name="campoObligatorio">Campos obligatorios</string>
     <string name="borrarProfesor">Borrar profesor</string>
-    <string name="preguntaBorraProfesor">¿Seguro que desea borrar el profesor?</string>
+    <string name="preguntaBorraProfesor">¿Seguro que desea borrar el profesor y su usuario asociado?</string>
     <string name="borrar">Borrar</string>
     <string name="profesorBorrado">Profesor borrado</string>
     <string name="formatoDNI">Formato de DNI no válido</string>
@@ -81,4 +81,41 @@
     <string name="errorCreaUsuario">Error al crear el usuario</string>
     <string name="usuarioCreado">Usuario creado correctamente</string>
     <string name="busqueda">Buscar usuario</string>
+    <string name="anadirCalendario">Escriba aquí la información a añadir</string>
+    <string name="calendarioActualizado">Calendario actualizado</string>
+    <string name="errorActualizaCalendario">Error al actualizar calendario</string>
+    <string name="borrarCalendario">Borrar evento del calendario</string>
+    <string name="confirmaBorraCalendario">¿Seguro que desea borrar el evento?</string>
+    <string name="calendarioBorrado">Evento borrado</string>
+    <string name="borrarComedor">Borrar menú del día</string>
+    <string name="confirmaBorraComedor">¿Seguro que desea borrar el menú?</string>
+    <string name="comedorBorrado">Menú borrado</string>
+    <string name="borrarInformacion">Borrar información</string>
+    <string name="confirmaBorraInformacion">¿Seguro que desea borrar la información?</string>
+    <string name="informacionBorrada">Información borrada</string>
+    <string name="informacionActualizada">Información actualizada</string>
+    <string name="errorActualizaInformacion">Error al actualizar información</string>
+    <string name="errorCreaAlumno">Error al crear el alumno</string>
+    <string name="alumnoCreado">Alumno creado correctamente</string>
+    <string name="errorCreaProfesor">Error al crear el profesor</string>
+    <string name="profesorCreado">Profesor creado correctamente</string>
+    <string name="sinProfesores">No hay profesores para añadir</string>
+
+    <string-array name="itemsAyuda">
+        <item>¿Cómo visualizo los alumnos?</item>
+        <item>¿Cómo visualizo los informes de un alumno?</item>
+        <item>¿Cómo visualizo los profesores?</item>
+        <item>¿Cómo visualizo el menú del día del comedor?</item>
+        <item>¿Cómo visualizo los eventos del día?</item>
+        <item>¿Cómo visualizo la información actual destacada?</item>
+    </string-array>
+
+    <string-array name="ayduaDescriptions">
+        <item>Para visualizar el listado de alumnos de un grupo concreto, desde el menú principal pulse en grupos, a continuación pulse en el grupo que desee y apor último pulse la opción alumnos. Se le mostrará el listado actual de alumnos para dicho grupo</item>
+        <item>Desde el listado de alumnos, pulse sobre el alumno deseado y se le mostrará la información completa. En la zona inferior accederá a los informes del alumno</item>
+        <item>Para visualizar el listado de profesores de un grupo concreto, desde el menú principal pulse en grupos, a continuación pulse en el grupo que desee y apor último pulse la opción profesores. Se le mostrará el listado actual de profesores para dicho grupo</item>
+        <item>Para visualizar el menú del día del comedor, desde el menú principal pulse sobre la opción comedor. Puede elegir una fecha distinta si así lo desea, pulsando en las flechas junto a la fecha, o bien pulsar sobre la fecha, lo que abrirá un calendario que le permitirá seleccionar la fecha deseada</item>
+        <item>Para visualizar los eventos del día pulse sobre la opción calendario desde el menú principal. Si lo desea puede cambiar la fecha pinchando sobre el día deseado.</item>
+        <item>Para visualizar la información importante actual, pulse sobre la opción información actual desde el menú principal.</item>
+    </string-array>
 </resources>

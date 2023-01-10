@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,19 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kitaadmin.Model.Grupos;
 import com.example.kitaadmin.R;
-import java.util.List;
 
+import java.util.List;
+/**
+ * Adapter del recyclerView de grupos que carga los grupos disponibles en la base de datos
+ */
 public class GruposAdapter extends RecyclerView.Adapter<GruposAdapter.ViewHolderGrupos> {
 
-    List<Grupos> listaGrupos ;
     private final OnGruposListener onGruposListener;
     private final LayoutInflater inflater;
-
-    //Maneja el click sobre un objeto
-    public interface OnGruposListener {
-        void onGruposClick(int position);
-
-    }
+    List<Grupos> listaGrupos;
 
     public GruposAdapter(Context context, List<Grupos> listaGrupos, OnGruposListener onGruposListener) {
         this.listaGrupos = listaGrupos;
@@ -53,7 +49,13 @@ public class GruposAdapter extends RecyclerView.Adapter<GruposAdapter.ViewHolder
         return listaGrupos.size();
     }
 
-    public class ViewHolderGrupos extends RecyclerView.ViewHolder implements View.OnClickListener{
+    //Maneja el click sobre un objeto
+    public interface OnGruposListener {
+        void onGruposClick(int position);
+
+    }
+
+    public class ViewHolderGrupos extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView nombreGrupo;
         OnGruposListener onGruposListener;
 
@@ -66,7 +68,8 @@ public class GruposAdapter extends RecyclerView.Adapter<GruposAdapter.ViewHolder
         }
 
         @Override
-        public void onClick(View v) { onGruposListener.onGruposClick(getAdapterPosition());
+        public void onClick(View v) {
+            onGruposListener.onGruposClick(getAdapterPosition());
 
         }
     }

@@ -13,6 +13,7 @@ import javax.annotation.Generated;
 public class Grupo implements Serializable {
     @SerializedName("nombre")
     private String nombre;
+
     public Grupo(String nombre) {
         this.nombre = nombre;
     }

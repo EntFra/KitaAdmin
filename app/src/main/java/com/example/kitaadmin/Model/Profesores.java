@@ -26,6 +26,9 @@ public class Profesores implements Serializable {
     @SerializedName("id")
     private int id;
 
+    public Profesores() {
+    }
+
     public Profesores(String dni, String fecha_alta, String direccion, String fecha_nac, String nombre_grupo, Usuarios usuario, int id) {
         this.dni = dni;
         this.fecha_alta = fecha_alta;

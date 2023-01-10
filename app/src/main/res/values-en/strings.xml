@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KitaAdmin</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrasenia">Password</string>
+    <string name="entrar">Log in</string>
+    <string name="salir">Log out</string>
+    <string name="grupos">Groups</string>
+    <string name="comedor">Dining</string>
+    <string name="calendario">Calendar</string>
+    <string name="informacion">Current information</string>
+    <string name="ayuda">Help</string>
+    <string name="usuarios">Users</string>
+    <string name="nombre">Name</string>
+    <string name="fechaNac">Date of birth</string>
+    <string name="telef">Phone</string>
+    <string name="email">Email</string>
+    <string name="dni">DNI</string>
+    <string name="direccion">Address</string>
+    <string name="fechaAlta">Entry date</string>
+    <string name="grupo">Group</string>
+    <string name="alergia">Food allergy</string>
+    <string name="datosMed">Medical data</string>
+    <string name="apuntadoComedor">Signed up for the dining room</string>
+    <string name="autoFotos">Authorize photos</string>
+    <string name="padres">Parents</string>
+    <string name="informes">Reports</string>
+    <string name="autoSalidas">Authorizes excursions</string>
+    <string name="observaciones">Comments</string>
+    <string name="profesor">Teacher</string>
+    <string name="actualizar">Update</string>
+    <string name="profesores">Teachers</string>
+    <string name="alumnos">Students</string>
+    <string name="alumno">Student</string>
+    <string name="ejemplo">sample text</string>
+    <string name="volver">Back</string>
+    <string name="informe">Report</string>
+    <string name="sueno">Sleep</string>
+    <string name="deposicion">Doo-doo</string>
+    <string name="comida">Food</string>
+    <string name="bebida">Drink</string>
+    <string name="nombreApellidos">Name and surname</string>
+    <string name="cambiosSinGuardar">Unsaved changes</string>
+    <string name="salirSinGuardarCambios">Do you want to exit without saving changes?</string>
+    <string name="aceptar">Ok</string>
+    <string name="cancelar">Cancel</string>
+    <string name="profesorActualizado">Teacher updated</string>
+    <string name="alumnoActualizado">Student updated</string>
+    <string name="errorActualizaProfesor">Error updating the teacher</string>
+    <string name="errorActualizaAlumno">Error updating the student</string>
+    <string name="borrarAlumno">Delete student</string>
+    <string name="confirmaBorraAlumno">Dop you want to delete the student?</string>
+    <string name="alumnoBorrado">Student deleted</string>
+    <string name="camposNecesarios">Mandatory fields are empty</string>
+    <string name="campoObligatorio">Mandatory fields</string>
+    <string name="borrarProfesor">Delete teacher</string>
+    <string name="preguntaBorraProfesor">Are you sure you want to delete the teacher and its associated user?</string>
+    <string name="borrar">Delete</string>
+    <string name="profesorBorrado">Teacher deleted</string>
+    <string name="formatoDNI">Invalid DNI format</string>
+    <string name="sinInforme">No data available for the selected date</string>
+    <string name="guardar">Save</string>
+    <string name="tiempoDormido">Sleeping time</string>
+    <string name="informeActualizado">Report updated</string>
+    <string name="errorActualizaInforme">Error updating report</string>
+    <string name="desayuno">Breakfast</string>
+    <string name="snack">Snack</string>
+    <string name="platoPrincipal">Main course</string>
+    <string name="postre">Dessert</string>
+    <string name="comedorActualizado">Updated menu of the day</string>
+    <string name="errorActualizaComedor">Error updating menu</string>
+    <string name="calendarioSinEvento">There are no events for the selected day</string>
+    <string name="gestionUsuarios">User management</string>
+    <string name="nombreUsuario">User name</string>
+    <string name="rol">Rol</string>
+    <string name="crearUsuario">Add</string>
+    <string name="borrarUsuario">Delete user</string>
+    <string name="confirmaBorraUsuario">Do you want to delete the user?</string>
+    <string name="usuarioBorrado">User deleted</string>
+    <string name="usuarioActualizado">User updated</string>
+    <string name="errorActualizaUsuario">Error updating user</string>
+    <string name="errorCreaUsuario">Error creating user</string>
+    <string name="usuarioCreado">User successfully created</string>
+    <string name="busqueda">Search user</string>
+    <string name="anadirCalendario">Write here the information to add</string>
+    <string name="calendarioActualizado">Calendar updated</string>
+    <string name="errorActualizaCalendario">Error updating calendar</string>
+    <string name="borrarCalendario">Delete calendar event</string>
+    <string name="confirmaBorraCalendario">Do you want to delete the event?</string>
+    <string name="calendarioBorrado">Event deleted</string>
+    <string name="borrarComedor">Delete menu</string>
+    <string name="confirmaBorraComedor">Do you want to delete the menu?</string>
+    <string name="comedorBorrado">Menu deleted</string>
+    <string name="borrarInformacion">Delete information</string>
+    <string name="confirmaBorraInformacion">Do you want to delete the information?</string>
+    <string name="informacionBorrada">Information deleted</string>
+    <string name="informacionActualizada">Information updated</string>
+    <string name="errorActualizaInformacion">Error updating information</string>
+    <string name="errorCreaAlumno">Error creating the student</string>
+    <string name="alumnoCreado">Student successfully created</string>
+    <string name="errorCreaProfesor">Error creating teacher</string>
+    <string name="profesorCreado">Teacher successfully created</string>
+    <string name="sinProfesores">No teachers to add</string>
+
+    <string-array name="itemsAyuda">
+        <item>How do I visualize the students?</item>
+        <item>How do I view the reports of a student?</item>
+        <item>How do I visualize teachers?</item>
+        <item>How do I visualize the menu of the day?</item>
+        <item>How do I visualize the day\'s events?</item>
+        <item>How do I view the current highlighted information?</item>
+    </string-array>
+
+    <string-array name="ayduaDescriptions">
+        <item>To view the list of students in a specific group, from the main menu click on groups, then click on the desired group and finally click on the students option. The current list of students for that group will be displayed.</item>
+        <item>From the list of students, click on the desired student and the complete information will be displayed. In the lower area you will access the student\'s reports.</item>
+        <item>To view the list of teachers of a specific group, from the main menu click on groups, then click on the desired group and finally click on the teachers option. The current list of teachers for that group will be displayed.</item>
+        <item>To visualize the menu of the day of the dining room, from the main menu click on the dining room option. You can choose a different date if you wish, by clicking on the arrows next to the date, or click on the date, which will open a calendar that will allow you to select the desired date.</item>
+        <item>To view the events of the day click on the calendar option from the main menu. If you wish, you can change the date by clicking on the desired day.</item>
+        <item>To view the current important information, click on the current information option from the main menu.</item>
+    </string-array>
+</resources>

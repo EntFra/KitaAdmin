@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -37,8 +38,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -53,18 +54,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <EditText
                         android:id="@+id/editTextFechaNac"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
                         android:background="@null"
+                        android:clickable="true"
                         android:focusable="false"
                         android:gravity="center"
+                        android:hint="@string/fechaNac"
                         android:maxLines="1"
                         tools:text="TextView" />
                 </LinearLayout>
@@ -78,8 +80,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -94,17 +96,18 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <EditText
                         android:id="@+id/editTextAlergia"
-                        android:maxLines="1"
-                        android:background="@null"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@null"
                         android:gravity="center"
+                        android:hint="@string/alergia"
+                        android:maxLines="1"
                         tools:text="TextView" />
                 </LinearLayout>
             </TableRow>
@@ -117,8 +120,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -153,8 +156,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -189,8 +192,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -253,7 +256,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textAlignment="center"
-                        tools:text="TextView"/>
+                        tools:text="TextView" />
 
 
                 </LinearLayout>
@@ -306,8 +309,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_rounded"
-        android:text="@string/actualizar"
         android:onClick="updateAlumno"
+        android:text="@string/actualizar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nestedAlumEdit" />

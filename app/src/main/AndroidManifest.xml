@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kitaadmin">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -11,63 +10,78 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KitaAdmin"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MenuActivity" />
+        <activity android:name=".Activities.MenuActivity" />
         <activity
-            android:name=".InformacionActualActivity"
+            android:name=".Activities.InformacionActualActivity"
             android:exported="false" />
         <activity
-            android:name=".CalendarioActivity"
+            android:name=".Activities.InformacionEditActivity"
             android:exported="false" />
         <activity
-            android:name=".InformeEditAcitvity"
+            android:name=".Activities.CalendarioActivity"
             android:exported="false" />
         <activity
-            android:name=".InformeActivity"
+            android:name=".Activities.InformeEditAcitvity"
             android:exported="false" />
         <activity
-            android:name=".AlumnoEditActivity"
+            android:name=".Activities.InformeActivity"
             android:exported="false" />
         <activity
-            android:name=".AlumnoActivity"
+            android:name=".Activities.AlumnoEditActivity"
             android:exported="false" />
         <activity
-            android:name=".ListaAlumnosActivity"
+            android:name=".Activities.AlumnoActivity"
             android:exported="false" />
         <activity
-            android:name=".UsuariosActivity"
+            android:name=".Activities.AlumnoAddActivity"
             android:exported="false" />
         <activity
-            android:name=".GrupoActivity"
+            android:name=".Activities.ListaAlumnosActivity"
             android:exported="false" />
         <activity
-            android:name=".GruposActivity"
+            android:name=".Activities.UsuariosActivity"
             android:exported="false" />
         <activity
-            android:name=".ListaProfesoresActivity"
+            android:name=".Activities.GrupoActivity"
             android:exported="false" />
         <activity
-            android:name=".PadresAlumnoAcitvity"
+            android:name=".Activities.GruposActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfesorActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".ComedorActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".ComedorEditActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".ProfesorEditActivity"
+            android:name=".Activities.ListaProfesoresActivity"
             android:exported="false" />
         <activity
-            android:name=".UsuarioEditActivity"
+            android:name=".Activities.PadresAlumnoAcitvity"
             android:exported="false" />
         <activity
-            android:name=".UsuarioAddActivity"
+            android:name=".Activities.ProfesorActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.ComedorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ComedorEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ProfesorEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ProfesorAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.UsuarioEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.UsuarioAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AyudaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CalendarioEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

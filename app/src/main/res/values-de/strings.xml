@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KitaAdmin</string>
+    <string name="usuario">Benutzer</string>
+    <string name="contrasenia">Kennwort</string>
+    <string name="entrar">Einloggen</string>
+    <string name="salir">Ausloggen</string>
+    <string name="grupos">Gruppen</string>
+    <string name="comedor">Kantine</string>
+    <string name="calendario">Kalender</string>
+    <string name="informacion">Aktuelle Informationen</string>
+    <string name="ayuda">Hilfe</string>
+    <string name="usuarios">Benutzer</string>
+    <string name="nombre">Name</string>
+    <string name="fechaNac">Geburtsdatum</string>
+    <string name="telef">Telefonnummer</string>
+    <string name="email">Email</string>
+    <string name="dni">Ausweissnummer</string>
+    <string name="direccion">Adresse</string>
+    <string name="fechaAlta">Eingangsdatum</string>
+    <string name="grupo">Gruppe</string>
+    <string name="alergia">Nahrungsallergie</string>
+    <string name="datosMed">Gesundheitsdaten</string>
+    <string name="apuntadoComedor">Kantine angemeldet</string>
+    <string name="autoFotos">Fotoserlaubnis</string>
+    <string name="padres">Eltern</string>
+    <string name="informes">Bericht</string>
+    <string name="autoSalidas">Ausflugerlaubnis</string>
+    <string name="observaciones">Anmerkungen</string>
+    <string name="profesor">Erzieher</string>
+    <string name="actualizar">Aktualisieren</string>
+    <string name="profesores">Erzieher</string>
+    <string name="alumnos">Kinder</string>
+    <string name="alumno">Kind</string>
+    <string name="ejemplo">Beispieltext</string>
+    <string name="volver">zurück</string>
+    <string name="informe">Bericht</string>
+    <string name="sueno">Schlafenszeit</string>
+    <string name="deposicion">Stuhlgang</string>
+    <string name="comida">Essen</string>
+    <string name="bebida">Trinken</string>
+    <string name="nombreApellidos">Name und Nachname</string>
+    <string name="cambiosSinGuardar">ungespeicherte Änderungen</string>
+    <string name="salirSinGuardarCambios">verlassen ohne Änderungen zu speichern?</string>
+    <string name="aceptar">Annehmen</string>
+    <string name="cancelar">Abbrechen</string>
+    <string name="profesorActualizado">Erzieher aktualisiert</string>
+    <string name="alumnoActualizado">Kind aktualisiert</string>
+    <string name="errorActualizaProfesor">Fehler beim Aktualisieren des Erziehers</string>
+    <string name="errorActualizaAlumno">Fehler beim Aktualisieren des Kindes</string>
+    <string name="borrarAlumno">Kind löschen</string>
+    <string name="confirmaBorraAlumno">Kind löschen?</string>
+    <string name="alumnoBorrado">Kind gelöscht</string>
+    <string name="camposNecesarios">Hay campos obligatorios vacíos</string>
+    <string name="campoObligatorio">Pflichtfelder</string>
+    <string name="borrarProfesor">Erzieher gelöscht</string>
+    <string name="preguntaBorraProfesor">Erzieher und verbundenen Benutzer löschen?</string>
+    <string name="borrar">löschen</string>
+    <string name="profesorBorrado">Erzieher gelöscht</string>
+    <string name="formatoDNI">DNI hat ein ungültiges Format</string>
+    <string name="sinInforme">Keine Daten für das ausgewählte Datum verfügbar</string>
+    <string name="guardar">Speichern</string>
+    <string name="tiempoDormido">Schlafenszeit</string>
+    <string name="informeActualizado">Bericht aktualisiert</string>
+    <string name="errorActualizaInforme">Fehler beim Aktualisieren des Berichtes</string>
+    <string name="desayuno">Frühstück</string>
+    <string name="snack">Snack</string>
+    <string name="platoPrincipal">Hauptgang</string>
+    <string name="postre">Nachtisch</string>
+    <string name="comedorActualizado">Menü aktualisiert</string>
+    <string name="errorActualizaComedor">Fehler beim Aktualisieren des Menüs</string>
+    <string name="calendarioSinEvento">Für den gewählten Tag gibt es keine Veranstaltungen</string>
+    <string name="gestionUsuarios">Benutzerverwaltung</string>
+    <string name="nombreUsuario">Benutzername</string>
+    <string name="rol">Rol</string>
+    <string name="crearUsuario">hinzufügen</string>
+    <string name="borrarUsuario">Benutzer löschen</string>
+    <string name="confirmaBorraUsuario">Benutzer löschen?</string>
+    <string name="usuarioBorrado">Benutzen gelöscht</string>
+    <string name="usuarioActualizado">Benutzer aktualisiert</string>
+    <string name="errorActualizaUsuario">Fehler beim Aktualisieren des Benutzers</string>
+    <string name="errorCreaUsuario">Fehler beim Erstellen des Benutzers</string>
+    <string name="usuarioCreado">Benutzer erstellt</string>
+    <string name="busqueda">Benutzer finden</string>
+    <string name="anadirCalendario">Schreiben Sie hier die Informationen, die Sie hinzufügen möchten</string>
+    <string name="calendarioActualizado">Kalender aktualisiert</string>
+    <string name="errorActualizaCalendario">Fehler beim Aktualisieren des Kalenders</string>
+    <string name="borrarCalendario">Ereignis löschen</string>
+    <string name="confirmaBorraCalendario">Ereignis löschen?</string>
+    <string name="calendarioBorrado">Ereignis gelöscht</string>
+    <string name="borrarComedor">Menü löschen</string>
+    <string name="confirmaBorraComedor">Menü löschen?</string>
+    <string name="comedorBorrado">Menü gelöscht</string>
+    <string name="borrarInformacion">Bericht löschen</string>
+    <string name="confirmaBorraInformacion">Bericht löschen?</string>
+    <string name="informacionBorrada">Bericht gelöscht</string>
+    <string name="informacionActualizada">Bericht aktualisiert</string>
+    <string name="errorActualizaInformacion">Fehler beim Aktualisieren des Berichts</string>
+    <string name="errorCreaAlumno">Fehler beim Erstellen des Kindes</string>
+    <string name="alumnoCreado">Kind erstellt</string>
+    <string name="errorCreaProfesor">Fehler beim Erstellen des Erziehers</string>
+    <string name="profesorCreado">Erzieher erstellt</string>
+    <string name="sinProfesores">keine Erzieher hinzuzufügen</string>
+
+    <string-array name="itemsAyuda">
+        <item>Wie kann ich die Kinder visualisieren?</item>
+        <item>Wie kann ich die Berichte eines Kindes einsehen?</item>
+        <item>Wie visualisiere ich Lehrer?</item>
+        <item>Wie kann ich mir das Tagesmenü der Kantine vorstellen?</item>
+        <item>Wie kann ich mir die Ereignisse des Tages vorstellen?</item>
+        <item>Wie kann ich die aktuelle Informationen einsehen?</item>
+    </string-array>
+
+    <string-array name="ayduaDescriptions">
+        <item>Um die Liste der Kinder einer bestimmten Gruppe anzuzeigen, klicken Sie im Hauptmenü auf Gruppen, dann auf die gewünschte Gruppe und schließlich auf die Option Kinder. Die aktuelle Liste der Kinder für diese Gruppe wird angezeigt</item>
+        <item>Klicken Sie in der Liste der Kinder auf den gewünschten Kinder, und die vollständigen Informationen werden angezeigt. Im unteren Bereich haben Sie Zugriff auf die Berichte des Kindes</item>
+        <item>Um die Liste der Erzieher für eine bestimmte Gruppe anzuzeigen, klicken Sie im Hauptmenü auf Gruppen, dann auf die gewünschte Gruppe und schließlich auf die Option Erzieher. Die aktuelle Liste der Erzieher für diese Gruppe wird angezeigt.</item>
+        <item>Um das Menü für den Tag der Kantine anzuzeigen, klicken Sie im Hauptmenü auf die Option Kantine. Sie können ein anderes Datum wählen, indem Sie auf die Pfeile neben dem Datum klicken, oder Sie klicken auf das Datum, woraufhin sich ein Kalender öffnet, in dem Sie das gewünschte Datum auswählen können.</item>
+        <item>Para visualizar los eventos del día pulse sobre la opción calendario desde el menú principal. Si lo desea puede cambiar la fecha pinchando sobre el día deseado</item>
+        <item>Um die aktuellen wichtigen Informationen anzuzeigen, klicken Sie im Hauptmenü auf die Option Aktuelle Informationen.</item>
+    </string-array>
+</resources>

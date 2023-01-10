@@ -9,6 +9,9 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 
+/**
+ * Clase que representa el fragment para seleccionar una fecha del calendario
+ */
 public class DatePickerFragment extends DialogFragment {
 
     private DatePickerDialog.OnDateSetListener listener;
@@ -17,6 +20,10 @@ public class DatePickerFragment extends DialogFragment {
         DatePickerFragment fragment = new DatePickerFragment();
         fragment.setListener(listener);
         return fragment;
+    }
+
+    public static String twoDigits(int n) {
+        return (n <= 9) ? ("0" + n) : String.valueOf(n);
     }
 
     public void setListener(DatePickerDialog.OnDateSetListener listener) {
@@ -32,10 +39,6 @@ public class DatePickerFragment extends DialogFragment {
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         return new DatePickerDialog(getActivity(), listener, year, month, day);
-    }
-
-    public static String twoDigits(int n) {
-        return (n<=9) ? ("0"+n) : String.valueOf(n);
     }
 
 }

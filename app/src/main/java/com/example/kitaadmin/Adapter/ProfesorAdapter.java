@@ -1,7 +1,6 @@
 package com.example.kitaadmin.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,24 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kitaadmin.Model.Profesores;
-import com.example.kitaadmin.Model.Usuarios;
 import com.example.kitaadmin.R;
 
-import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Adapter del recyclerView de profesores que carga la información de los profesores disponibles en la base de datos
+ */
 public class ProfesorAdapter extends RecyclerView.Adapter<ProfesorAdapter.ViewHolderProfesores> {
 
-    List<Profesores> listaProfesores;
     private final OnProfesorListener onProfesorListener;
     private final LayoutInflater inflater;
+    List<Profesores> listaProfesores;
 
 
-    //Maneja el click sobre un objeto
-    public interface OnProfesorListener {
-        void onProfesorClick(int position);
-
-    }
     public ProfesorAdapter(Context context, List<Profesores> listaProfesores, OnProfesorListener onProfesorListener) {
         this.listaProfesores = listaProfesores;
         this.inflater = LayoutInflater.from(context);
@@ -44,7 +38,7 @@ public class ProfesorAdapter extends RecyclerView.Adapter<ProfesorAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ProfesorAdapter.ViewHolderProfesores holder, int position) {
-        if(listaProfesores.get(position).getUsuario()!=null){
+        if (listaProfesores.get(position).getUsuario() != null) {
             holder.nombreProfesor.setText(listaProfesores.get(position).getUsuario().getNombre());
         }
 
@@ -55,7 +49,13 @@ public class ProfesorAdapter extends RecyclerView.Adapter<ProfesorAdapter.ViewHo
         return listaProfesores.size();
     }
 
-    public class ViewHolderProfesores extends RecyclerView.ViewHolder implements View.OnClickListener{
+    //Maneja el click sobre un objeto
+    public interface OnProfesorListener {
+        void onProfesorClick(int position);
+
+    }
+
+    public class ViewHolderProfesores extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView nombreProfesor;
         OnProfesorListener onProfesorListener;
@@ -68,7 +68,8 @@ public class ProfesorAdapter extends RecyclerView.Adapter<ProfesorAdapter.ViewHo
         }
 
         @Override
-        public void onClick(View v) { onProfesorListener.onProfesorClick(getAdapterPosition());
+        public void onClick(View v) {
+            onProfesorListener.onProfesorClick(getAdapterPosition());
 
         }
     }

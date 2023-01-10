@@ -15,11 +15,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Utiles para realizar distintas acciones como conversiones o dar formato a textos
+ */
 public class Utils {
 
     //Convierte de bitmap a byte array
     public static byte[] imageViewToByte(ImageView image) {
-        Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
+        Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] byteArray = stream.toByteArray();
@@ -43,7 +46,7 @@ public class Utils {
     }
 
     //Formatea la duración de sueño dada quitando los segundos
-    public static String formatTimeDuration(String time){
+    public static String formatTimeDuration(String time) {
         String originalStringFormat = "HH:mm:ss";
         String desiredStringFormat = "HH:mm";
 
@@ -65,12 +68,12 @@ public class Utils {
     }
 
     //Añade segundos para almacenar en la bd correctamente el tiempo
-    public static String stringToTime(String time){
+    public static String stringToTime(String time) {
         return time.concat(":00");
     }
 
-    public static ArrayList getRoles(){
-         final ArrayList<String> ROLES = new ArrayList<>();
+    public static ArrayList getRoles() {
+        final ArrayList<String> ROLES = new ArrayList<>();
 
         ROLES.add("padre");
         ROLES.add("profesor");
