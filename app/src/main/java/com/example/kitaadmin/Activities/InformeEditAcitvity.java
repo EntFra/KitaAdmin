@@ -64,10 +64,11 @@ public class InformeEditAcitvity extends AppCompatActivity {
         binding.dateInforme.setText(fecha);
         if (informeOld != null) {
             getInformeAlumno();
+            getHorasInforme();
+            getMinutosInforme();
         }
 
-        getHorasInforme();
-        getMinutosInforme();
+
 
     }
 

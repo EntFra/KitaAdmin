@@ -100,6 +100,13 @@
     <string name="errorCreaProfesor">Error al crear el profesor</string>
     <string name="profesorCreado">Profesor creado correctamente</string>
     <string name="sinProfesores">No hay profesores para añadir</string>
+    <string name="sinPadres">No existe información de padres</string>
+    <string name="usuarioNoValido">Usuario o contraseña no válidos</string>
+    <string name="usuarioVacio">El usuario no puede estar vacío</string>
+    <string name="contraseniaVacia">La contraseña no puede estar vacía</string>
+    <string name="sinInfoActual">No existe información actualmente</string>
+    <string name="cerrarSesionTitulo">Cerrar sesión</string>
+    <string name="cerrarSesion">¿Seguro que desea salir?</string>
 
     <string-array name="itemsAyuda">
         <item>¿Cómo visualizo los alumnos?</item>

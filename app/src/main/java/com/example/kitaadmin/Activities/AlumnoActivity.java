@@ -78,6 +78,11 @@ public class AlumnoActivity extends AppCompatActivity {
         binding.switchComedor.setClickable(false);
         binding.switchFotos.setClickable(false);
         binding.switchSalidas.setClickable(false);
+        //Desactivamos botones según Rol
+        if(LoginActivity.getRol().equals("padre") || LoginActivity.getRol().equals("profesor")){
+            binding.btnDelet.setVisibility(View.GONE);
+            binding.btnEdit.setVisibility(View.GONE);
+        }
     }
 
     //Método público para borrar el alumno actual de la base de datos

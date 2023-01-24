@@ -71,6 +71,10 @@ public class ComedorActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         getComedorDia(date);
+        if(LoginActivity.getRol().equals("padre")||LoginActivity.getRol().equals("profesor")){
+            binding.btnDeleteComedor.setVisibility(View.GONE);
+            binding.ButtonEditComedor.setVisibility(View.GONE);
+        }
 
         binding.dateComedor.setOnClickListener(new View.OnClickListener() {
             @Override

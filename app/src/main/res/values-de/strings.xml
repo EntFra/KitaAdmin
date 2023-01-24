@@ -101,6 +101,13 @@
     <string name="errorCreaProfesor">Fehler beim Erstellen des Erziehers</string>
     <string name="profesorCreado">Erzieher erstellt</string>
     <string name="sinProfesores">keine Erzieher hinzuzufügen</string>
+    <string name="sinPadres">Keine Eltern eingetragen</string>
+    <string name="usuarioNoValido">Nutzer oder Password ungültig</string>
+    <string name="usuarioVacio">Nutzer kann nicht leer sein</string>
+    <string name="contraseniaVacia">Password kann nicht leer sein</string>
+    <string name="sinInfoActual">Keine Atuelle Info</string>
+    <string name="cerrarSesionTitulo">Ausloggen</string>
+    <string name="cerrarSesion">Wollen Sie sich ausloggen?</string>
 
     <string-array name="itemsAyuda">
         <item>Wie kann ich die Kinder visualisieren?</item>

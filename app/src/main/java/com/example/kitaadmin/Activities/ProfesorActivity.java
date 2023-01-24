@@ -50,6 +50,11 @@ public class ProfesorActivity extends AppCompatActivity {
             profesorSeleccionado = extras.getString("profesorSeleccionado");
             grupo = extras.getString("grupo");
         }
+
+        if(LoginActivity.getRol().equals("profesor")){
+            binding.btnDelet.setVisibility(View.GONE);
+            binding.btnEdit.setVisibility(View.GONE);
+        }
         profesor = new Gson().fromJson(profesorSeleccionado, Profesores.class);
 
         try {

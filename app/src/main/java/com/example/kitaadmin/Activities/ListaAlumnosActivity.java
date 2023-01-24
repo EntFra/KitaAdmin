@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kitaadmin.Adapter.AlumnoAdapter;
 import com.example.kitaadmin.Model.Alumnos;
+import com.example.kitaadmin.Model.Padres;
 import com.example.kitaadmin.R;
 import com.example.kitaadmin.Remote.ApiService;
 import com.example.kitaadmin.Remote.Network;
@@ -19,6 +20,8 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,9 +35,12 @@ public class ListaAlumnosActivity extends AppCompatActivity implements AlumnoAda
     List<Alumnos> listaAlumnos = new ArrayList<>();
     RecyclerView recyclerViewAlumnos;
     AlumnoAdapter alumnoAdapter;
-    ApiService apiService;
+    static ApiService apiService = Network.getInstance().create(ApiService.class);;
     String grupo;
     ActivityListaAlumnosBinding binding;
+    String rol = LoginActivity.getRol();
+    static Alumnos alumno = new Alumnos();
+    static Padres padre = MenuActivity.getPadre();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +55,13 @@ public class ListaAlumnosActivity extends AppCompatActivity implements AlumnoAda
         Bundle extras = getIntent().getExtras();
         grupo = extras.getString("grupoSeleccionado");
         getListaAlumnos();
+        getAlumnoID();
         alumnoAdapter = new AlumnoAdapter(ListaAlumnosActivity.this, listaAlumnos, ListaAlumnosActivity.this::onAlumnoClick);
         recyclerViewAlumnos.setAdapter(alumnoAdapter);
+
+        if(LoginActivity.getRol().equals("padre")||LoginActivity.getRol().equals("profesor")){
+            binding.addAlumno.setVisibility(View.GONE);
+        }
 
         binding.addAlumno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +69,8 @@ public class ListaAlumnosActivity extends AppCompatActivity implements AlumnoAda
                 addAlumno();
             }
         });
+
+
     }
 
     //Método que obtiene la lista de alumnos para el grupo seleccionado
@@ -84,9 +97,13 @@ public class ListaAlumnosActivity extends AppCompatActivity implements AlumnoAda
     //Inicia la pantalla con la información del profesor seleccionado
 
     public void onAlumnoClick(int position) {
-        String rol = LoginActivity.getRol();
         try {
-            if (rol.equals("admin") || rol.equals("director") || rol.equals("profesor_admin")) {
+            if (rol.equals("admin") || rol.equals("director") || rol.equals("profesor_admin") || rol.equals("profesor")) {
+                Intent alumnoSeleccionado = new Intent(this, AlumnoActivity.class);
+                alumnoSeleccionado.putExtra("alumnoSeleccionado", new Gson().toJson(listaAlumnos.get(position)));
+                alumnoSeleccionado.putExtra("grupo", grupo);
+                startActivity(alumnoSeleccionado);
+            }else if(rol.equals("padre") && getAlumnoID()==listaAlumnos.get(position).getAlumno_id()){
                 Intent alumnoSeleccionado = new Intent(this, AlumnoActivity.class);
                 alumnoSeleccionado.putExtra("alumnoSeleccionado", new Gson().toJson(listaAlumnos.get(position)));
                 alumnoSeleccionado.putExtra("grupo", grupo);
@@ -95,6 +112,25 @@ public class ListaAlumnosActivity extends AppCompatActivity implements AlumnoAda
         } catch (Exception e) {
 
         }
+    }
+
+
+
+    private static int getAlumnoID() {
+        //Se llama al servicio que obtiene el de alumno segun usuarioId del padre
+        Call<Alumnos> call = apiService.getAlumnoByAlumnoId(padre.getAlumnoId());
+        call.enqueue(new Callback<Alumnos>() {
+            @Override
+            public void onResponse(Call<Alumnos> call, Response<Alumnos> response) {
+                alumno = response.body();
+
+            }
+            @Override
+            public void onFailure(Call<Alumnos> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+            }
+        });
+        return alumno.getAlumno_id();
     }
 
     @Override

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">KitaAdmin</string>
-    <string name="usuario">Usuario</string>
+    <string name="usuario">User</string>
     <string name="contrasenia">Password</string>
     <string name="entrar">Log in</string>
     <string name="salir">Log out</string>
@@ -101,6 +101,13 @@
     <string name="errorCreaProfesor">Error creating teacher</string>
     <string name="profesorCreado">Teacher successfully created</string>
     <string name="sinProfesores">No teachers to add</string>
+    <string name="sinPadres">No info available</string>
+    <string name="usuarioNoValido">User or Password not valid</string>
+    <string name="usuarioVacio">User field may not be empty</string>
+    <string name="contraseniaVacia">Password field may not be empty</string>
+    <string name="sinInfoActual">No information to show</string>
+    <string name="cerrarSesionTitulo">Log out</string>
+    <string name="cerrarSesion">Do you want to log out?</string>
 
     <string-array name="itemsAyuda">
         <item>How do I visualize the students?</item>

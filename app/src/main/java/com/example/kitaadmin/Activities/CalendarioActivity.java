@@ -52,6 +52,11 @@ public class CalendarioActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        if(LoginActivity.getRol().equals("padre")||LoginActivity.getRol().equals("profesor")){
+            binding.btnDeleteCalendario.setVisibility(View.GONE);
+            binding.ButtonEditCalendario.setVisibility(View.GONE);
+        }
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String fecha = extras.getString("fecha");

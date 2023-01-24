@@ -40,6 +40,12 @@ public class InformacionActualActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        if(LoginActivity.getRol().equals("padre")||LoginActivity.getRol().equals("profesor")){
+            binding.btnDeleteInfo.setVisibility(View.GONE);
+            binding.imageButtonEditInfo.setVisibility(View.GONE);
+        }
+
+
         binding.btnDeleteInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,8 +115,12 @@ public class InformacionActualActivity extends AppCompatActivity {
             public void onResponse(Call<List<Informacion>> call, Response<List<Informacion>> response) {
                 if (response.body() != null) {
                     informacion = response.body();
-                    binding.textViewActual.setText(informacion.get(informacion.size() - 1).getInformacion());
+                    binding.textViewActual.setText(getResources().getString(R.string.sinInfoActual));
+                    if(!(informacion.get(informacion.size() - 1).getInformacion()).equalsIgnoreCase("")){
+                        binding.textViewActual.setText(informacion.get(informacion.size() - 1).getInformacion());
+                    }
                     info = informacion.get(informacion.size() - 1);
+
                 }
             }
 

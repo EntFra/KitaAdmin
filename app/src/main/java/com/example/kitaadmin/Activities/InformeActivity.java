@@ -52,6 +52,9 @@ public class InformeActivity extends AppCompatActivity {
             setFechaDia(extras.getString("fecha"));
         }
         cargaActivity(date);
+        if(LoginActivity.getRol().equals("padre")){
+            binding.btnEditInforme.setVisibility(View.GONE);
+        }
 
 
     }

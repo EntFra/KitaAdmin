@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.kitaadmin.Model.Alumnos;
 import com.example.kitaadmin.Model.Padres;
 import com.example.kitaadmin.Model.Usuarios;
+import com.example.kitaadmin.R;
 import com.example.kitaadmin.Remote.ApiService;
 import com.example.kitaadmin.Remote.Network;
 import com.example.kitaadmin.databinding.ActivityPadresAlumnoBinding;
@@ -73,7 +74,7 @@ public class PadresAlumnoAcitvity extends AppCompatActivity {
                         getPadre1(i);
                     } else if (listaPadres.size() == 2) {
                         getPadre1(i);
-                        getPadre2(i);
+                        getPadre2(i+1);
                     } else {
                         //no funciona
                         binding.nombreApellidos1.setVisibility(View.GONE);
@@ -82,7 +83,7 @@ public class PadresAlumnoAcitvity extends AppCompatActivity {
                         binding.email2.setVisibility(View.GONE);
                         binding.telefono1.setVisibility(View.GONE);
                         binding.telefono2.setVisibility(View.GONE);
-                        binding.sinDatosPadresText.setText("No existe información de padres");
+                        binding.sinDatosPadresText.setText(R.string.sinPadres);
                         binding.sinDatosPadresText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
                     }

@@ -55,6 +55,10 @@ public class ListaProfesoresActivity extends AppCompatActivity implements Profes
         profesorAdapter = new ProfesorAdapter(ListaProfesoresActivity.this, listaProfesores, ListaProfesoresActivity.this::onProfesorClick);
         recyclerViewProfesores.setAdapter(profesorAdapter);
 
+        if(LoginActivity.getRol().equals("padre")||LoginActivity.getRol().equals("profesor")){
+            binding.addProfesor.setVisibility(View.GONE);
+        }
+
         binding.addProfesor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +94,11 @@ public class ListaProfesoresActivity extends AppCompatActivity implements Profes
         String rol = LoginActivity.getRol();
         try {
             if (rol.equals("admin") || rol.equals("director") || rol.equals("profesor_admin")) {
+                Intent profesorSeleccionado = new Intent(this, ProfesorActivity.class);
+                profesorSeleccionado.putExtra("profesorSeleccionado", new Gson().toJson(listaProfesores.get(position)));
+                profesorSeleccionado.putExtra("grupo", grupo);
+                startActivity(profesorSeleccionado);
+            } else if(rol.equals("profesor") && listaProfesores.get(position).getId()==LoginActivity.getUsuario().getUsuarios_id()){
                 Intent profesorSeleccionado = new Intent(this, ProfesorActivity.class);
                 profesorSeleccionado.putExtra("profesorSeleccionado", new Gson().toJson(listaProfesores.get(position)));
                 profesorSeleccionado.putExtra("grupo", grupo);
