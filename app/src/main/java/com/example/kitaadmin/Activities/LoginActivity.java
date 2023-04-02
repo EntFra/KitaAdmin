@@ -19,12 +19,13 @@ import com.google.gson.Gson;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 /**
  * Clase que maneja el activity login, permite al usuario realizar login en la app en caso de poseer credenciales, en caso contrario se informará con un mensaje
  */
 public class LoginActivity extends AppCompatActivity {
     static Usuarios usuarioLogin;
-    private static String rolUsuario;
+    static String rolUsuario;
     TextInputLayout etPassword, etUsername;
     Button btnLogin;
 
@@ -42,42 +43,45 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public static Usuarios getUsuario(){
+    public static Usuarios getUsuario() {
         return usuarioLogin;
     }
 
-    private void onClickListeners() {
+    void onClickListeners() {
         btnLogin.setOnClickListener(v -> {
-            if (validaUsuario() && validaContrasenia()) {
-                Usuarios usuario = new Usuarios(etUsername.getEditText().getText().toString(), etPassword.getEditText().getText().toString());
-
-                ApiService apiService = Network.getInstance().create(ApiService.class);
-                apiService.getUsuario(usuario).enqueue(new Callback<Usuarios>() {
-                    @Override
-                    public void onResponse(Call<Usuarios> call, Response<Usuarios> response) {
-                        if (response.body() != null) {
-                            usuarioLogin = response.body();
-                            rolUsuario = usuarioLogin.getRol();
-                            Toast.makeText(LoginActivity.this, "¡Bienvenido/a!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                            intent.putExtra("rol", rolUsuario);
-                            startActivity(intent);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Usuarios> call, Throwable t) {
-                        Toast.makeText(LoginActivity.this, R.string.usuarioNoValido, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-
+            login();
         });
     }
 
+    public void login() {
+        if (validaUsuario() && validaContrasenia()) {
+            Usuarios usuario = new Usuarios(etUsername.getEditText().getText().toString(), etPassword.getEditText().getText().toString());
+
+            ApiService apiService = Network.getInstance().create(ApiService.class);
+            apiService.getUsuario(usuario).enqueue(new Callback<Usuarios>() {
+                @Override
+                public void onResponse(Call<Usuarios> call, Response<Usuarios> response) {
+                    if (response.body() != null) {
+                        usuarioLogin = response.body();
+                        rolUsuario = usuarioLogin.getRol();
+                        Toast.makeText(LoginActivity.this, "¡Bienvenido/a!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                        intent.putExtra("rol", rolUsuario);
+                        startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Usuarios> call, Throwable t) {
+                    Toast.makeText(LoginActivity.this, R.string.usuarioNoValido, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+    }
+
     //Valida la entrada del campo usuario
-    private boolean validaUsuario() {
+    boolean validaUsuario() {
         if (TextUtils.isEmpty(etUsername.getEditText().toString())) {
             etUsername.setError(getResources().getString(R.string.usuarioVacio));
             etUsername.requestFocus();
@@ -87,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //Valida la entrada del campo contraseña
-    private boolean validaContrasenia() {
+    boolean validaContrasenia() {
         if (TextUtils.isEmpty(etPassword.getEditText().toString())) {
             etPassword.setError(getResources().getString(R.string.contraseniaVacia));
             etPassword.requestFocus();
@@ -103,4 +107,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+    public void setEtPassword(String password) {
+        etPassword.getEditText().setText(password);
+    }
+
+    public void setEtUsername(String username) {
+        etUsername.getEditText().setText(username);
+    }
+
 }

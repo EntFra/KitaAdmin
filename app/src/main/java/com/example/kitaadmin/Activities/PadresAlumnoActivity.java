@@ -24,7 +24,7 @@ import retrofit2.Response;
 /**
  * Clase que maneja el activity padres de alumno, muestra la información de los padres del alumno seleccionado
  */
-public class PadresAlumnoAcitvity extends AppCompatActivity {
+public class PadresAlumnoActivity extends AppCompatActivity {
 
     String alumnoSeleccionado;
     Alumnos alumno;

@@ -17,6 +17,8 @@ import com.example.kitaadmin.Remote.Network;
 import com.example.kitaadmin.databinding.ActivityAlumnoBinding;
 import com.google.gson.Gson;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,18 +34,17 @@ public class AlumnoActivity extends AppCompatActivity {
     String alumnoSeleccionado;
     Alumnos alumno;
     String grupo;
-    private ActivityAlumnoBinding binding;
+    public ActivityAlumnoBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityAlumnoBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         cargarActivity();
     }
 
-    private void cargarActivity() {
-        binding = ActivityAlumnoBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+    public void cargarActivity() {
 
         //Recoge el alumno seleccionado
         Bundle extras = getIntent().getExtras();
@@ -56,16 +57,14 @@ public class AlumnoActivity extends AppCompatActivity {
             recuperaInfoAlumno();
         }
 
-        binding.btnDelet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                borrar(alumno);
 
-            }
-        });
+        if(alumno!=null){
+            binding.btnDelet.setOnClickListener(v -> borrar(alumno));
+        }
+
     }
 
-    private void recuperaInfoAlumno() {
+    void recuperaInfoAlumno() {
 
         binding.textFechaNac.setText(alumno.getFecha_nac());
         binding.textNombreAlumno.setText(alumno.getNombre());
@@ -79,7 +78,7 @@ public class AlumnoActivity extends AppCompatActivity {
         binding.switchFotos.setClickable(false);
         binding.switchSalidas.setClickable(false);
         //Desactivamos botones según Rol
-        if(LoginActivity.getRol().equals("padre") || LoginActivity.getRol().equals("profesor")){
+        if (LoginActivity.getRol() != null && LoginActivity.getRol().equals("padre") || Objects.equals(LoginActivity.getRol(), "profesor")) {
             binding.btnDelet.setVisibility(View.GONE);
             binding.btnEdit.setVisibility(View.GONE);
         }
@@ -113,7 +112,7 @@ public class AlumnoActivity extends AppCompatActivity {
                         vueltaListaAlumnos();
                     }
                 })
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(R.string.cancelar, null)
                 .show();
     }
 
@@ -125,7 +124,7 @@ public class AlumnoActivity extends AppCompatActivity {
     }
 
     public void verPadres(View view) {
-        Intent intent = new Intent(this, PadresAlumnoAcitvity.class);
+        Intent intent = new Intent(this, PadresAlumnoActivity.class);
         intent.putExtra("alumnoSeleccionado", alumnoSeleccionado);
         startActivity(intent);
     }
@@ -137,7 +136,7 @@ public class AlumnoActivity extends AppCompatActivity {
     }
 
     //Método que regresa a la lista
-    private void vueltaListaAlumnos() {
+    public void vueltaListaAlumnos() {
         Intent intent = new Intent(this, ListaAlumnosActivity.class);
         intent.putExtra("grupoSeleccionado", alumno.getNombre_grupo());
         startActivity(intent);

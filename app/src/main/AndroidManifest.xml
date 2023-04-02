@@ -51,7 +51,7 @@
             android:name=".Activities.ListaProfesoresActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.PadresAlumnoAcitvity"
+            android:name=".Activities.PadresAlumnoActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.ProfesorActivity"
