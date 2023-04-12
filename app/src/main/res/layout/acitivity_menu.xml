@@ -69,7 +69,7 @@
         android:id="@+id/foodBtn"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="75dp"
         android:layout_marginEnd="70dp"
         android:background="@drawable/icon_food"
         android:onClick="comedor"
@@ -83,7 +83,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="75dp"
         android:background="@drawable/icon_group"
         android:onClick="grupos"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,13 +116,13 @@
         android:id="@+id/exitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="75dp"
         android:background="@drawable/button_rounded"
         android:onClick="volver"
         android:text="@string/salir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/databaseBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/estadisticasBtn" />
 
     <TextView
         android:id="@+id/textView"
@@ -141,4 +141,27 @@
         app:layout_constraintEnd_toEndOf="@+id/foodBtn"
         app:layout_constraintStart_toStartOf="@+id/foodBtn"
         app:layout_constraintTop_toBottomOf="@id/foodBtn" />
+
+    <ImageButton
+        android:id="@+id/estadisticasBtn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/stadistics"
+        android:onClick="estadisticas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/databaseBtn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+    <TextView
+        android:id="@+id/textViewEstadisticas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/estadisticas"
+        app:layout_constraintEnd_toEndOf="@id/estadisticasBtn"
+        app:layout_constraintStart_toStartOf="@id/estadisticasBtn"
+        app:layout_constraintTop_toBottomOf="@id/estadisticasBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

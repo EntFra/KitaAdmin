@@ -84,7 +84,7 @@ public class UsuariosActivity extends AppCompatActivity {
     }
 
 
-    private void deleteUsuario(int position) {
+    public void deleteUsuario(int position) {
         new AlertDialog.Builder(UsuariosActivity.this)
                 .setTitle(R.string.borrarUsuario)
                 .setMessage(R.string.confirmaBorraUsuario)

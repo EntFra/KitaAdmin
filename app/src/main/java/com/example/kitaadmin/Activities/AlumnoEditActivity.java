@@ -49,7 +49,7 @@ public class AlumnoEditActivity extends AppCompatActivity {
     String grupo;
     String alumnoSeleccionado;
     boolean noCambioCampos;
-    private ActivityAlumnoEditBinding binding;
+    ActivityAlumnoEditBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,7 +174,7 @@ public class AlumnoEditActivity extends AppCompatActivity {
         });
     }
 
-    private void spinnerGrupos() {
+    void spinnerGrupos() {
         //Lista de datos a cargar
         List<Grupos> listaGrupos = GruposActivity.listaGrupos();
         ArrayList<String> listaLimpia = new ArrayList<>();

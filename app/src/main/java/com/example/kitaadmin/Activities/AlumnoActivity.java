@@ -31,9 +31,9 @@ import retrofit2.Response;
 public class AlumnoActivity extends AppCompatActivity {
 
     ApiService apiService;
-    String alumnoSeleccionado;
-    Alumnos alumno;
-    String grupo;
+    public String alumnoSeleccionado;
+    public Alumnos alumno;
+    public String grupo;
     public ActivityAlumnoBinding binding;
 
     @Override
@@ -153,6 +153,7 @@ public class AlumnoActivity extends AppCompatActivity {
         super.onRestart();
         cargarActivity();
     }
+
 
 
 }

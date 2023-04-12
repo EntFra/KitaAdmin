@@ -81,6 +81,9 @@
             android:name=".Activities.CalendarioEditActivity"
             android:exported="false" />
         <activity
+            android:name=".Activities.EstadisticasActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.LoginActivity"
             android:exported="true">
             <intent-filter>

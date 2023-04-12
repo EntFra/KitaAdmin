@@ -85,6 +85,9 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.Usuari
         return searchFilter;
     }
 
+    public void setUsuarios(List<Usuarios> listaUsuarios) {
+    }
+
     public interface OnItemClickListener {
         void onItemClick(int position);
 

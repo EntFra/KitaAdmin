@@ -133,6 +133,11 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void estadisticas(View v) {
+        Intent intent = new Intent(this, EstadisticasActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
         vueltaLogin();

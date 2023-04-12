@@ -3,6 +3,7 @@ package com.example.kitaadmin.Remote;
 import com.example.kitaadmin.Model.Alumnos;
 import com.example.kitaadmin.Model.Calendario;
 import com.example.kitaadmin.Model.Comedor;
+import com.example.kitaadmin.Model.Estadisticas;
 import com.example.kitaadmin.Model.Grupos;
 import com.example.kitaadmin.Model.Informacion;
 import com.example.kitaadmin.Model.Informes;
@@ -118,4 +119,8 @@ public interface ApiService {
 
     @DELETE("/deleteComedor")
     Call<Void> deleteComedor(@Query(value = "dia", encoded = true) String dia);
+
+    @POST("/getEstadisticas")
+    Call<Estadisticas> getEstadisticas();
+
 }
