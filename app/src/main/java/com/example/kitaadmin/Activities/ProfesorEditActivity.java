@@ -160,7 +160,7 @@ public class ProfesorEditActivity extends AppCompatActivity {
     private void setFechaView(String fecha) {
         fechaView = fecha;
     }
-
+    //Método que recupera la información del profesor y la muestra en los campos
     private void recuperaInfoProfesor() {
 
         binding.textTituloProfesor.setText(profesor.getUsuario().getNombre());
@@ -193,7 +193,7 @@ public class ProfesorEditActivity extends AppCompatActivity {
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
-
+    //Valida el formato del DNI
     private boolean isValidDNI(String dni) {
         Boolean isValid = false;
         String dniString = "[0-9]{8}[A-Za-z]{1}";
@@ -208,7 +208,7 @@ public class ProfesorEditActivity extends AppCompatActivity {
 
         return isValid;
     }
-
+    //Método que recoge los campos actualizados
     private void getCamposActualizados() {
         dniNew = binding.editDNI.getText().toString();
         fecha_altaNew = (binding.editFechaAlt.getText().toString());
@@ -218,7 +218,7 @@ public class ProfesorEditActivity extends AppCompatActivity {
         emailNew = binding.editEmail.getText().toString();
         telefonoNew = Integer.parseInt(binding.editTextTelf.getText().toString());
     }
-
+    //Método para actualizar el profesor
     public void updateProfesor(View view) {
 
         if (isValidDNI(binding.editDNI.getText().toString().trim())) {
@@ -259,7 +259,7 @@ public class ProfesorEditActivity extends AppCompatActivity {
 
 
     }
-
+    //Método que verifica los campos
     private boolean compruebaCampos() {
 
         getCamposActualizados();

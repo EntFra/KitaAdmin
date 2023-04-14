@@ -3,6 +3,20 @@
   <component name="AndroidTestResultsUserPreferences">
     <option name="androidTestResultsTableState">
       <map>
+        <entry key="-2052269713">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="192.168.190.101:5555" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="Genymobile&#10; Galaxy S10" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="-859355182">
           <value>
             <AndroidTestResultsTableState>
@@ -122,6 +136,19 @@
           </value>
         </entry>
         <entry key="1570057628">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_6_API_30" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1902951941">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">

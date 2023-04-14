@@ -53,7 +53,7 @@ public class InformacionEditActivity extends AppCompatActivity {
         });
 
     }
-
+    // Método que guarda la información editada
     private void guardarInfo() {
         apiService = Network.getInstance().create(ApiService.class);
         info.setInformacion(binding.editInfo.getText().toString());

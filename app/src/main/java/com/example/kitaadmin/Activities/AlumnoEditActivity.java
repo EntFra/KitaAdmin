@@ -41,7 +41,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Clase que maneja el activity Alumno edit, permite modificar la información del alumno seleccionado
+ * Clase que maneja el activity Alumno edit,
+ * permite modificar la información del alumno seleccionado
  */
 public class AlumnoEditActivity extends AppCompatActivity {
 
@@ -58,6 +59,10 @@ public class AlumnoEditActivity extends AppCompatActivity {
         cargaActivity();
     }
 
+    /**
+     * Método cargaActivity que se encarga de cargar la información del alumno seleccionado
+     * y configurar los elementos de la interfaz de usuario.
+     */
     private void cargaActivity() {
         setContentView(R.layout.activity_alumno_edit);
 
@@ -124,6 +129,10 @@ public class AlumnoEditActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
+    /**
+     * Método recuperaInfoAlumno que recupera la información del alumno seleccionado
+     * y la muestra en los elementos de la interfaz de usuario.
+     */
     private void recuperaInfoAlumno() {
 
         binding.editTextFechaNac.setText(alumno.getFecha_nac());
@@ -141,6 +150,11 @@ public class AlumnoEditActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Método updateAlumno que actualiza la información del alumno la base de datos
+     *
+     */
     public void updateAlumno(View view) {
 
 

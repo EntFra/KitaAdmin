@@ -67,7 +67,7 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 
-
+    //Método que obtiene el padre según el usuarioId del padre
     private static void getPadreAlumno() {
         //Se llama al servicio que obtiene el de alumno segun usuarioId del padre
         Call<Padres> call = apiService.getPadresByUsuariosId(usuario.getUsuarios_id());
@@ -85,7 +85,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
     }
-
+    //Obtiene el padre
     public static Padres getPadre(){
         return padre;
     }
@@ -142,7 +142,7 @@ public class MenuActivity extends AppCompatActivity {
     public void onBackPressed() {
         vueltaLogin();
     }
-
+    //Método que muestra un dialogo para confirmar el cierre de sesión
     private void vueltaLogin() {
         androidx.appcompat.app.AlertDialog alertDialog = new AlertDialog.Builder(MenuActivity.this)
                 .setTitle(R.string.cerrarSesionTitulo)

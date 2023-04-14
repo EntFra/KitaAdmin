@@ -81,7 +81,7 @@ public class UsuarioAddActivity extends AppCompatActivity {
         binding.spinnerAlumno.setAdapter(arrayAdapterAlumnos);
     }
 
-
+    //Método que obtiene los alumnos
     private void getAlumnos() {
 
         //Se llama al servicio que obtiene los alumnos
@@ -106,7 +106,7 @@ public class UsuarioAddActivity extends AppCompatActivity {
             }
         });
     }
-
+    //Método para crear un usuario
     public void addUsuario(View view) {
         usuario.setNombre_usuario(binding.editNombreUsuario.getText().toString());
         usuario.setNombre(binding.editNombre.getText().toString());
@@ -202,7 +202,7 @@ public class UsuarioAddActivity extends AppCompatActivity {
             dialogoBack();
         }
     }
-
+    //Método para volver al menú de usuarios
     private void volverUsuariosMenu() {
         Intent vueltaUsuarioMenu = new Intent(this, UsuariosActivity.class);
         startActivity(vueltaUsuarioMenu);

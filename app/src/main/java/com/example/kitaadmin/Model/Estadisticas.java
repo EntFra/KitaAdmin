@@ -5,7 +5,9 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 import javax.annotation.Generated;
-
+/**
+ * Clase que representa el objeto estadisticas de la API
+ */
 @Generated("com.robohorse.robopojogenerator")
 public class Estadisticas implements Serializable {
 

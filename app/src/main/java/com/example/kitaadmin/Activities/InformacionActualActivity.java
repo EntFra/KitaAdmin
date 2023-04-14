@@ -62,13 +62,13 @@ public class InformacionActualActivity extends AppCompatActivity {
 
         getInformacion();
     }
-
+    //Método que abre la actividad de edición de información
     private void editInfo() {
         Intent intent = new Intent(this, InformacionEditActivity.class);
         intent.putExtra("informacion", new Gson().toJson(info));
         startActivity(intent);
     }
-
+    //Método que borra la información actual
     private void deleteInfo(Informacion info) {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.borrarInformacion)
@@ -103,7 +103,7 @@ public class InformacionActualActivity extends AppCompatActivity {
                 .show();
 
     }
-
+    //Método que obtiene la información actual
     private void getInformacion() {
         apiService = Network.getInstance().create(ApiService.class);
 

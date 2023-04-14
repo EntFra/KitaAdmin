@@ -51,6 +51,9 @@ public class InformeActivity extends AppCompatActivity {
         if (extras != null && extras.getString("fecha") != null) {
             setFechaDia(extras.getString("fecha"));
         }
+        binding = ActivityInformeBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         cargaActivity(date);
         if(LoginActivity.getRol().equals("padre")){
             binding.btnEditInforme.setVisibility(View.GONE);
@@ -61,9 +64,7 @@ public class InformeActivity extends AppCompatActivity {
 
     private void cargaActivity(String fecha) {
 
-        binding = ActivityInformeBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -88,12 +89,12 @@ public class InformeActivity extends AppCompatActivity {
 
 
     }
-
-    private void setFechaDia(String fecha) {
+    //Establece la fecha del informe
+    void setFechaDia(String fecha) {
         date = fecha;
 
     }
-
+    //Muestra el datepicker para seleccionar la fecha del informe
     private void showDatePickerDialog(final EditText editText) {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -107,7 +108,7 @@ public class InformeActivity extends AppCompatActivity {
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
-
+    //Método para mostrar el informe del día siguiente
     public void getDayAfter(View view) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar c = Calendar.getInstance();
@@ -116,7 +117,7 @@ public class InformeActivity extends AppCompatActivity {
         date = sdf.format(c.getTime());
         getInformeAlumno(date);
     }
-
+    //Método para mostrar el informe del día anterior
     public void getDayBefore(View view) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar c = Calendar.getInstance();
@@ -125,42 +126,43 @@ public class InformeActivity extends AppCompatActivity {
         date = sdf.format(c.getTime());
         getInformeAlumno(date);
     }
-
+    //Método que muestra el informe del día actual
     private void getInformeAlumno(String fecha) {
         //Primero se establece la fecha y se oculta la tabla con la información, en caso de existir datos que mostrar se cambia la visibilidad de la tabla
+        if(binding!=null){
         binding.dateInforme.setText(fecha);
         binding.tableInforme.setVisibility(View.GONE);
-        binding.textViewSinInforme.setVisibility(View.VISIBLE);
+        binding.textViewSinInforme.setVisibility(View.VISIBLE);}
 
         apiService = Network.getInstance().create(ApiService.class);
+        if(alumno!=null) {
+            apiService.getInformes(alumno.getAlumno_id(), fecha).enqueue(new Callback<Informes>() {
 
-        apiService.getInformes(alumno.getAlumno_id(), fecha).enqueue(new Callback<Informes>() {
+                @Override
+                public void onResponse(Call<Informes> call, Response<Informes> response) {
+                    if (response.body() != null) {
+                        informe = response.body();
+                        //Formatea el tiempo dormido a horas y minutos
+                        String suenio = Utils.formatTimeDuration(informe.getSuenio());
+                        binding.textSueno.setText(suenio);
+                        binding.textViewSinInforme.setVisibility(View.GONE);
+                        binding.tableInforme.setVisibility(View.VISIBLE);
+                        binding.dateInforme.setText(informe.getFecha());
+                        binding.textDeposicion.setText(isTrue(informe.isDeposicion()));
+                        binding.textComida.setText(isTrue(informe.isComida()));
+                        binding.textBebida.setText(isTrue(informe.isBebida()));
 
-            @Override
-            public void onResponse(Call<Informes> call, Response<Informes> response) {
-                if (response.body() != null) {
-                    informe = response.body();
-                    //Formatea el tiempo dormido a horas y minutos
-                    String suenio = Utils.formatTimeDuration(informe.getSuenio());
-                    binding.textSueno.setText(suenio);
-                    binding.textViewSinInforme.setVisibility(View.GONE);
-                    binding.tableInforme.setVisibility(View.VISIBLE);
-                    binding.dateInforme.setText(informe.getFecha());
-                    binding.textDeposicion.setText(isTrue(informe.isDeposicion()));
-                    binding.textComida.setText(isTrue(informe.isComida()));
-                    binding.textBebida.setText(isTrue(informe.isBebida()));
-
-                    binding.textObservacionesInforme.setText(informe.getObservaciones());
+                        binding.textObservacionesInforme.setText(informe.getObservaciones());
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Informes> call, Throwable t) {
+                @Override
+                public void onFailure(Call<Informes> call, Throwable t) {
 
-            }
-        });
+                }
+            });
 
-
+        }
     }
 
     //Método que muestra nuevo activity para modificar informe

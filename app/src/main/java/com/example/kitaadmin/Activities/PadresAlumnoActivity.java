@@ -101,7 +101,7 @@ public class PadresAlumnoActivity extends AppCompatActivity {
         });
 
     }
-
+    //Método que obtiene los datos del primer padre/madre
     private void getPadre1(int i) {
         binding.sinDatosPadresText.setVisibility(View.GONE);
         padre1 = listaPadres.get(i);
@@ -124,7 +124,7 @@ public class PadresAlumnoActivity extends AppCompatActivity {
 
         });
     }
-
+    //Método que obtiene los datos del segundo padre/madre
     private void getPadre2(int i) {
         padre2 = listaPadres.get(i + 1);
         Call<Usuarios> callUsuarios2 = apiService.getUsuario(padre2.getUsuariosId());

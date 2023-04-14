@@ -24,8 +24,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Clase que maneja el activity Alumno, usado para mostrar la información del alumno seleccionado. Se permite el acceso a la edición del alumno, borrado,
- * así como a la información correspondiente a los padres del alumno seleccionado y sus informes correspondientes
+ * Esta clase representa la actividad de detalle de un alumno en la aplicación.
+ * Se encarga de mostrar la información del alumno seleccionado, permitir su edición, borrado,
+ * acceso a la lista de padres y acceso a la sección de informes.
  */
 
 public class AlumnoActivity extends AppCompatActivity {
@@ -44,6 +45,11 @@ public class AlumnoActivity extends AppCompatActivity {
         cargarActivity();
     }
 
+    /**
+     * Método que carga la información del alumno seleccionado y actualiza la vista.
+     * También se encarga de desactivar la posibilidad de modificar los switches y ocultar los botones
+     * de edición y borrado según el rol del usuario que inició sesión.
+     */
     public void cargarActivity() {
 
         //Recoge el alumno seleccionado
@@ -64,6 +70,11 @@ public class AlumnoActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Método que actualiza la vista con la información del alumno seleccionado.
+     * También desactiva la posibilidad de modificar los switches y oculta los botones
+     * de edición y borrado según el rol del usuario que inició sesión.
+     */
     void recuperaInfoAlumno() {
 
         binding.textFechaNac.setText(alumno.getFecha_nac());
@@ -84,7 +95,7 @@ public class AlumnoActivity extends AppCompatActivity {
         }
     }
 
-    //Método público para borrar el alumno actual de la base de datos
+    //Método que borra el alumno seleccionado
     public void borrar(Alumnos alumno) {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.borrarAlumno)
@@ -115,7 +126,7 @@ public class AlumnoActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.cancelar, null)
                 .show();
     }
-
+    //Método que abre la actividad de edición de alumnos
     public void editarAlumno(View view) {
         Intent intent = new Intent(this, AlumnoEditActivity.class);
         intent.putExtra("alumnoSeleccionado", alumnoSeleccionado);
@@ -123,12 +134,14 @@ public class AlumnoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Método que abre la actividad de padres
     public void verPadres(View view) {
         Intent intent = new Intent(this, PadresAlumnoActivity.class);
         intent.putExtra("alumnoSeleccionado", alumnoSeleccionado);
         startActivity(intent);
     }
 
+    //Método que abre la actividad de informes
     public void informes(View view) {
         Intent intent = new Intent(this, InformeActivity.class);
         intent.putExtra("alumnoSeleccionado", alumnoSeleccionado);
@@ -142,12 +155,13 @@ public class AlumnoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Método que regresa a la lista al pulsar el botón de atrás
     @Override
     public void onBackPressed() {
         vueltaListaAlumnos();
     }
 
-
+    //Método que recarga la actividad al pulsar el botón de atrás
     @Override
     public void onRestart() {
         super.onRestart();

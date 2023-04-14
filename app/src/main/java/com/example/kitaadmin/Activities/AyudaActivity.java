@@ -43,12 +43,13 @@ public class AyudaActivity extends AppCompatActivity {
     }
 
     //Expande la información de respuesta
-    private void onAyudaClick(int i) {
+    void onAyudaClick(int i) {
         TextView textDescription = findViewById(R.id.textDescription);
+        if(textDescription!=null){
         int v = (textDescription.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
 
         TransitionManager.beginDelayedTransition(findViewById(R.id.layoutDescription), new AutoTransition());
-        textDescription.setVisibility(v);
+        textDescription.setVisibility(v);}
     }
 
 }

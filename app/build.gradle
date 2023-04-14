@@ -8,11 +8,13 @@ android {
     defaultConfig {
         applicationId "com.example.kitaadmin"
         minSdk 29
-        targetSdk 33
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
     }
 
     buildTypes {
@@ -72,25 +74,26 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.4'
     implementation 'com.google.android.material:material:1.8.0'
 
-    testImplementation "org.robolectric:robolectric:4.9.2"
-    testImplementation "org.robolectric:robolectric:4.10-alpha-1"
-    testImplementation "org.robolectric:shadows-multidex:4.4"
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testImplementation 'androidx.test:core:1.5.0'
-    testImplementation 'org.robolectric:robolectric:4.9.1'
+    testImplementation "org.robolectric:robolectric:4.7.3"
+    testImplementation "org.robolectric:shadows-multidex:4.7.3"
+    testImplementation 'org.mockito:mockito-core:4.2.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.2.0'
 
-    androidTestImplementation "org.robolectric:robolectric:4.10-alpha-1"
-    androidTestImplementation 'org.robolectric:shadows-framework:4.10-alpha-1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.0-alpha01'
     androidTestImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test:core-ktx:1.5.0'
-    androidTestImplementation 'androidx.test:rules:1.5.0'
-
+    androidTestImplementation 'androidx.test:rules:1.6.0-alpha01'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
 
 }

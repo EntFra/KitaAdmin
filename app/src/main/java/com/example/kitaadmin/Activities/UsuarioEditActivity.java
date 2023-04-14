@@ -177,7 +177,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
 
     }
 
-
+    //Método que obtiene los alumnos
     private void getAlumnos() {
 
         //Se llama al servicio que obtiene los alumnos
@@ -204,7 +204,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
 
     }
 
-
+    //Método que obtiene el padre
     private void getPadreAlumno() {
         //Se llama al servicio que obtiene el de alumno segun usuarioId del padre
         Call<Padres> call = apiService.getPadresByUsuariosId(usuario.getUsuarios_id());
@@ -222,7 +222,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
         });
 
     }
-
+    //Método que obtiene el alumno segun el padre
     private void getAlumno() {
         //Se llama al servicio que obtiene el de alumno segun usuarioId del padre
         Call<Alumnos> call = apiService.getAlumnoByAlumnoId(padre.getAlumnoId());
@@ -240,7 +240,7 @@ public class UsuarioEditActivity extends AppCompatActivity {
         });
 
     }
-
+    //Método que actualiza el usuario
     public void updateUsuario(View view) {
         usuario.setNombre_usuario(binding.editNombreUsuario.getText().toString());
         usuario.setNombre(binding.editNombre.getText().toString());

@@ -39,7 +39,7 @@ import retrofit2.Response;
  */
 
 public class ComedorActivity extends AppCompatActivity {
-
+    //Variable que almacena la fecha del día con el formato dd-MM-yyyy
     String date = DateTimeFormatter.ofPattern("dd-MM-yyyy").withZone(ZoneId.of("UTC")).format(Instant.now());
     Comedor menuDia;
     private ActivityComedorBinding binding;
@@ -65,7 +65,7 @@ public class ComedorActivity extends AppCompatActivity {
         });
 
     }
-
+    //Método que carga el menú del comedor para el día seleccionado
     private void cargaActivity(String date) {
         binding = ActivityComedorBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -84,12 +84,12 @@ public class ComedorActivity extends AppCompatActivity {
         });
 
     }
-
+    //Establece la fecha seleccionada
     private void setFechaDia(String fecha) {
         date = fecha;
 
     }
-
+    //Método que muestra el DatePicker
     private void showDatePickerDialog(final EditText editText) {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -103,7 +103,7 @@ public class ComedorActivity extends AppCompatActivity {
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
-
+    //Método que muestra el menú del día siguiente
     public void getDayAfter(View view) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar c = Calendar.getInstance();
@@ -112,7 +112,7 @@ public class ComedorActivity extends AppCompatActivity {
         date = sdf.format(c.getTime());
         getComedorDia(date);
     }
-
+    //Método que muestra el menú del día anterior
     public void getDayBefore(View view) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar c = Calendar.getInstance();
@@ -121,7 +121,7 @@ public class ComedorActivity extends AppCompatActivity {
         date = sdf.format(c.getTime());
         getComedorDia(date);
     }
-
+    //Método que muestra el menú del día seleccionado
     private void getComedorDia(String fecha) {
         //Primero se establece la fecha y se oculta la tabla con la información, en caso de existir datos que mostrar se cambia la visibilidad de la tabla
         binding.dateComedor.setText(fecha);
@@ -154,7 +154,7 @@ public class ComedorActivity extends AppCompatActivity {
 
 
     }
-
+    //Método que borra el menú del comedor para el día seleccionado
     private void deleteComedorDia(String date) {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.borrarCalendario)

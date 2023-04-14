@@ -158,8 +158,8 @@ public class ProfesorAddActivity extends AppCompatActivity {
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
-
-    private boolean isValidDNI(String dni) {
+    //Método que valida el formato del DNI
+    public boolean isValidDNI(String dni) {
         Boolean isValid = false;
         String dniString = "[0-9]{8}[A-Za-z]{1}";
         if (dni.matches(dniString)) {
@@ -173,7 +173,7 @@ public class ProfesorAddActivity extends AppCompatActivity {
 
         return isValid;
     }
-
+    //Método que obtiene los campos actualizados
     private void getCamposActualizados() {
         dniNew = binding.editDNI.getText().toString();
         fecha_altaNew = (binding.editFechaAlt.getText().toString());
@@ -188,7 +188,7 @@ public class ProfesorAddActivity extends AppCompatActivity {
         }
 
     }
-
+    //Método para añadir un profesor
     public void addProfesor() {
 
         if (isValidDNI(binding.editDNI.getText().toString().trim())) {
@@ -269,7 +269,7 @@ public class ProfesorAddActivity extends AppCompatActivity {
     private boolean getNoCambioCampos() {
         return noCambioCampos;
     }
-
+    //Método que muestra los nombres de los grupos en el spinner
     private void spinnerGrupos() {
         //Lista de datos a cargar
         List<Grupos> listaGrupos = GruposActivity.listaGrupos();
@@ -286,7 +286,7 @@ public class ProfesorAddActivity extends AppCompatActivity {
 
         binding.spinnerGrupo.setAdapter(arrayAdapter);
     }
-
+    //Método que muestra los nombres de los profesores en el spinner
     private void spinnerNombreProfesores() {
         if (nombresProfesores.size() != 0) {
             if (binding.tableAddProfesor.getVisibility() == View.GONE) {
@@ -307,7 +307,7 @@ public class ProfesorAddActivity extends AppCompatActivity {
 
 
     }
-
+    //Método que obtiene los nombres de los profesores
     private void getprofesores() {
         //Se crea una instancia de llamada a la API
         apiService = Network.getInstance().create(ApiService.class);
@@ -360,7 +360,7 @@ public class ProfesorAddActivity extends AppCompatActivity {
             }
         }, 100);
 
-
+        //se retrasa la llamada al spinner en la UI para que de tiempo a recibir la información antes de su llenado
         Timer timer2 = new Timer();
         timer2.schedule(new TimerTask() {
             public void run() {

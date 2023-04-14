@@ -16,7 +16,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-
+/**
+ * Clase que muestra las estadísticas de la aplicación
+ */
 public class EstadisticasActivity extends AppCompatActivity {
 
     ActivityEstadisticasBinding binding;

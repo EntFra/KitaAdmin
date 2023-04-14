@@ -115,7 +115,7 @@ public class ListaAlumnosActivity extends AppCompatActivity implements AlumnoAda
     }
 
 
-
+    //Método que obtiene el id del alumno segun el padre
     private static int getAlumnoID() {
         //Se llama al servicio que obtiene el de alumno segun usuarioId del padre
         Call<Alumnos> call = apiService.getAlumnoByAlumnoId(padre.getAlumnoId());
@@ -139,7 +139,7 @@ public class ListaAlumnosActivity extends AppCompatActivity implements AlumnoAda
         intent.putExtra("grupoSeleccionado", grupo);
         startActivity(intent);
     }
-
+    //Método que inicia la pantalla para añadir un alumno
     public void addAlumno() {
         Intent addAlumno = new Intent(this, AlumnoAddActivity.class);
         addAlumno.putExtra("grupoSeleccionado", grupo);

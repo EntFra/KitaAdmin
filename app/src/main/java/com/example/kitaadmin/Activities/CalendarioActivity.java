@@ -32,7 +32,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Clase que maneja el activity Calendario, mostrará las información del día seleccionado, permitiendo acceder a su edición o realizar el borrado
+ * Clase que maneja el activity Calendario, mostrará las información del día seleccionado,
+ * permitiendo acceder a su edición o realizar el borrado
  */
 public class CalendarioActivity extends AppCompatActivity {
 
@@ -51,7 +52,7 @@ public class CalendarioActivity extends AppCompatActivity {
         binding = ActivityCalendarioBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
+        //Se desactivan los botones de edición y borrado si el usuario es profesor o padre
         if(LoginActivity.getRol().equals("padre")||LoginActivity.getRol().equals("profesor")){
             binding.btnDeleteCalendario.setVisibility(View.GONE);
             binding.ButtonEditCalendario.setVisibility(View.GONE);
@@ -89,7 +90,7 @@ public class CalendarioActivity extends AppCompatActivity {
             }
         });
     }
-
+    //Método que borra el evento del día seleccionado
     private void deleteCalendarioDia(String fecha) {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.borrarCalendario)
@@ -125,6 +126,7 @@ public class CalendarioActivity extends AppCompatActivity {
     }
 
 
+    //Método que obtiene el evento del día seleccionado
     private void getCalendarioDia(String fecha) {
 
         binding.textEventoCalendarioDia.setText(R.string.calendarioSinEvento);
@@ -161,6 +163,7 @@ public class CalendarioActivity extends AppCompatActivity {
 
     }
 
+    //Método que permite acceder a la edición del evento del día seleccionado
     public void calendarioEdit(View view) {
         Intent intent = new Intent(this, CalendarioEditActivity.class);
         intent.putExtra("calendario", new Gson().toJson(calendario));
@@ -168,6 +171,7 @@ public class CalendarioActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Método para regresar al menú principal
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MenuActivity.class);

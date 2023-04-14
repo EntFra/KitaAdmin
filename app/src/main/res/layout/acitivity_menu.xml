@@ -46,9 +46,21 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="70dp"
         android:background="@drawable/icon_database"
         android:onClick="usuarios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/estadisticasBtn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/estadisticasBtn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/stadistics"
+        android:onClick="estadisticas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoBtn"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -122,7 +134,7 @@
         android:text="@string/salir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/estadisticasBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/databaseBtn" />
 
     <TextView
         android:id="@+id/textView"
@@ -142,17 +154,7 @@
         app:layout_constraintStart_toStartOf="@+id/foodBtn"
         app:layout_constraintTop_toBottomOf="@id/foodBtn" />
 
-    <ImageButton
-        android:id="@+id/estadisticasBtn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/stadistics"
-        android:onClick="estadisticas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/databaseBtn"
-        tools:ignore="SpeakableTextPresentCheck" />
+
 
 
     <TextView

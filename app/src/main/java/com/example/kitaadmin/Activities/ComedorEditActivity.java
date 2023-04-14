@@ -99,7 +99,7 @@ public class ComedorEditActivity extends AppCompatActivity {
     private boolean getNoCambioCampos() {
         return noCambioCampos;
     }
-
+    //Método que obtiene los datos del menú del día
     private void getComedorDia() {
         binding.dateComedor.setText(menuDiaOld.getFecha());
         binding.editDesayuno.setText(menuDiaOld.getDesayuno());
@@ -107,7 +107,7 @@ public class ComedorEditActivity extends AppCompatActivity {
         binding.editSnack.setText(menuDiaOld.getSnack());
         binding.editPostre.setText(menuDiaOld.getPostre());
     }
-
+    //Método que actualiza el menú del día
     public void updateComedor() {
 
         getMenuDiaNew();
@@ -139,7 +139,7 @@ public class ComedorEditActivity extends AppCompatActivity {
         startActivity(fechaSeleccionada);
     }
 
-
+    //Método que obtiene los datos del menú del día
     private Comedor getMenuDiaNew() {
         menuDiaNew = new Comedor();
         menuDiaNew.setFecha(fecha);
@@ -149,7 +149,7 @@ public class ComedorEditActivity extends AppCompatActivity {
         menuDiaNew.setPostre(binding.editPostre.getText().toString());
         return menuDiaNew;
     }
-
+    //Método que muestra un dialogo de confirmación para salir sin guardar cambios
     private void dialogoBack() {
 
         androidx.appcompat.app.AlertDialog alertDialog = new AlertDialog.Builder(ComedorEditActivity.this)
@@ -167,7 +167,7 @@ public class ComedorEditActivity extends AppCompatActivity {
 
 
     }
-
+    //Método que comprueba si los campos están vacíos
     private boolean isEmpty() {
         boolean isEmpty = binding.editPostre.getText().toString().isEmpty() &&
                 binding.editSnack.getText().toString().isEmpty() &&

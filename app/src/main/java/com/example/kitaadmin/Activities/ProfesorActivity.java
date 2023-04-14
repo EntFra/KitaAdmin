@@ -72,7 +72,7 @@ public class ProfesorActivity extends AppCompatActivity {
         });
     }
 
-
+    //Método que recupera la información del profesor seleccionado
     private void recuperaInfoProfesor() throws ParseException {
 
         binding.textNombreProf.setText(profesor.getUsuario().getNombre());
@@ -117,7 +117,7 @@ public class ProfesorActivity extends AppCompatActivity {
                 .setNegativeButton("Cancelar", null)
                 .show();
     }
-
+    //Método que abre el activity de edición de profesor
     public void editarProfesor(View view) {
         Intent intent = new Intent(this, ProfesorEditActivity.class);
         intent.putExtra("profesorSeleccionado", profesorSeleccionado);

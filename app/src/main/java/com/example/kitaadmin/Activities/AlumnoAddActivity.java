@@ -43,9 +43,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Clase que maneja el activity Alumno Add, usado para añadir un alumno nuevo
- */
+
 public class AlumnoAddActivity extends AppCompatActivity {
 
     static Alumnos alumno = new Alumnos();
@@ -69,6 +67,7 @@ public class AlumnoAddActivity extends AppCompatActivity {
 
     }
 
+    //Método que carga la actividad de edición de un alumno
     private void cargaActivity() {
         setContentView(R.layout.activity_alumno_edit);
 
@@ -77,9 +76,9 @@ public class AlumnoAddActivity extends AppCompatActivity {
         setContentView(view);
         Bundle extras = getIntent().getExtras();
         grupo = extras.getString("grupoSeleccionado");
-
+        //Se cargan los grupos disponibles en el spinner
         spinnerGrupos();
-
+        //Se añade un listener para el botón de selección de fecha de nacimiento
         binding.editTextFechaNac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +87,7 @@ public class AlumnoAddActivity extends AppCompatActivity {
         });
 
         noCambioCampos = true;
-
+        //Se crea un TextWatcher para detectar cambios en los campos
         TextWatcher tw = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -103,7 +102,7 @@ public class AlumnoAddActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                //Se establece la variable cambioCampos como falsa para indicar que se han realizado cambios
                 setCambioCampos(false);
 
             }
@@ -116,7 +115,7 @@ public class AlumnoAddActivity extends AppCompatActivity {
 
     }
 
-
+    //Muestra el diálogo de selección de fecha
     private void showDatePickerDialog(final EditText editText) {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
 
@@ -129,7 +128,7 @@ public class AlumnoAddActivity extends AppCompatActivity {
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
-
+    //Método para añadir un alumno
     public void addAlumno() {
 
 
@@ -164,6 +163,7 @@ public class AlumnoAddActivity extends AppCompatActivity {
         });
     }
 
+    //Carga la lista de grupos en el spinner
     private void spinnerGrupos() {
         //Lista de datos a cargar
         List<Grupos> listaGrupos = GruposActivity.listaGrupos();
@@ -189,7 +189,7 @@ public class AlumnoAddActivity extends AppCompatActivity {
 
 
     }
-
+    //Dialogo de confirmación de salida
     private void dialogoBack() {
 
         AlertDialog alertDialog = new AlertDialog.Builder(AlumnoAddActivity.this)
@@ -216,13 +216,13 @@ public class AlumnoAddActivity extends AppCompatActivity {
     private boolean getNoCambioCampos() {
         return noCambioCampos;
     }
-
+    //Método para volver a la lista de alumnos
     public void volverLista() {
         Intent listaAlumnos = new Intent(this, ListaAlumnosActivity.class);
         listaAlumnos.putExtra("grupoSeleccionado", grupo);
         startActivity(listaAlumnos);
     }
-
+    //Método para comprobar si se han realizado cambios en los campos antes de salir
     @Override
     public void onBackPressed() {
         if (getNoCambioCampos()) {

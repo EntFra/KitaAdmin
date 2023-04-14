@@ -43,7 +43,7 @@ public class GruposActivity extends AppCompatActivity implements GruposAdapter.O
         cargarActivity();
 
     }
-
+    //Método que carga el activity
     private void cargarActivity() {
         setContentView(R.layout.activity_grupos);
         recyclerViewGrupos = findViewById(R.id.recyclerGrupos);

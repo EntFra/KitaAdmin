@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-
+    //Método que devuelve el usuario logueado
     public static Usuarios getUsuario() {
         return usuarioLogin;
     }
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             login();
         });
     }
-
+    //Método que realiza el login
     public void login() {
         if (validaUsuario() && validaContrasenia()) {
             Usuarios usuario = new Usuarios(etUsername.getEditText().getText().toString(), etPassword.getEditText().getText().toString());
@@ -68,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                         intent.putExtra("rol", rolUsuario);
                         startActivity(intent);
+                    }else {
+                        Toast.makeText(LoginActivity.this, R.string.usuarioNoValido, Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -82,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //Valida la entrada del campo usuario
     boolean validaUsuario() {
-        if (TextUtils.isEmpty(etUsername.getEditText().toString())) {
+        if (TextUtils.isEmpty(etUsername.getEditText().getText().toString())) {
             etUsername.setError(getResources().getString(R.string.usuarioVacio));
             etUsername.requestFocus();
             return false;
@@ -92,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //Valida la entrada del campo contraseña
     boolean validaContrasenia() {
-        if (TextUtils.isEmpty(etPassword.getEditText().toString())) {
+        if (TextUtils.isEmpty(etPassword.getEditText().getText().toString())) {
             etPassword.setError(getResources().getString(R.string.contraseniaVacia));
             etPassword.requestFocus();
             return false;

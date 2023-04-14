@@ -116,7 +116,7 @@ public class ListaProfesoresActivity extends AppCompatActivity implements Profes
         intent.putExtra("grupoSeleccionado", grupo);
         startActivity(intent);
     }
-
+    //Inicia la pantalla para añadir un profesor
     public void addProfesor() {
         Intent addProfesor = new Intent(this, ProfesorAddActivity.class);
         addProfesor.putExtra("grupoSeleccionado", grupo);

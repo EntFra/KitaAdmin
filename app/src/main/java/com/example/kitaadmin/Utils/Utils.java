@@ -71,7 +71,7 @@ public class Utils {
     public static String stringToTime(String time) {
         return time.concat(":00");
     }
-
+    //Roles que se pueden dar de alta en la aplicación
     public static ArrayList getRoles() {
         final ArrayList<String> ROLES = new ArrayList<>();
 

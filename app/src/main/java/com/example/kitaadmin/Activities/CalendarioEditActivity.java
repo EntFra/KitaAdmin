@@ -88,16 +88,17 @@ public class CalendarioEditActivity extends AppCompatActivity {
 
     }
 
+
     private boolean setCambioCampos(boolean isChanged) {
 
         return noCambioCampos = isChanged;
     }
-
+    //Método que obtiene el calendario del día seleccionado
     private void getCalendarioDia() {
         binding.dateCalendario.setText(calendarioOld.getDia());
         binding.editEvento.setText(calendarioOld.getEvento());
     }
-
+    //Método que devuelve el calendario con los datos actualizados
     private Calendario getCalendarioNew() {
         calendarioNew = calendarioOld;
         calendarioNew.setDia(fecha);
@@ -106,7 +107,7 @@ public class CalendarioEditActivity extends AppCompatActivity {
 
     }
 
-
+    //Método que realiza el update del calendario
     public void updateCalendario() {
 
 
@@ -130,7 +131,7 @@ public class CalendarioEditActivity extends AppCompatActivity {
         });
 
     }
-
+    //Método que muestra un dialogo de confirmación para salir sin guardar cambios
     private void dialogoBack() {
 
         androidx.appcompat.app.AlertDialog alertDialog = new AlertDialog.Builder(CalendarioEditActivity.this)
@@ -148,13 +149,13 @@ public class CalendarioEditActivity extends AppCompatActivity {
 
 
     }
-
+    //Método que devuelve al activity calendario
     private void volverCalendario() {
         Intent fechaSeleccionada = new Intent(this, CalendarioActivity.class);
         fechaSeleccionada.putExtra("fecha", fecha);
         startActivity(fechaSeleccionada);
     }
-
+    //Método que muestra un dialogo de confirmación para salir sin guardar cambios
     @Override
     public void onBackPressed() {
         getCalendarioNew();

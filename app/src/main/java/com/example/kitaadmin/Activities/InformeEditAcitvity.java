@@ -71,7 +71,7 @@ public class InformeEditAcitvity extends AppCompatActivity {
 
 
     }
-
+    //Método que actualiza el informe
     public void updateInformeAlumno(View view) {
 
         getInformeNew();
@@ -96,7 +96,7 @@ public class InformeEditAcitvity extends AppCompatActivity {
         });
 
     }
-
+    //Método que ontiene los datos nuevos del informe
     private Informes getInformeNew() {
         informeNew = new Informes(alumno.getAlumno_id(), false, null, false, false, null, null);
         informeNew.setObservaciones(binding.textObservacionesInforme.getText().toString());
@@ -108,7 +108,7 @@ public class InformeEditAcitvity extends AppCompatActivity {
         informeNew.setFecha(fecha);
         return informeNew;
     }
-
+    //Método que obtiene los datos del informe
     private void getInformeAlumno() {
 
         binding.dateInforme.setText(informeOld.getFecha());
@@ -120,30 +120,30 @@ public class InformeEditAcitvity extends AppCompatActivity {
 
 
     }
-
+    //Obtiene las horas del informe cambiando el formato
     private int getHorasInforme() {
         String[] horaMinutos = informeOld.getSuenio().split(":");
         int horas = Integer.parseInt(horaMinutos[0]);
         setHoras(horas);
         return horas;
     }
-
+    //Obtiene los minutos del informe cambiando el formato
     private int getMinutosInforme() {
         String[] horaMinutos = informeOld.getSuenio().split(":");
         int minutos = Integer.parseInt(horaMinutos[1]);
         setMinutos(minutos);
         return minutos;
     }
-
+    //Establece los minutos
     private void setMinutos(int minutos) {
         minutosMostrados = minutos;
 
     }
-
+    //Establece las horas
     private void setHoras(int horas) {
         horaMostrada = horas;
     }
-
+    //Método que muestra el time picker
     public void showTimePicker(View view) {
 
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
@@ -166,7 +166,7 @@ public class InformeEditAcitvity extends AppCompatActivity {
         timePickerDialog.setTitle(R.string.tiempoDormido);
         timePickerDialog.show();
     }
-
+    //Método que muestra un dialogo de confirmación para salir sin guardar cambios
     private void dialogoBack() {
 
         androidx.appcompat.app.AlertDialog alertDialog = new AlertDialog.Builder(InformeEditAcitvity.this)

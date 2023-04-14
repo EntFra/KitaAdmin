@@ -56,7 +56,7 @@ public class UsuariosActivity extends AppCompatActivity {
         adapter = new UsuariosAdapter(listaUsuarios);
         recyclerUsuarios.setAdapter(adapter);
 
-
+        //Vista para la búsqueda de usuarios
         SearchView simpleSearchView = binding.searchView;
         simpleSearchView.setQueryHint(getString(R.string.busqueda));
 
@@ -83,7 +83,7 @@ public class UsuariosActivity extends AppCompatActivity {
 
     }
 
-
+    //Método para borrar a un usuario
     public void deleteUsuario(int position) {
         new AlertDialog.Builder(UsuariosActivity.this)
                 .setTitle(R.string.borrarUsuario)
@@ -117,7 +117,7 @@ public class UsuariosActivity extends AppCompatActivity {
                 .setNegativeButton("Cancelar", null)
                 .show();
     }
-
+    //Método para obtener la lista de usuarios
     public void getUsuarios() {
         apiService = Network.getInstance().create(ApiService.class);
         //Se llama al servicio que obtiene los usuarios
@@ -156,7 +156,7 @@ public class UsuariosActivity extends AppCompatActivity {
         });
     }
 
-
+    //Método para editar a un usuario
     private void editUsuario(int position) {
         Intent intent = new Intent(this, UsuarioEditActivity.class);
         Bundle bundle = new Bundle();
@@ -165,7 +165,7 @@ public class UsuariosActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-
+    //Método para añadir un usuario
     private void addUsuario() {
         Intent intent = new Intent(this, UsuarioAddActivity.class);
         startActivity(intent);
