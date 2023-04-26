@@ -107,6 +107,7 @@ public class CalendarioActivity extends AppCompatActivity {
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if (response.isSuccessful()) {
                                     Toast.makeText(CalendarioActivity.this, R.string.calendarioBorrado, Toast.LENGTH_SHORT).show();
+                                    getCalendarioDia(fecha);
                                 }
                             }
 

@@ -62,6 +62,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:gravity="center"
+                        android:singleLine="true"
                         android:hint="@string/nombre"
                         tools:text="TextView" />
                 </LinearLayout>
@@ -144,7 +145,7 @@
                         android:background="@null"
                         android:gravity="center"
                         android:hint="@string/alergia"
-                        android:maxLines="1"
+                        android:singleLine="true"
                         tools:text="TextView" />
                 </LinearLayout>
             </TableRow>

@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -36,6 +37,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.CountDownLatch;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,6 +55,8 @@ public class ProfesorAddActivity extends AppCompatActivity {
     List<Usuarios> listaUsuarios = new ArrayList<>();
     List<Profesores> listaProfesores = new ArrayList<>();
     List<String> nombresProfesores = new ArrayList<>();
+
+    List<Usuarios> usuarioSinProfesor = new ArrayList<>();
 
     String dniNew = "";
     String fecha_altaNew = "";
@@ -167,7 +171,7 @@ public class ProfesorAddActivity extends AppCompatActivity {
 
         } else if (!dni.matches(dniString)) {
             Toast.makeText(getApplicationContext(), R.string.formatoDNI, Toast.LENGTH_SHORT).show();
-
+            isValid = false;
         }
 
 
@@ -198,9 +202,26 @@ public class ProfesorAddActivity extends AppCompatActivity {
             usuarioProfesor.setEmail(emailNew);
             usuarioProfesor.setTelefono(telefonoNew);
 
+
+
             for (Usuarios u : listaUsuarios)
                 if (u.getNombre().equals(binding.spinnerNombreProfesor.getSelectedItem().toString())) {
+                    profesor.setUsuario(u);
                     profesor.setId(u.getUsuarios_id());
+
+                    ApiService apiService = Network.getInstance().create(ApiService.class);
+                    Call<Usuarios> call = apiService.updateUsuarios(u);
+                    call.enqueue(new Callback<Usuarios>() {
+                        @Override
+                        public void onResponse(Call<Usuarios> call, Response<Usuarios> response) {
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<Usuarios> call, Throwable t) {
+
+                        }
+                    });
 
                 }
 
@@ -210,10 +231,12 @@ public class ProfesorAddActivity extends AppCompatActivity {
             profesor.setDireccion(direccionNew);
             profesor.setNombre_grupo(grupoNew);
 
+            System.out.println("Profesor: " + profesor.toString());
+
             if (compruebaCampos()) {
-                ApiService apiService = Network.getInstance().create(ApiService.class);
-                Call<Profesores> call = apiService.addProfesor(profesor);
-                call.enqueue(new Callback<Profesores>() {
+                ApiService apiServiceProf = Network.getInstance().create(ApiService.class);
+                Call<Profesores> callProf = apiServiceProf.addProfesor(profesor);
+                callProf.enqueue(new Callback<Profesores>() {
                     @Override
                     public void onResponse(Call<Profesores> call, Response<Profesores> response) {
                         if (response.isSuccessful()) {
@@ -299,6 +322,42 @@ public class ProfesorAddActivity extends AppCompatActivity {
             arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             binding.spinnerNombreProfesor.setAdapter(arrayAdapter);
+
+            // Agregar un OnItemSelectedListener al Spinner
+            binding.spinnerNombreProfesor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    boolean isFirstCall = true;
+
+
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if (isFirstCall) {
+                            isFirstCall = false;
+
+                           binding.editEmail.setText(usuarioSinProfesor.get(0).getEmail());
+                           binding.editTextTelf.setText(String.valueOf(usuarioSinProfesor.get(0).getTelefono()));
+                        } else {
+                            String itemSeleccionado= (String) parent.getItemAtPosition(position);
+                            Usuarios usuarioSeleccionado = null;
+                            for (Usuarios user : usuarioSinProfesor) {
+                                if (user.getNombre().equals(itemSeleccionado)) {
+                                    usuarioSeleccionado = user;
+                                    break;
+                                }
+                            }
+
+                            if (usuarioSeleccionado != null) {
+                                binding.editEmail.setText(usuarioSeleccionado.getEmail());
+                                binding.editTextTelf.setText(String.valueOf(usuarioSeleccionado.getTelefono()));
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // Acción a realizar cuando no se selecciona ningún elemento
+                    }
+                });
         } else {
             binding.tableAddProfesor.setVisibility(View.GONE);
             binding.sinProfesores.setVisibility(View.VISIBLE);
@@ -309,73 +368,80 @@ public class ProfesorAddActivity extends AppCompatActivity {
     }
     //Método que obtiene los nombres de los profesores
     private void getprofesores() {
-        //Se crea una instancia de llamada a la API
+        // Se crea una instancia de llamada a la API
         apiService = Network.getInstance().create(ApiService.class);
-        //Se llama al servicio que obtiene los usuarios
+
+        // Utilizar CountDownLatch para sincronizar las llamadas a la API
+        final CountDownLatch latch = new CountDownLatch(2);
+
+        // Se llama al servicio que obtiene los usuarios
         Call<List<Usuarios>> call = apiService.getUsuarios();
         call.enqueue(new Callback<List<Usuarios>>() {
             @Override
             public void onResponse(Call<List<Usuarios>> call, Response<List<Usuarios>> response) {
                 listaUsuarios = response.body();
+                latch.countDown();
             }
 
             @Override
             public void onFailure(Call<List<Usuarios>> call, Throwable t) {
                 Log.e("Error", t.getMessage());
+                latch.countDown();
             }
         });
 
-        //Se llama al servicio que obtiene los usuarios
+        // Se llama al servicio que obtiene los profesores
         Call<List<Profesores>> call2 = apiService.getProfesoresAll();
         call2.enqueue(new Callback<List<Profesores>>() {
             @Override
             public void onResponse(Call<List<Profesores>> call2, Response<List<Profesores>> response) {
                 listaProfesores = response.body();
+                latch.countDown();
             }
 
             @Override
             public void onFailure(Call<List<Profesores>> call2, Throwable t) {
                 Log.e("Error", t.getMessage());
+                latch.countDown();
             }
         });
 
-
-        Timer timer1 = new Timer();
-        timer1.schedule(new TimerTask() {
+        // Esperar a que se completen ambas llamadas a la API antes de continuar
+        new Thread(new Runnable() {
+            @Override
             public void run() {
-                //S obtiene el nombre de los profesores en String, comprobando primero los usuarios que aún no tienen un profesor creado
+                try {
+                    latch.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // S obtiene el nombre de los profesores en String, comprobando primero los usuarios que aún no tienen un profesor creado
                 for (Usuarios u : listaUsuarios) {
                     if (u.getRol().equalsIgnoreCase("profesor") ||
                             u.getRol().equalsIgnoreCase("profesor_admin")) {
                         nombresProfesores.add(u.getNombre());
+                        usuarioSinProfesor.add(u);
 
                         for (Profesores p : listaProfesores) {
                             if (u.getUsuarios_id() == (p.getUsuario().getUsuarios_id())) {
                                 nombresProfesores.remove(u.getNombre());
+                                usuarioSinProfesor.remove(u);
+
                             }
                         }
                     }
                 }
-                timer1.cancel();
-            }
-        }, 100);
 
-        //se retrasa la llamada al spinner en la UI para que de tiempo a recibir la información antes de su llenado
-        Timer timer2 = new Timer();
-        timer2.schedule(new TimerTask() {
-            public void run() {
+                // Configurar el adaptador del Spinner en el hilo principal
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         spinnerNombreProfesores();
                     }
                 });
-
-                timer2.cancel();
             }
-        }, 500);
-
-
+        }).start();
     }
 
     private void dialogoBack() {

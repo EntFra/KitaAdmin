@@ -61,6 +61,7 @@
                         android:id="@+id/editNombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:gravity="center"
                         tools:text="TextView" />
                 </LinearLayout>
@@ -98,6 +99,7 @@
                         android:id="@+id/editNombreUsuario"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:gravity="center"
                         tools:text="TextView" />
                 </LinearLayout>

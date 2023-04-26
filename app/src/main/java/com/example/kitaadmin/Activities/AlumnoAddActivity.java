@@ -128,8 +128,19 @@ public class AlumnoAddActivity extends AppCompatActivity {
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
+
+    private boolean compruebaCampos() {
+        return binding.textNombreAlumno.getText().toString().isEmpty() ||
+                binding.editTextFechaNac.getText().toString().isEmpty();
+    }
+
     //Método para añadir un alumno
     public void addAlumno() {
+
+        if (compruebaCampos()) {
+            Toast.makeText(AlumnoAddActivity.this, R.string.campoObligatorio, Toast.LENGTH_SHORT).show();
+            return;
+        }
 
 
         alumno.setNombre(binding.textNombreAlumno.getText().toString());

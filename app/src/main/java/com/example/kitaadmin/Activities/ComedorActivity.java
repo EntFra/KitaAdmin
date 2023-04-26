@@ -171,6 +171,7 @@ public class ComedorActivity extends AppCompatActivity {
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if (response.isSuccessful()) {
                                     Toast.makeText(ComedorActivity.this, R.string.comedorBorrado, Toast.LENGTH_SHORT).show();
+                                    getComedorDia(date);
                                 }
                             }
 
@@ -180,7 +181,7 @@ public class ComedorActivity extends AppCompatActivity {
                                 Log.e("Error", t.getMessage());
                             }
                         });
-                        getComedorDia(date);
+
                     }
                 })
                 .setNegativeButton("Cancelar", null)

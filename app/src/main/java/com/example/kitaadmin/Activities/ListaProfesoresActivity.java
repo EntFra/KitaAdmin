@@ -55,7 +55,8 @@ public class ListaProfesoresActivity extends AppCompatActivity implements Profes
         profesorAdapter = new ProfesorAdapter(ListaProfesoresActivity.this, listaProfesores, ListaProfesoresActivity.this::onProfesorClick);
         recyclerViewProfesores.setAdapter(profesorAdapter);
 
-        if(LoginActivity.getRol().equals("padre")||LoginActivity.getRol().equals("profesor")){
+        String usuarioRol = LoginActivity.getRol();
+        if (usuarioRol != null && (usuarioRol.equals("padre") || usuarioRol.equals("profesor"))) {
             binding.addProfesor.setVisibility(View.GONE);
         }
 

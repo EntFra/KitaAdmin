@@ -2,7 +2,6 @@ package com.example.kitaadmin.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.service.autofill.CharSequenceTransformation;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,7 +13,6 @@ import com.example.kitaadmin.R;
 import com.example.kitaadmin.Remote.ApiService;
 import com.example.kitaadmin.Remote.Network;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +27,13 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout etPassword, etUsername;
     Button btnLogin;
 
+
     public static String getRol() {
+        if (rolUsuario != null) {
+            final String finalUserRole = rolUsuario;
+        } else {
+            rolUsuario = "";
+        }
         return rolUsuario;
     }
 
@@ -42,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
     //Método que devuelve el usuario logueado
     public static Usuarios getUsuario() {
         return usuarioLogin;
@@ -52,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             login();
         });
     }
+
     //Método que realiza el login
     public void login() {
         if (validaUsuario() && validaContrasenia()) {
@@ -68,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                         intent.putExtra("rol", rolUsuario);
                         startActivity(intent);
-                    }else {
+                    } else {
                         Toast.makeText(LoginActivity.this, R.string.usuarioNoValido, Toast.LENGTH_SHORT).show();
                     }
                 }

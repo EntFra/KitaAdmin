@@ -11,6 +11,7 @@ import javax.annotation.Generated;
  */
 @Generated("com.robohorse.robopojogenerator")
 public class Comedor implements Serializable {
+
     @SerializedName("menu_id")
     private int menu_id;
     @SerializedName("fecha")

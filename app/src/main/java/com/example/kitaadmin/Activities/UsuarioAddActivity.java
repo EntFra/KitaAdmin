@@ -106,8 +106,22 @@ public class UsuarioAddActivity extends AppCompatActivity {
             }
         });
     }
+
+    private boolean compruebaCampos() {
+        return binding.editNombre.getText().toString().isEmpty() ||
+                binding.editNombreUsuario.getText().toString().isEmpty() ||
+                binding.editContrasenia.getText().toString().isEmpty() ||
+                binding.editTelefono.getText().toString().isEmpty() ||
+                binding.editEmail.getText().toString().isEmpty();
+    }
+
     //Método para crear un usuario
     public void addUsuario(View view) {
+
+        if (compruebaCampos()) {
+            Toast.makeText(UsuarioAddActivity.this, R.string.campoObligatorio, Toast.LENGTH_SHORT).show();
+            return;
+        }
         usuario.setNombre_usuario(binding.editNombreUsuario.getText().toString());
         usuario.setNombre(binding.editNombre.getText().toString());
         usuario.setContrasenia(binding.editContrasenia.getText().toString());
