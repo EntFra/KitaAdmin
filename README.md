@@ -10,3 +10,4 @@ Our software is easy to use and customizable, allowing you to tailor it to the s
 ## Demo
 
 ![kitaAdmin login](https://github.com/EntFra/KitaAdmin/blob/master/kitagif1.gif)
+![kitaAdmin alumno](https://github.com/EntFra/KitaAdmin/blob/master/kitaalumnogif.gif)
